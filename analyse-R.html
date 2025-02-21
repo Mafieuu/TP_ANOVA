@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>analyse-R</title>
+
+<script src="libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="include/flatly.print.css" rel="stylesheet" />
+<link href="include/analyse-R.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+/* CSS générées par knitr */
+
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+code{white-space: pre;}
+
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+
+pre:not([class]) {
+  background-color: white;
+}
+
+/* Print CSS */
+@media print {
+  math {margin: 11px auto;}
+
+  .main-container {margin:0; padding:0; max-width: 100%;}
+  img {max-width: 100%;}
+
+  @page {
+		size: A4;
+		margin: 2.5cm; padding: 0;
+ 		@bottom {content: "\2013\0000a0\0000a0\0000a0\0000a0" counter(page) "\0000a0\0000a0\0000a0\0000a0\2013"; font-size: 9pt; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+		@footnotes {
+			border-top: solid #999 thin;
+			padding-top: 8pt;
+			footnote-style-position: inside;
+    }
+	}
+	@page:first {
+  	@bottom { content: normal;}
+	  @top-left { content:normal;}
+		@top-right { content:normal;}
+  }
+  @page:left{
+    @top-left {content: "analyse-R\0000a0\0000a0\2013\0000a0\0000a0" string(titre_doc);
+    font-style: italic; font-size: 9pt; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+  }
+  @page:right{
+    @top-right {content: string(titre_chap); font-style: italic; font-size: 9pt; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+  }
+  @page:blank{
+		@bottom { content: normal;}
+	  @top-left { content:normal;}
+		@top-right { content:normal;}
+	}
+
+  article {string-set: titre_chap "";} /* éviter en-tête en début de chapitre */
+	h1 {string-set: titre_chap content();}
+	article:first-child .jumbotron h1 {string-set: titre_doc content();}
+
+	body {font-size: 10pt; color: black;}
+	pre {font-size: 10pt;}
+	h1 {font-size:36pt; margin-top: 3cm; margin-bottom: 1cm; padding:0; color: #2c3e50;}
+	article:first-child h1:first-child {margin-top: 0; margin-bottom: .5cm; padding:0; font-size: 48pt;}
+	article:first-child .jumbotron h1 {font-size: 32pt;  color: #2c3e50;}
+	article:first-child .jumbotron {margin-bottom: 5cm;}
+	h2 {font-size: 20pt; margin-top: 1cm; margin-bottom: .5cm; padding:0; color: #2c3e50;}
+	h3 {font-size: 16pt; margin-top: 1cm; margin-bottom: .5cm; padding:0; color: #2c3e50;}
+	h4 {font-size: 11pt; margin-top: 1cm; margin-bottom: .5cm; padding:0; color: #2c3e50;}
+	blockquote p {font-size: 11pt;}
+	pre {font-size: 9pt;}
+
+	/* Page-break */
+	article, #tdm {page-break-before: right;}
+	#presentation {page-break-before: always;}
+	article:first-child {page-break-before: auto;}
+	h1, h2, h3, h4, heading, caption, pre.r {page-break-after: avoid;}
+	figcaption {page-break-before: avoid;}
+	figure, table, pre.r {page-break-inside: avoid;}
+	div.note, div.important, #licence {page-break-inside: avoid;}
+	article ul {page-break-before: avoid;}
+
+  /* Footnotes */
+  .fn {
+    float: footnote;
+    counter-increment: footnote;
+    font-size: 9pt;
+  }
+  article {counter-reset: footnote;}
+  .fn::footnote-call {font-size: 75%; vertical-align: super; line-height: none;}
+
+  /* Liens */
+  a[href^="#"] {color: black;}
+  a[href^="#"]:after { content: ", page\0000a0" target-counter(attr(href), page);}
+  a.anchor-section {display: none;}
+  code a[href^="#"]:after  { content: none;} /* ne pas afficher dans le code */
+
+  /* Table des matières */
+  #tdm strong {font-size: 11pt;}
+  .list-group-item {padding: 2pt 0; border:none;}
+  a.list-group-item::after {content: leader(" . ") target-counter(attr(href), page);}
+  .TOC a::after {content: leader(" . ") target-counter(attr(href), page);}
+  .TOC a {color: black;}
+  .TOC ul {list-style: none; padding:0; margin:0;}
+  .TOC ul ul {padding-left: 0.5cm; font-size: 9pt;}
+  .TOC {margin-bottom: 1cm;}
+
+  /* Index des fonctions */
+  nav.index {display: none;}
+  .liste_index
+    {column-count: 2; column-rule: thin solid #2c3e50; column-gap: 1cm;}
+  .liste_index p
+    {page-break-after: avoid; margin: 10px 0 0 0;}
+  .liste_index ul a[href^="#"] {color: black;}
+  .liste_index ul a[href^="#"]:after
+    {content: leader(" . ") target-counter(attr(href), page);}
+  .liste_index ul
+  {
+    list-style: none;
+    padding: 0; margin: 0;
+    font-size: 8pt;
+    page-break-inside: avoid;
+  }
+  .liste_index li
+    {padding-left: 0.5cm;}
+
+  dfn {border-bottom: dotted .5pt #AAA;}
+
+  /* Styles des exemples de fusion de tables */
+  table.exemple_df td,
+  table.exemple_df th {
+    text-align: center;
+    padding: 3px 10px;
+  }
+  table.exemple_df th {
+    border-bottom: solid 1px #999;
+  }
+
+  table.exemple_df td + td,
+  table.exemple_df th + th {
+    border-left: solid 1px #999;
+  }
+
+  table.exemple_operateur td {
+    font-size: 3em;
+    padding: 20px;
+  }
+
+}
+
+</style>
+
+<div class="container-fluid main-container">
+<article><div id="header">
+
+
+
+<h1 class="title toc-ignore">analyse-R</h1>
+
+</div>
+
+
+<div class="jumbotron">
+<h1>
+TP ANOVA <br>ISE 2 <br>2024-2025
+</h1>
+<p>
+Dernière mise à jour : 2025-02-21
+</p>
+</div>
+<p><strong>Mr Youm</strong> <strong>Moussa DIEME</strong></p>
+<div id="presentation" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation<a href="#presentation" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>TP a rendre le 25</p>
+</div>
+<div id="tdm" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Table des matières<a href="#tdm" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<div id="manipuler" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Manipuler<a href="#manipuler" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<div class="row">
+<div class="col-md-4">
+<p>
+<strong>Presentation et statistiques descriptives</strong>
+</p>
+<div class="list-group">
+<p><a href="#introduction" class="list-group-item">Introduction</a> <a href="#analyse-descriptive" class="list-group-item">Statistiques univariée</a> <a href="#analyse-bivarie" class="list-group-item">Choix de la variable cible et statistiques bivariée</a> <a href="#discussion-des-resultats" class="list-group-item">Un premier bilan</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</article>
+<article id="introduction"><div id="introduction_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#introduction_pr%C3%A9sentation-de-r" id="introduction_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#introduction_philosophie-de-r" id="introduction_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#introduction_pr%C3%A9sentation-de-rstudio" id="introduction_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="introduction_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#introduction_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#introduction_fn1" class="footnote-ref" id="introduction_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#introduction_fn2" class="footnote-ref" id="introduction_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="introduction_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#introduction_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#introduction_fn3" class="footnote-ref" id="introduction_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#introduction_fn4" class="footnote-ref" id="introduction_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="introduction_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#introduction_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="introduction_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#introduction_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#introduction_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#introduction_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#introduction_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="analyse-descriptive"><div id="analyse-descriptive_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-r" id="analyse-descriptive_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#analyse-descriptive_philosophie-de-r" id="analyse-descriptive_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" id="analyse-descriptive_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="analyse-descriptive_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#analyse-descriptive_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-descriptive_fn1" class="footnote-ref" id="analyse-descriptive_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#analyse-descriptive_fn2" class="footnote-ref" id="analyse-descriptive_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="analyse-descriptive_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#analyse-descriptive_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-descriptive_fn3" class="footnote-ref" id="analyse-descriptive_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-descriptive_fn4" class="footnote-ref" id="analyse-descriptive_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="analyse-descriptive_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="analyse-descriptive_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-descriptive_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-descriptive_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-descriptive_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-descriptive_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="analyse-bivarie"><div id="analyse-bivarie_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-r" id="analyse-bivarie_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#analyse-bivarie_philosophie-de-r" id="analyse-bivarie_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" id="analyse-bivarie_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="analyse-bivarie_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#analyse-bivarie_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-bivarie_fn1" class="footnote-ref" id="analyse-bivarie_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#analyse-bivarie_fn2" class="footnote-ref" id="analyse-bivarie_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="analyse-bivarie_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#analyse-bivarie_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-bivarie_fn3" class="footnote-ref" id="analyse-bivarie_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-bivarie_fn4" class="footnote-ref" id="analyse-bivarie_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="analyse-bivarie_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="analyse-bivarie_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-bivarie_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-bivarie_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-bivarie_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-bivarie_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="introduction"><div id="introduction_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#introduction_pr%C3%A9sentation-de-r" id="introduction_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#introduction_philosophie-de-r" id="introduction_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#introduction_pr%C3%A9sentation-de-rstudio" id="introduction_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="introduction_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#introduction_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#introduction_fn1" class="footnote-ref" id="introduction_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#introduction_fn2" class="footnote-ref" id="introduction_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="introduction_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#introduction_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#introduction_fn3" class="footnote-ref" id="introduction_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#introduction_fn4" class="footnote-ref" id="introduction_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="introduction_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#introduction_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="introduction_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#introduction_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#introduction_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#introduction_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="introduction_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#introduction_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="analyse-descriptive"><div id="analyse-descriptive_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-r" id="analyse-descriptive_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#analyse-descriptive_philosophie-de-r" id="analyse-descriptive_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" id="analyse-descriptive_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="analyse-descriptive_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#analyse-descriptive_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-descriptive_fn1" class="footnote-ref" id="analyse-descriptive_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#analyse-descriptive_fn2" class="footnote-ref" id="analyse-descriptive_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="analyse-descriptive_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#analyse-descriptive_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-descriptive_fn3" class="footnote-ref" id="analyse-descriptive_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-descriptive_fn4" class="footnote-ref" id="analyse-descriptive_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="analyse-descriptive_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="analyse-descriptive_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-descriptive_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-descriptive_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-descriptive_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-descriptive_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-descriptive_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="analyse-bivarie"><div id="analyse-bivarie_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-r" id="analyse-bivarie_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#analyse-bivarie_philosophie-de-r" id="analyse-bivarie_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" id="analyse-bivarie_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="analyse-bivarie_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#analyse-bivarie_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-bivarie_fn1" class="footnote-ref" id="analyse-bivarie_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#analyse-bivarie_fn2" class="footnote-ref" id="analyse-bivarie_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="analyse-bivarie_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#analyse-bivarie_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-bivarie_fn3" class="footnote-ref" id="analyse-bivarie_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-bivarie_fn4" class="footnote-ref" id="analyse-bivarie_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="analyse-bivarie_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="analyse-bivarie_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-bivarie_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-bivarie_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-bivarie_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="analyse-bivarie_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-bivarie_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+<article id="discussion-des-resultats"><div id="discussion-des-resultats_header">
+
+
+
+<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#discussion-des-resultats_pr%C3%A9sentation-de-r" id="discussion-des-resultats_toc-présentation-de-r">Présentation de R</a></li>
+<li><a href="#discussion-des-resultats_philosophie-de-r" id="discussion-des-resultats_toc-philosophie-de-r">Philosophie de R</a></li>
+<li><a href="#discussion-des-resultats_pr%C3%A9sentation-de-rstudio" id="discussion-des-resultats_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+</ul>
+</div>
+
+<div class="webin-R">
+<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+</div>
+<div id="discussion-des-resultats_présentation-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de R<a href="#discussion-des-resultats_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#discussion-des-resultats_fn1" class="footnote-ref" id="discussion-des-resultats_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
+<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
+<ul>
+<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
+<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
+<li>c’est un logiciel gratuit ;</li>
+<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
+<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
+<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
+<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
+<li>avec <strong>Rmarkdown</strong><a href="#discussion-des-resultats_fn2" class="footnote-ref" id="discussion-des-resultats_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
+<li>
+<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
+</ul>
+<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
+<ul>
+<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
+<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
+<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
+</ul>
+<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+</div>
+<div id="discussion-des-resultats_philosophie-de-r" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Philosophie de R<a href="#discussion-des-resultats_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
+<ul>
+<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#discussion-des-resultats_fn3" class="footnote-ref" id="discussion-des-resultats_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
+<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#discussion-des-resultats_fn4" class="footnote-ref" id="discussion-des-resultats_fnref4"><sup>4</sup></a>).</li>
+<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
+<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
+</ul>
+<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+</div>
+<div id="discussion-des-resultats_présentation-de-rstudio" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Présentation de RStudio<a href="#discussion-des-resultats_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
+<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
+<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
+<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr>
+<ol>
+<li id="discussion-des-resultats_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#discussion-des-resultats_fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="discussion-des-resultats_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#discussion-des-resultats_fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="discussion-des-resultats_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#discussion-des-resultats_fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="discussion-des-resultats_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#discussion-des-resultats_fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+</article>
+</div>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function () {
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+
+    // Identifier les <pre> fermant
+    $('pre').next("*:not(pre)").prev().addClass('last'); // Dernier <pre> de chaque groupe contigu de <pre>
+    $('pre').parent().each(function (){
+      $(this).children('pre').last().addClass('last');
+    }); // Si <pre> est le dernier enfant de son parent
+
+    // Ajout liens rdocumentation
+    $("code[data-pkg]").each(function( index ) {
+      pack = $(this).attr('data-pkg');
+      if ($(this).attr('data-rdoc') !== undefined) {
+        rdocumentation = $(this).attr('data-rdoc');
+        page = ' (' + $(this).attr('data-pkg') + ')';
+      } else {
+        rdocumentation = $(this).text();
+        page = '';
+      }
+      fonction = $(this).text();
+      $(this).wrap('<a href="http://www.rdocumentation.org/packages/'+pack+'/functions/'+rdocumentation+'">');
+    });
+
+    $("code.pkg").each(function( index ) {
+      $(this).wrap('<a href="http://www.rdocumentation.org/packages/'+$(this).text()+'">');
+    });
+
+    // Figures (numérotation intra chapitre + ajout id pour liste des figures)
+    $("article").each(function(){
+      chap = $(this).attr('id');
+      $(this).find("figure").each(function(index){
+        if ($(this).children("figcaption").length > 0)
+          $(this).children("figcaption:first").prepend('<span class="figure-number">Figure '+(index+1)+'.</span> ');
+        else
+          $(this).append($("<figcaption>").append('<span class="figure-number">Figure '+(index+1)+'</span>'));
+        if ($(this).attr('id') == undefined) $(this).attr('id', chap + '_fig_' + (index+1));
+      });
+    });
+
+    // Footnotes (prince xml only)
+    if (typeof Prince !== "undefined") {
+      $(".footnotes li").each(function(){
+        lien = $(this).find("a[href*='fnref']").attr('href');
+        $(this).find("a[href*='fnref']").remove();
+        $(lien).after('<div class="fn">' + $(this).html() + '</div>');
+      });
+      $(".footnote-ref").remove();
+      $(".footnotes").remove();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
