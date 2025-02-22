@@ -1,5 +1,5 @@
 ---
-title: "analyse-R"
+title: "TP ANOVA"
 output:
   html_document:
     toc: false
@@ -13,23 +13,26 @@ if (Sys.info()["sysname"] == "Windows") {
 }
 require(lubridate)
 ```
-
+<div style="display: flex; justify-content: space-between;">
+  <img src="images/logo.png" width="139" />
+  <img src="images/logo_ANSD.jpg" width="153" />
+</div>
 
 <div class="jumbotron">
-  <h1>TP ANOVA <br />ISE 2  <br />2024-2025</h1>
-  <p>Dernière mise à jour : `r I(today())`</p>
+  <h2>ENSAE de Dakar <br />ISE 2  <br />2024-2025</h2>
+  
 </div>
 
 
-**Mr Youm**
-**Moussa DIEME**
 
 
 
+## Les auteurs{#presentation}
 
-## Présentation{#presentation}
-
-TP a rendre le 25
+<div class="note">
+Ce travail a ete realise par 
+xxxxxxx et xxxxxx
+</div>
 
 ## Table des matières{#tdm}
 
@@ -70,7 +73,7 @@ tdm <- function(section) {
 }
 ```
 
-### Manipuler
+### Chapitre 1
 
 ```{r, results='asis', echo=FALSE, message=FALSE}
 cat(tdm("manipuler"))

@@ -191,30 +191,31 @@ pre:not([class]) {
 
 
 
-<h1 class="title toc-ignore">analyse-R</h1>
+<h1 class="title toc-ignore">TP ANOVA</h1>
 
 </div>
 
 
+<div style="display: flex; justify-content: space-between;">
+<p><img src="images/logo.png" width="139"><img src="images/logo_ANSD.jpg" width="153"></p>
+</div>
 <div class="jumbotron">
-<h1>
-TP ANOVA <br>ISE 2 <br>2024-2025
-</h1>
-<p>
-Dernière mise à jour : 2025-02-21
-</p>
-</div>
-<p><strong>Mr Youm</strong> <strong>Moussa DIEME</strong></p>
-<div id="presentation" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation<a href="#presentation" class="anchor-section" aria-label="Anchor link to header"></a>
+<h2>
+ENSAE de Dakar <br>ISE 2 <br>2024-2025
 </h2>
-<p>TP a rendre le 25</p>
+</div>
+<div id="presentation" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Les auteurs<a href="#presentation" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<div class="note">
+<p>Ce travail a ete realise par xxxxxxx et xxxxxx</p>
+</div>
 </div>
 <div id="tdm" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Table des matières<a href="#tdm" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<div id="manipuler" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Manipuler<a href="#manipuler" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="chapitre-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Chapitre 1<a href="#chapitre-1" class="anchor-section" aria-label="Anchor link to header"></a>
 </h3>
 <div class="row">
 <div class="col-md-4">
@@ -234,75 +235,92 @@ Dernière mise à jour : 2025-02-21
 
 
 
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+<h1 class="title toc-ignore">Presentation des données</h1>
 
 </div>
 
 <div class="TOC">
 <ul>
-<li><a href="#introduction_pr%C3%A9sentation-de-r" id="introduction_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#introduction_philosophie-de-r" id="introduction_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#introduction_pr%C3%A9sentation-de-rstudio" id="introduction_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+<li><a href="#introduction_contexte-et-justification" id="introduction_toc-contexte-et-justification">Contexte et justification</a></li>
+<li><a href="#introduction_premi%C3%A9re-inspection" id="introduction_toc-premiére-inspection">Premiére inspection</a></li>
 </ul>
 </div>
 
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="introduction_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#introduction_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="introduction_contexte-et-justification" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Contexte et justification<a href="#introduction_contexte-et-justification" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#introduction_fn1" class="footnote-ref" id="introduction_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#introduction_fn2" class="footnote-ref" id="introduction_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<p>Nous disposons de 13 variables dont une (la variable individus) qui fait office d’identifiant unique.Notre base contient 100 individus.Il s’agit de ……… (description des variables,…)</p>
 </div>
-<div id="introduction_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#introduction_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="introduction_premiére-inspection" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Premiére inspection<a href="#introduction_premi%C3%A9re-inspection" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#introduction_fn3" class="footnote-ref" id="introduction_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#introduction_fn4" class="footnote-ref" id="introduction_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
-</div>
-<div id="introduction_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#introduction_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="introduction_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#introduction_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#introduction_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#introduction_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#introduction_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+<p>Une premiere inspection de la base nous as conduit a modifier l’individus numero 2 .En effet les valeurs prises par cette individus pour des variables comme <strong>Germination.epi</strong> ou <strong>Enracinement</strong> ne sont pas coherente. ## <img src="images/data_individu2.png">Premiére inspection</p>
+<p>Nous avons juge que cela est due a des problemes lors du saisi des donnée. nous vons corrige par :</p>
+<table>
+<caption>Valeurs de l’individu numéro 2 par variable</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="right">Hauteur</th>
+<th align="right">Masse</th>
+<th align="right">Nb.grains</th>
+<th align="right">Masse.grains</th>
+<th align="left">Couleur</th>
+<th align="left">Germination.epi</th>
+<th align="left">Enracinement</th>
+<th align="left">Verse</th>
+<th align="left">Attaque</th>
+<th align="left">Parcelle</th>
+<th align="right">Hauteur.J7</th>
+<th align="left">Verse.Traitement</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">199</td>
+<td align="right">1431</td>
+<td align="right">320</td>
+<td align="right">921</td>
+<td align="left">Rouge</td>
+<td align="left">Non</td>
+<td align="left">Moyen</td>
+<td align="left">Non</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">196</td>
+<td align="left">Oui</td>
+</tr>
+<tr class="even">
+<td align="right">## Choix de</td>
+<td align="right">la variab</td>
+<td align="right">le cible</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="right">ici …….</td>
+<td align="right">……….</td>
+<td align="right">..</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 </article>
@@ -310,75 +328,170 @@ Dernière mise à jour : 2025-02-21
 
 
 
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+<h1 class="title toc-ignore">Analyse descriptive</h1>
 
 </div>
 
 <div class="TOC">
 <ul>
-<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-r" id="analyse-descriptive_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#analyse-descriptive_philosophie-de-r" id="analyse-descriptive_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" id="analyse-descriptive_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+<li><a href="#analyse-descriptive_generalite-sur-les-variables-quantitatives" id="analyse-descriptive_toc-generalite-sur-les-variables-quantitatives">Generalite sur les variables quantitatives</a></li>
+<li><a href="#analyse-descriptive_generalite-sur-les-variables-qualitative" id="analyse-descriptive_toc-generalite-sur-les-variables-qualitative">Generalite sur les variables qualitative</a></li>
+<li><a href="#analyse-descriptive_teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="analyse-descriptive_toc-teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation entre la masse et la quantité de grain</a></li>
+<li><a href="#analyse-descriptive_teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="analyse-descriptive_toc-teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation de Spearman entre la masse et la quantité de grain</a></li>
 </ul>
 </div>
 
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="analyse-descriptive_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#analyse-descriptive_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-descriptive_generalite-sur-les-variables-quantitatives" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Generalite sur les variables quantitatives<a href="#analyse-descriptive_generalite-sur-les-variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-descriptive_fn1" class="footnote-ref" id="analyse-descriptive_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#analyse-descriptive_fn2" class="footnote-ref" id="analyse-descriptive_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+Nous disposons de ….
+<figure><table>
+<caption>Statistiques des Variables Quantitatives</caption>
+<thead><tr class="header">
+<th align="left">Variable</th>
+<th align="right">valeur_NA</th>
+<th align="right">Moyenne</th>
+<th align="right">Variance</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Individu</td>
+<td align="right">0</td>
+<td align="right">50.50000</td>
+<td align="right">841.6667</td>
+</tr>
+<tr class="even">
+<td align="left">Hauteur</td>
+<td align="right">3</td>
+<td align="right">259.36082</td>
+<td align="right">1965.8580</td>
+</tr>
+<tr class="odd">
+<td align="left">Masse</td>
+<td align="right">3</td>
+<td align="right">1811.61856</td>
+<td align="right">102708.9051</td>
+</tr>
+<tr class="even">
+<td align="left">Nb.grains</td>
+<td align="right">3</td>
+<td align="right">292.63918</td>
+<td align="right">10283.1914</td>
+</tr>
+<tr class="odd">
+<td align="left">Masse.grains</td>
+<td align="right">3</td>
+<td align="right">96.54742</td>
+<td align="right">8073.7931</td>
+</tr>
+<tr class="even">
+<td align="left">Hauteur.J7</td>
+<td align="right">0</td>
+<td align="right">257.36000</td>
+<td align="right">1934.8994</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table></figure>
 </div>
-<div id="analyse-descriptive_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#analyse-descriptive_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-descriptive_generalite-sur-les-variables-qualitative" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Generalite sur les variables qualitative<a href="#analyse-descriptive_generalite-sur-les-variables-qualitative" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-descriptive_fn3" class="footnote-ref" id="analyse-descriptive_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-descriptive_fn4" class="footnote-ref" id="analyse-descriptive_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+<p>Quant aux variables qualitatives</p>
+<figure><table>
+<caption>Variables Qualitatives, Facteurs, Fréquences et Nombre de Valeurs Manquantes</caption>
+<thead><tr class="header">
+<th align="left">Variable</th>
+<th align="left">Facteurs</th>
+<th align="left">Fréquences</th>
+<th align="right">Valeurs_manquantes</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Couleur</td>
+<td align="left">NA, Rouge, Jaune, Jaune.rouge</td>
+<td align="left">Jaune ( 48 ), Jaune.rouge ( 22 ), Rouge ( 29 )</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Germination.epi</td>
+<td align="left">NA, Non, Oui</td>
+<td align="left">Non ( 90 ), Oui ( 9 )</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Enracinement</td>
+<td align="left">Faible, Moyen, Tres.fort, Fort</td>
+<td align="left">Faible ( 19 ), Fort ( 26 ), Moyen ( 28 ), Tres.fort ( 27 )</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Verse</td>
+<td align="left">NA, Non, Oui</td>
+<td align="left">Non ( 57 ), Oui ( 42 )</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Attaque</td>
+<td align="left">Oui, Non</td>
+<td align="left">Non ( 54 ), Oui ( 46 )</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Parcelle</td>
+<td align="left">Nord, Sud, Est, Ouest</td>
+<td align="left">Est ( 33 ), Nord ( 17 ), Ouest ( 36 ), Sud ( 14 )</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Verse.Traitement</td>
+<td align="left">NA, Oui, Non</td>
+<td align="left">Non ( 44 ), Oui ( 55 )</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table></figure>
 </div>
-<div id="analyse-descriptive_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-descriptive_teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Teste de corrélation entre la masse et la quantité de grain<a href="#analyse-descriptive_teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+Ce teste permet de ….
+<figure><div class="sourceCode" id="analyse-descriptive_cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb1-1"><a href="#analyse-descriptive_cb1-1" tabindex="-1"></a>cor_data <span class="ot">&lt;-</span> data[, <span class="fu">c</span>(<span class="st">"Masse.grains"</span>, <span class="st">"Nb.grains"</span>)]</span>
+<span id="analyse-descriptive_cb1-2"><a href="#analyse-descriptive_cb1-2" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(cor_data, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="analyse-descriptive_cb1-3"><a href="#analyse-descriptive_cb1-3" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">"circle"</span>)</span></code></pre></div>
+<img src="graphs/analyse-descriptive/compar_mass_quant-1.png" width="1050"></figure><p>Le graphique montre une corrélation positive modérée entre <strong>Masse.grains</strong> et <strong>Nb.grains</strong>, indiquant que lorsque l’un augmente, l’autre tend également à augmenter. La force de cette relation est représentée par un cercle bleu clair, suggérant une liaison existante mais non parfaite.</p>
+<p>Poursuivons par un autre teste pour voir la corrélation de rangs a defaut d’une correlation lineaire importante</p>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="analyse-descriptive_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-descriptive_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-descriptive_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-descriptive_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-descriptive_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="analyse-descriptive_teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Teste de corrélation de Spearman entre la masse et la quantité de grain<a href="#analyse-descriptive_teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<figure><div class="sourceCode" id="analyse-descriptive_cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb2-1"><a href="#analyse-descriptive_cb2-1" tabindex="-1"></a><span class="fu">cor.test</span>(data<span class="sc">$</span>Masse.grains, data<span class="sc">$</span>Nb.grains, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code></pre></div>
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  data$Masse.grains and data$Nb.grains
+S = 4681.2, p-value &lt; 2.2e-16
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.9692218 </code></pre>
+</figure>
+Le coefficient de corrélation de Spearman est de 0,969, ce qui indique une très forte corrélation positive entre les deux variables bien que le teste de correlation lineaire indique une non lineaire relation entre nos differents variables. La p-value est inferieure a 0,01 ce qui indique que la correlation est hautement significative .nous rejetons l’hypothèse nulle selon laquelle il n’y a pas de relation entre les deux variables, et il existe donc une forte probabilité que la relation observée soit réelle et non due au hasard. ## Conclusion
+<div class="important">
+<p>Compte tenu de la très forte corrélation entre Masse des grains et Nombre de grains, nous pouvons conclure qu’une masse élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons la masse des grains comme variable cible pour notre ANOVA.</p>
+</div>
+<p>La variable <strong>masse.grain</strong> a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.</p>
 </div>
 
 </article>
@@ -386,303 +499,341 @@ Dernière mise à jour : 2025-02-21
 
 
 
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+<h1 class="title toc-ignore">Analyse bivarie</h1>
 
 </div>
 
 <div class="TOC">
 <ul>
-<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-r" id="analyse-bivarie_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#analyse-bivarie_philosophie-de-r" id="analyse-bivarie_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" id="analyse-bivarie_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-parcelle-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-parcelle-et-masse.grains">Comparaison entre “Parcelle” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-couleur-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-couleur-et-masse.grains">Comparaison entre “couleur” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-épigité-de-la-germination-et-masse.grains">Comparaison entre “épigité de la germination” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-enracinement-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-enracinement-et-masse.grains">Comparaison entre “Enracinement” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-courbure-verse-de-la-plante-et-masse.grains">Comparaison entre “courbure (verse) de la plante” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-est-attaqué-par-des-insectes-et-masse.grains">Comparaison entre ” est attaqué par des insectes” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-la-courbure-est-trait%C3%A9-et-masse.grains" id="analyse-bivarie_toc-comparaison-entre-la-courbure-est-traité-et-masse.grains">Comparaison entre ” la courbure est traité” et “Masse.grains”</a></li>
+<li><a href="#analyse-bivarie_etude-de-correlation-entre-les-variables-qualitatives" id="analyse-bivarie_toc-etude-de-correlation-entre-les-variables-qualitatives">Etude de correlation entre les variables qualitatives</a></li>
 </ul>
 </div>
 
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="analyse-bivarie_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#analyse-bivarie_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-parcelle-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre “Parcelle” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-parcelle-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-bivarie_fn1" class="footnote-ref" id="analyse-bivarie_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#analyse-bivarie_fn2" class="footnote-ref" id="analyse-bivarie_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<p><img src="graphs/analyse-bivarie/parcelle_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations du parcelle en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Parcelle</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Nord</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Nord</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Est</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Ouest</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="analyse-bivarie_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#analyse-bivarie_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-couleur-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre “couleur” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-couleur-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-bivarie_fn3" class="footnote-ref" id="analyse-bivarie_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-bivarie_fn4" class="footnote-ref" id="analyse-bivarie_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+<p><img src="graphs/analyse-bivarie/couleur_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations de la couleur en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Couleur</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Rouge</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Jaune</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Jaune</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="analyse-bivarie_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-épigité-de-la-germination-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre “épigité de la germination” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+<p><img src="graphs/analyse-bivarie/epi_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations d’épigité de la graine en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Germination.epi</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Non</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Oui</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="analyse-bivarie_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-bivarie_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-bivarie_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-bivarie_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-bivarie_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-
-</article>
-<article id="introduction"><div id="introduction_header">
-
-
-
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
-
-</div>
-
-<div class="TOC">
-<ul>
-<li><a href="#introduction_pr%C3%A9sentation-de-r" id="introduction_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#introduction_philosophie-de-r" id="introduction_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#introduction_pr%C3%A9sentation-de-rstudio" id="introduction_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
-</ul>
-</div>
-
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="introduction_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#introduction_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-enracinement-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre “Enracinement” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-enracinement-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#introduction_fn1" class="footnote-ref" id="introduction_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#introduction_fn2" class="footnote-ref" id="introduction_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<p><img src="graphs/analyse-bivarie/enracinement_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations d’Enracinement en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Enracinement</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Faible</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Moyen</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Tres.fort</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Tres.fort</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="introduction_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#introduction_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre “courbure (verse) de la plante” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#introduction_fn3" class="footnote-ref" id="introduction_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#introduction_fn4" class="footnote-ref" id="introduction_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+<p><img src="graphs/analyse-bivarie/verse_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations de Verse en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Verse</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Non</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="introduction_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#introduction_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-est-attaqué-par-des-insectes-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre ” est attaqué par des insectes” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+<p><img src="graphs/analyse-bivarie/attaque_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations d’Attaque en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Attaque</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Oui</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Non</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="introduction_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#introduction_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#introduction_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#introduction_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="introduction_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#introduction_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-
-</article>
-<article id="analyse-descriptive"><div id="analyse-descriptive_header">
-
-
-
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
-
-</div>
-
-<div class="TOC">
-<ul>
-<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-r" id="analyse-descriptive_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#analyse-descriptive_philosophie-de-r" id="analyse-descriptive_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" id="analyse-descriptive_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
-</ul>
-</div>
-
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="analyse-descriptive_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#analyse-descriptive_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-la-courbure-est-traité-et-masse.grains" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre ” la courbure est traité” et “Masse.grains”<a href="#analyse-bivarie_comparaison-entre-la-courbure-est-trait%C3%A9-et-masse.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-descriptive_fn1" class="footnote-ref" id="analyse-descriptive_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#analyse-descriptive_fn2" class="footnote-ref" id="analyse-descriptive_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<p><img src="graphs/analyse-bivarie/Verse.Traitement_masse-1.png" width="1050"> On observe que</p>
+<table>
+<caption>informations courbure traité en fonction de la masse</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="left">Verse.Traitement</th>
+<th align="right">Masse.grains</th>
+<th align="left">Masse_grains_missing</th>
+<th align="left">Masse_grains_aberrant</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Oui</td>
+<td align="right">921</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="right">32</td>
+<td align="left">Non</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">65</td>
+<td align="left">Oui</td>
+<td align="right">NA</td>
+<td align="left">TRUE</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="analyse-descriptive_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#analyse-descriptive_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_etude-de-correlation-entre-les-variables-qualitatives" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Etude de correlation entre les variables qualitatives<a href="#analyse-bivarie_etude-de-correlation-entre-les-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-descriptive_fn3" class="footnote-ref" id="analyse-descriptive_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-descriptive_fn4" class="footnote-ref" id="analyse-descriptive_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
-</div>
-<div id="analyse-descriptive_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-descriptive_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="analyse-descriptive_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-descriptive_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-descriptive_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-descriptive_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-descriptive_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-descriptive_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-
-</article>
-<article id="analyse-bivarie"><div id="analyse-bivarie_header">
-
-
-
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
-
-</div>
-
-<div class="TOC">
-<ul>
-<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-r" id="analyse-bivarie_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#analyse-bivarie_philosophie-de-r" id="analyse-bivarie_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" id="analyse-bivarie_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
-</ul>
-</div>
-
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="analyse-bivarie_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#analyse-bivarie_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#analyse-bivarie_fn1" class="footnote-ref" id="analyse-bivarie_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#analyse-bivarie_fn2" class="footnote-ref" id="analyse-bivarie_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
-</div>
-<div id="analyse-bivarie_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#analyse-bivarie_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#analyse-bivarie_fn3" class="footnote-ref" id="analyse-bivarie_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#analyse-bivarie_fn4" class="footnote-ref" id="analyse-bivarie_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
-</div>
-<div id="analyse-bivarie_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#analyse-bivarie_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="analyse-bivarie_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#analyse-bivarie_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#analyse-bivarie_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#analyse-bivarie_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="analyse-bivarie_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#analyse-bivarie_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 
 </article>

@@ -1,0 +1,15 @@
+readr
+ggplot2
+corrplot
+tidyverse
+tibble
+tidyr
+purrr
+dplyr
+stringr
+forcats
+lubridate
+ggcorrplot
+lsr
+plotly
+GGally

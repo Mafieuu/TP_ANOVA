@@ -1,0 +1,8 @@
+readr
+ggplot2
+corrplot
+xml2
+stringr
+usethis
+devtools
+lubridate

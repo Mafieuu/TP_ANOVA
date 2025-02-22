@@ -1,112 +1,251 @@
 ---
-title: "Présentation et Philosophie"
+title: "Analyse bivarie"
 ---
 
 ```{r options_communes, include=FALSE, cache=FALSE}
 source("options_communes.R")
 ```
 
-<div class="webin-R">
-Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R & RStudio) sur [YouTube](https://youtu.be/9cyQk4Z_qPo).
-</div>
 
-## Présentation de R
+```{r packages, include=FALSE}
+library(readr)
+library(ggplot2)
+library(corrplot)
+library(tidyverse)
+library(readr)
+library(ggcorrplot)
+library(lsr)
+library(plotly)
+library(GGally)
 
-**R** est un langage orienté vers le traitement de données et l'analyse statistique dérivé du langage **S**.
-Il est développé depuis une vingtaine d'années par un groupe de volontaires de différents pays. C'est un
-<dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn>^[Pour plus
-d'informations sur ce qu'est un logiciel libre, voir :
-<http://www.gnu.org/philosophy/free-sw.fr.html>.], publié sous licence GNU GPL.
+```
+```{r setup, include=FALSE}
+data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv", 
+    delim = ";", 
+    trim_ws = TRUE) %>%
+  mutate(across(c(Couleur, Germination.epi, Enracinement, Verse, Attaque, Parcelle, Verse.Traitement), as.factor))
+```
 
-L'utilisation de **R** présente plusieurs avantages :
+## Comparaison entre "Parcelle" et "Masse.grains"
 
-* c'est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes 
-  **Linux**, **Mac OS X** ou **Windows** ;
-* c'est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;
-* c'est un logiciel gratuit ;
-* c'est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à 
-  l'aide de plusieurs milliers d'extensions ;
-* c'est un logiciel dont le développement est très actif et dont la communauté d'utilisateurs 
-  ne cesse de s'élargir ;
-* les possibilités de manipulation de données sous **R** sont en général largement supérieures
-  à celles des autres logiciels usuels d'analyse statistique ;
-* c'est un logiciel avec d'excellentes capacités graphiques et de nombreuses possibilités
-  d'export ;
-* avec **Rmarkdown**^[Voir <http://rmarkdown.rstudio.com/>.], il est devenu très aisé de
-  produire des rapports automatisés dans divers format (**Word**, **PDF**, **HTML**, ...) ;
-* **R** est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine
-  des analyses d'enquêtes et, plus généralement, des sciences sociales.
-
-Comme rien n'est parfait, on peut également trouver quelques inconvénients :
-
-* le logiciel, la documentation de référence et les principales ressources sont en anglais. 
-  Il est toutefois parfaitement possible d'utiliser **R** sans spécialement maîtriser cette langue ;
-* il n'existe pas encore d'interface graphique pour **R** équivalente à celle d'autres logiciels comme 
-  **SPSS** ou **Modalisa**. **R** fonctionne à l'aide de <dfn>scripts</dfn>
-  (des petits programmes) édités et exécutés au fur et à mesure de l'analyse et se 
-  rapprocherait davantage de **SAS** dans son utilisation 
-  (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un 
-  gros handicap, s'avère après un temps d'apprentissage être un mode d'utilisation d'une grande souplesse ;
-* comme **R** s'apparente davantage à un langage de programmation qu'à un logiciel proprement dit, la
-  courbe d'apprentissage peut être un peu « raide », notamment pour ceux n'ayant jamais programmé
-  auparavant.
-
-Il est à noter que le développement autour de **R** a été particulièrement actif ces dernières années.
-On trouvera dès lors aujourd'hui de nombreuses extensions permettant de se « faciliter la vie » au
-quotidien, ce qui n'était pas vraiment encore le cas il y a 5 ans.
-
-## Philosophie de R
-
-Quelques points particuliers dans le fonctionnement de **R** peuvent parfois dérouter les utilisateurs 
-habitués à d'autres logiciels :
-
-* Sous **R**, en général, on ne voit pas directement les données sur lesquelles on travaille ;
-  on ne dispose pas en permanence d'une vue des données sous forme de tableau^[On verra qu'il est possible
-  avec **RStudio** de disposer d'une telle vue.], comme sous **Modalisa ou SPSS**. Ceci peut
-  être déroutant au début, mais on se rend vite compte qu'on n'a pas besoin de voir en permanence
-  les données pour les analyser.
-* Alors qu'avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois,
-  sous **R** chaque fichier de données correspondra à un objet différent chargé en mémoire, 
-  permettant de manipuler très facilement
-  plusieurs objets à la fois (par exemple dans le cadre de fusion de tables^[Voir par exemple la section
-  dédiée à ce sujet dans le [chapitre sur la manipulation de données](pem_manipulation.html#fusion_tables).]).
-* Avec les autres logiciels, en général la production d'une analyse génère un grand nombre de résultats
-  de toutes sortes dans lesquels l'utilisateur est censé retrouver et isoler ceux qui l'intéressent. Avec
-  **R**, c'est l'inverse : par défaut l'affichage est réduit au minimum et c'est l'utilisateur qui demande à
-  voir des résultats supplémentaires ou plus détaillés.
-* Sous **R**, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors
-  manipulables. 
-
-Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la
-conduite des analyses.
-
-## Présentation de RStudio
-
-L'interface de base de **R** est assez rudimentaire (voir figure ci-après).
+```{r parcelle_masse,message=FALSE,warning=FALSE,echo=FALSE}
 
 
-**RStudio** est un <dfn>environnement de développement</dfn> intégré 
-libre, gratuit, et qui fonctionne sous **Windows**,
-**Mac OS X** et **Linux**. Il complète **R** et fournit un <dfn>éditeur de script</dfn>
-avec <dfn>coloration syntaxique</dfn>, 
-des fonctionnalités pratiques d'édition et d'exécution du code (comme l'<dfn>autocomplétion</dfn>), 
-un affichage simultané du code, de la console **R**, des fichiers, graphiques et pages d'aide, 
-une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme **git**, etc.
-Il intègre de base divers outils comme par exemple la production de rapports au format **Rmarkdown**.
-Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. 
-Son principal défaut est d'avoir une interface uniquement anglophone.
+# Comparer "Parcelle" et "Masse.grains"
+ggplot(data, aes(x = Parcelle, y = Masse.grains)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Parcelle") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Parcelle", y = "Masse des grains")
 
 
+```
+On observe que 
+```{r table_parcell_mass,message=FALSE,warning=FALSE,echo=FALSE}
+# Fonction pour détecter les aberrations avec la méthode IQR
+detect_aberrant <- function(x) {
+  Q1 <- quantile(x, 0.25, na.rm = TRUE)
+  Q3 <- quantile(x, 0.75, na.rm = TRUE)
+  IQR <- Q3 - Q1
+  lower_bound <- Q1 - 1.5 * IQR
+  upper_bound <- Q3 + 1.5 * IQR
+  return(x < lower_bound | x > upper_bound)
+}
+# DataFrame pour "Parcelle"
+tableau_parcelle <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Parcelle, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
 
-Pour une présentation plus générale de **RStudio** on pourra se référer au site du projet :
-<http://www.rstudio.com/>.
+knitr::kable(tableau_parcelle, caption = "informations du parcelle en fonction de la masse",row.names = FALSE)
 
-**RStudio** peut tout à fait être utilisé pour découvrir et démarrer avec **R**. Les différents 
-chapitres d'**analyse-R** partent du principe que vous utilisez **R** avec **RStudio**. Cependant, 
-à part les éléments portant sur l'interface de **RStudio**, l'ensemble du code et des fonctions **R** 
-peuvent être utilisés directement dans **R**, même en l'absence de **RStudio**.
+```
 
-La documentation de **RStudio** (en anglais) est disponible en ligne à
-<https://support.rstudio.com>. Pour être tenu informé des dernières évolutions de
-**RStudio**, mais également de plusieurs extensions développées dans le cadre de ce
-projet, vous pouvez suivre le blog dédié <http://blog.rstudio.org/>.
+## Comparaison entre "couleur " et "Masse.grains"
+
+```{r couleur_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Parcelle" et "Masse.grains"
+ggplot(data, aes(x = Couleur, y = Masse.grains)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par couleur") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "couleur", y = "Masse des grains")
+
+
+```
+On observe que 
+```{r table_couleur_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "couleur"
+tableau_parcelle <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Couleur, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_parcelle, caption = "informations de la couleur en fonction de la masse",row.names = FALSE)
+
+```
+
+## Comparaison entre "épigité de la germination " et "Masse.grains"
+
+```{r epi_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Germination.epi" et "Masse.grains"
+ggplot(data, aes(x = Germination.epi, y = Masse.grains)) +
+  geom_boxplot(fill = "darksalmon", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Germination.epi") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "est épi", y = "Masse des grains")
+
+
+```
+On observe que 
+```{r table_Germination.epi_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "Germination.epi"
+tableau_parcelle <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Germination.epi, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_parcelle, caption = "informations d'épigité de la graine en fonction de la masse",row.names = FALSE)
+
+```
+
+## Comparaison entre "Enracinement" et "Masse.grains"
+
+```{r enracinement_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Enracinement" et "Masse.grains"
+ggplot(data, aes(x = Enracinement, y = Masse.grains)) +
+  geom_boxplot(fill = "gold", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Enracinement") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Enracinement", y = "Masse des grains")
+
+
+```
+On observe que 
+```{r table_Enracinement_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "Germination"
+tableau_Enracinement <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Enracinement, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_Enracinement, caption = "informations d'Enracinement en fonction de la masse",row.names = FALSE)
+
+```
+
+## Comparaison entre "courbure (verse) de la plante" et "Masse.grains"
+
+```{r verse_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Verse" et "Masse.grains"
+ggplot(data, aes(x = Verse, y = Masse.grains)) +
+  geom_boxplot(fill = "darkslategray1", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Verse") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Verse", y = "Masse des grains")
+
+
+```
+On observe que 
+```{r table_Verse_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "Verse"
+tableau_Verse <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Verse, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_Verse, caption = "informations de Verse en fonction de la masse",row.names = FALSE)
+
+```
+
+## Comparaison entre "  est attaqué par des insectes" et "Masse.grains"
+
+```{r attaque_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Attaque" et "Masse.grains"
+ggplot(data, aes(x = Attaque, y = Masse.grains)) +
+  geom_boxplot(fill = "darkorchid4", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Attaque") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Attaque", y = "Masse des grains")
+
+```
+On observe que 
+```{r table_attaque_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "Attaque"
+tableau_Attaque <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Attaque, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_Attaque, caption = "informations d'Attaque en fonction de la masse",row.names = FALSE)
+```
+
+## Comparaison entre "  la courbure est traité" et "Masse.grains"
+
+```{r Verse.Traitement_masse,message=FALSE,warning=FALSE,echo=FALSE}
+
+
+# Comparer "Verse.Traitement" et "Masse.grains"
+ggplot(data, aes(x = Verse.Traitement, y = Masse.grains)) +
+  geom_boxplot(fill = "deepskyblue", color = "black") +
+  theme_minimal() +
+  ggtitle("Comparaison de Masse des grains par Verse.Traitement") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Verse.Traitement", y = "Masse des grains")
+
+```
+On observe que 
+```{r table_Verse.Traitement_mass,message=FALSE,warning=FALSE,echo=FALSE}
+
+# DataFrame pour "Verse.Traitement"
+tableau_Attaque <- data %>%
+  mutate(
+    Masse_grains_missing = is.na(Masse.grains),  # Valeurs manquantes
+    Masse_grains_aberrant = detect_aberrant(Masse.grains)  # Valeurs aberrantes
+  ) %>%
+  select(Individu, Verse.Traitement, Masse.grains, Masse_grains_missing, Masse_grains_aberrant) %>%
+  filter(Masse_grains_missing | Masse_grains_aberrant)  
+
+knitr::kable(tableau_Attaque, caption = "informations courbure traité en fonction de la masse",row.names = FALSE)
+```
+
+## Etude de correlation entre les variables qualitatives 
+
