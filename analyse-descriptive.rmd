@@ -86,8 +86,10 @@ cor.test(data$Masse.grains, data$Nb.grains, method = "spearman")
 </figure>
 Le coefficient de corrélation de Spearman est de 0,969, ce qui indique une très forte corrélation positive entre les deux variables bien que le teste de correlation lineaire indique une non lineaire relation entre nos differents variables.
 La p-value est inferieure a 0,01 ce qui indique que la correlation est hautement significative .nous rejetons l'hypothèse nulle selon laquelle il n'y a pas de relation entre les deux variables, et il existe donc une forte probabilité que la relation observée soit réelle et non due au hasard.
+
 ## Conclusion
+
 <div class="important">
-Compte tenu de la très forte corrélation entre Masse des grains et Nombre de grains, nous pouvons conclure qu'une masse élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons la masse des grains comme variable cible pour notre ANOVA.
+Compte tenu de la très forte corrélation entre masse des grains et Nombre de grains, nous pouvons conclure qu'une nombre élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons le nombre de grains comme variable cible pour notre ANOVA.
 </div>
-La variable **masse.grain** a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.
+La variable **nombre.grain** a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.

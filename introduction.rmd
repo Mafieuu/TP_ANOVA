@@ -36,8 +36,3 @@ individu_2_df <- as.data.frame(t(individu_2))
 knitr::kable(individu_2, caption = "Valeurs de l'individu numéro 2 par variable",,row.names = FALSE)
 
 ```
-
-## Choix de la variable cible 
-
-ici ...................
-

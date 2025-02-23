@@ -42,7 +42,7 @@ res <- paste(before, res, after, sep="\n")
 
 res <- str_replace_all(res, "\r", "")
 
-cat(res, file = file("analyse-R.html", encoding = "UTF-8"), sep="\n")
+cat(res, file = file("Youm_DIEME", encoding = "UTF-8"), sep="\n")
 
 ## Génération du PDF
 system('prince analyse-R.html --javascript')
