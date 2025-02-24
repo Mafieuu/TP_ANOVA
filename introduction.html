@@ -198,19 +198,24 @@ pre code {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">statistiques <span class="caret"></span></a>
+          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ENSAE <span class="caret"></span></a>
           <ul class="dropdown-menu multi-column columns-3" role="menu" id="menu_manipuler">
             <div class="row">
               <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
-  		            <li class="dropdown-header">Presentation et statistiques descriptives</li>
+  		            <li class="dropdown-header">Introduction et Méthodologie</li>
                   <li><a href="introduction.html">Introduction</a></li>
-                  <li><a href="analyse-descriptive.html">Statistiques univariée</a></li>
-                  <li><a href="analyse-bivarie.html">Choix de la variable cible et statistiques bivariée</a></li>
-                  <li><a href="discussion-des-resultats.html">Un premier bilan</a></li>
+                  <li><a href="Methodologie.html">Méthodologie</a></li>
+                  <li><a href="analyse-descriptive.html">Analyse univarie</a></li>
+                  <li><a href="analyse-bivarie.html">Analyse bivariée</a></li>
+                  <li><a href="discussion-des-resultats.html">Résultats ANOVA</a></li>
                  
   	            </ul>
               </div>
+
+
+
+
              
               <!-- <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
@@ -260,56 +265,42 @@ pre code {
 
 <div id="TOC">
 <ul>
-<li><a href="#contexte-et-justification" id="toc-contexte-et-justification">Contexte et justification</a></li>
-<li><a href="#premi%C3%A9re-inspection" id="toc-premiére-inspection">Premiére inspection</a></li>
+<li><a href="#introduction-%C3%A0-lanova" id="toc-introduction-à-lanova">Introduction à l’ANOVA</a></li>
+<li><a href="#importance-de-lanova-en-statistique" id="toc-importance-de-lanova-en-statistique">Importance de l’ANOVA en statistique</a></li>
+<li><a href="#m%C3%A9thodologie-et-cadre-d%C3%A9tude" id="toc-méthodologie-et-cadre-détude">Méthodologie et cadre d’étude</a></li>
+<li><a href="#choix-des-facteurs-danalyse" id="toc-choix-des-facteurs-danalyse">Choix des facteurs d’analyse</a></li>
+<li><a href="#objectif" id="toc-objectif">Objectif</a></li>
 </ul>
 </div>
 
-<div id="contexte-et-justification" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Contexte et justification<a href="#contexte-et-justification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nous disposons de 13 variables dont une (la variable individus) qui fait office d’identifiant unique.Notre base contient 100 individus.Il s’agit de ……… (description des variables,…)</p>
+<div id="introduction-à-lanova" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Introduction à l’ANOVA<a href="#introduction-%C3%A0-lanova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La formation des élèves ingénieurs statisticiens économistes de deuxième année comprend un module relatif à l’ANOVA. Ce cours, d’un volume horaire de 20 heures, a pour objectif de permettre aux élèves d’avoir une connaissance approfondie sur les aspects théoriques et pratiques de l’analyse de la variance. Les aspects théoriques portent sur la formalisation du modèle, les différentes composantes de la variance totale, les hypothèses statistiques, les statistiques de test ainsi que l’interprétation des différents paramètres du modèle.</p>
 </div>
-<div id="premiére-inspection" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Premiére inspection<a href="#premi%C3%A9re-inspection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Une premiere inspection de la base nous as conduit a modifier l’individus numero 2 .En effet les valeurs prises par cette individus pour des variables comme <strong>Germination.epi</strong> ou <strong>Enracinement</strong> ne sont pas coherente. ## <img src="images/data_individu2.png" />Premiére inspection</p>
-<p>Nous avons juge que cela est due a des problemes lors du saisi des donnée. nous vons corrige par :</p>
-<table>
-<caption>Valeurs de l’individu numéro 2 par variable</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="right">Hauteur</th>
-<th align="right">Masse</th>
-<th align="right">Nb.grains</th>
-<th align="right">Masse.grains</th>
-<th align="left">Couleur</th>
-<th align="left">Germination.epi</th>
-<th align="left">Enracinement</th>
-<th align="left">Verse</th>
-<th align="left">Attaque</th>
-<th align="left">Parcelle</th>
-<th align="right">Hauteur.J7</th>
-<th align="left">Verse.Traitement</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">199</td>
-<td align="right">1431</td>
-<td align="right">320</td>
-<td align="right">921</td>
-<td align="left">Rouge</td>
-<td align="left">Non</td>
-<td align="left">Moyen</td>
-<td align="left">Non</td>
-<td align="left">Non</td>
-<td align="left">Nord</td>
-<td align="right">196</td>
-<td align="left">Oui</td>
-</tr>
-</tbody>
-</table>
+<div id="importance-de-lanova-en-statistique" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Importance de l’ANOVA en statistique<a href="#importance-de-lanova-en-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’analyse de la variance constitue un outil très puissance pour éclaire la prise de décision notamment dans le cas des études d’expérimentation. Elle est utilisée dans presque tous les secteurs d’activités. Le rôle du statisticien est entre autres de donner une explication de ces relations par l’étude de liaisons de variables. Ces liaisons sont appréhendées par plusieurs outils de mesure statistique. Les modèles d’ANOVA peuvent être utilisés pour résoudre ce genre de problème. Une bonne maitrise des techniques d’ANOVA est donc une obligation pour toutes personnes souhaitant évoluer dans le domaine des statistiques.</p>
+</div>
+<div id="méthodologie-et-cadre-détude" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Méthodologie et cadre d’étude<a href="#m%C3%A9thodologie-et-cadre-d%C3%A9tude" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A la fin du module de formation, pour mettre en pratique les acquis théoriques et approfondir les connaissances, des travaux de groupe par binôme sont organisés. Ce présent rapport de recherche s’inscrit dans ce cadre.</p>
+</div>
+<div id="choix-des-facteurs-danalyse" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Choix des facteurs d’analyse<a href="#choix-des-facteurs-danalyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sur la base des informations disponibles dans notre jeu de données, nous avons décidé de nous intéresser aux facteurs qui impactent les rendements du maïs. Le rendement du maïs est capté à travers le nombre de graines. Le choix du nombre de graines comme indicateur de rendement plutôt que la masse des graines est basé sur une lecture des études déjà réalisées dans le domaine. L’utilisation du nombre de graines comme indicateur de mesure du rendement est largement répandue dans la littérature. C’est le cas par exemple des études réalisées aux Etats unis sur l’impact du taux de semi sur la productivité (Jeschke, 2022), en France sur les conséquences de la variabilité individuelle des plants de maïs dès la phase d’implantation sur la croissance et la production de grain (Pommel &amp; Fleury, 1989) et au Bénin sur les effets de différents modes de gestion des résidus de soja sur le rendement du maïs (Badou et al., 2013). Pour l’étude des facteurs qui impactent le rendement du maïs, nous
+allons appliquer le modèle d’ANOVA à deux facteurs. Le choix des facteurs à inclure dans le modèle se fera sur une étude de corrélation entre notre variable d’étude (nombre de graines) et les variables qualitatives. Les deux variables qualitatives les plus corrélées à notre variable d’étude seront considérées comme facteurs.</p>
+</div>
+<div id="objectif" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Objectif<a href="#objectif" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’objectif général de ce travail est de proposer un modèle d’analyse de la variance en partant des variables disponibles dans notre base de données. Cet objectif général se décline en trois objectifs spécifiques que sont :</p>
+<ol style="list-style-type: decimal">
+<li><p>Présenter succinctement la théorie sur la technique d’ANOVA à deux facteurs .</p></li>
+<li><p>Faire une analyse descriptive des variables d’étude .</p></li>
+<li><p>Déterminer les facteurs qui peuvent expliquer le rendement des maïs.</p></li>
+</ol>
+<div class="note">
+<p>La suite de ce document est structurée en trois parties. La première partie présente la méthodologie, la deuxième partie fait une analyse descriptive des variables d’étude et la troisième est consacrée à l’analyse de l’ANOVA.</p>
+</div>
 </div>
 
 </article>

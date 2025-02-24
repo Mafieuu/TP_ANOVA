@@ -18,21 +18,32 @@ data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv",
 
 ```
 
-## Contexte et justification
+## Introduction à l’ANOVA
 
-Nous disposons de 13 variables dont une (la variable individus) qui fait office d'identifiant unique.Notre base contient 100 individus.Il s'agit de ......... (description des variables,...)
+La formation des élèves ingénieurs statisticiens économistes de deuxième année comprend un module relatif à l’ANOVA. Ce cours, d’un volume horaire de 20 heures, a pour objectif de permettre aux élèves d’avoir une connaissance approfondie sur les aspects théoriques et pratiques de l’analyse de la variance. Les aspects théoriques portent sur la formalisation du modèle, les différentes composantes de la variance totale, les hypothèses statistiques, les statistiques de test ainsi que l’interprétation des différents paramètres du modèle.
 
-## Premiére inspection
+## Importance de l’ANOVA en statistique
 
-Une premiere inspection de la base nous as conduit a modifier l'individus numero 2 .En effet les valeurs prises par cette individus pour des variables comme **Germination.epi** ou **Enracinement** ne sont pas coherente.
-## ![](images/data_individu2.png)Premiére inspection
+L’analyse de la variance constitue un outil très puissance pour éclaire la prise de décision notamment dans le cas des études d’expérimentation. Elle est utilisée dans presque tous les secteurs d’activités. Le rôle du statisticien est entre autres de donner une explication de ces relations par l’étude de liaisons de variables. Ces liaisons sont appréhendées par plusieurs outils de mesure statistique. Les modèles d’ANOVA peuvent être utilisés pour résoudre ce genre de problème. Une bonne maitrise des techniques d’ANOVA est donc une obligation pour toutes personnes souhaitant évoluer dans le domaine des statistiques.
 
-Nous avons juge que cela est due a des problemes lors du saisi des donnée. nous vons corrige par :
+## Méthodologie et cadre d’étude
 
-```{r afficher-individu-2, echo=FALSE}
-individu_2 <- data[2, ]
+A la fin du module de formation, pour mettre en pratique les acquis théoriques et approfondir les connaissances, des travaux de groupe par binôme sont organisés. Ce présent rapport de recherche s’inscrit dans ce cadre.
 
-individu_2_df <- as.data.frame(t(individu_2))
-knitr::kable(individu_2, caption = "Valeurs de l'individu numéro 2 par variable",,row.names = FALSE)
+## Choix des facteurs d’analyse
 
-```
+Sur la base des informations disponibles dans notre jeu de données, nous avons décidé de nous intéresser aux facteurs qui impactent les rendements du maïs. Le rendement du maïs est capté à travers le nombre de graines. Le choix du nombre de graines comme indicateur de rendement plutôt que la masse des graines est basé sur une lecture des études déjà réalisées dans le domaine. L’utilisation du nombre de graines comme indicateur de mesure du rendement est largement répandue dans la littérature. C’est le cas par exemple des études réalisées aux Etats unis sur l’impact du taux de semi sur la productivité (Jeschke, 2022), en France sur les conséquences de la variabilité individuelle des plants de maïs dès la phase d'implantation sur la croissance et la production de grain (Pommel & Fleury, 1989) et au Bénin sur les effets de différents modes de gestion des résidus de soja sur le rendement du maïs (Badou et al., 2013). Pour l’étude des facteurs qui impactent le rendement du maïs, nous allons appliquer le modèle d’ANOVA à deux facteurs. Le choix des facteurs à inclure dans le modèle se fera sur une étude de corrélation entre notre variable d’étude (nombre de graines) et les variables qualitatives. Les deux variables qualitatives les plus corrélées à notre variable d’étude seront considérées comme facteurs.
+
+## Objectif
+
+L’objectif général de ce travail est de proposer un modèle d’analyse de la variance en partant des variables disponibles dans notre base de données. Cet objectif général se décline en trois objectifs spécifiques que sont :
+
+1.  Présenter succinctement la théorie sur la technique d’ANOVA à deux facteurs .
+
+2.  Faire une analyse descriptive des variables d’étude .
+
+3.  Déterminer les facteurs qui peuvent expliquer le rendement des maïs.
+
+::: note
+La suite de ce document est structurée en trois parties. La première partie présente la méthodologie, la deuxième partie fait une analyse descriptive des variables d’étude et la troisième est consacrée à l’analyse de l’ANOVA.
+:::

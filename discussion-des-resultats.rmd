@@ -1,112 +1,154 @@
 ---
-title: "Présentation et Philosophie"
+title: "ANOVA"
 ---
 
 ```{r options_communes, include=FALSE, cache=FALSE}
 source("options_communes.R")
 ```
 
-<div class="webin-R">
-Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R & RStudio) sur [YouTube](https://youtu.be/9cyQk4Z_qPo).
+## Teste de normalite
+
+
+```{r packages, include=FALSE}
+library(readr)
+library(ggplot2)
+library(corrplot)
+library(tidyverse)
+library(readr)
+library(ggcorrplot)
+library(lsr)
+library(dplyr)
+library(plotly)
+library(GGally)
+library(rstatix)
+library(rcompanion)
+
+```
+
+```{r setup, include=FALSE}
+data <- read_delim("data/data_corrige.csv", 
+    delim = ";", 
+    trim_ws = TRUE) 
+
+```
+
+```{r}
+shapiro.test(data$Nb.grains)
+
+```
+
+Étant donné que la  p-value est de 0.03528, ce qui est inférieur au niveau alpha  de 0.05, nous rejetons l'hypothèse nulle :on ne peut donc pas affirmer que nos données sont normalement distribué.
+Procedons a des transformations 
+
+### Transformation log lineaire
+```{r}
+shapiro.test(log(data$Nb.grains))
+
+```
+
+toujours pas concluante
+
+### Transformation Box-Cox
+
+La transformation de Box-Cox peut être utilisée pour rendre les données
+plus symétriques et plus conformes à une distribution normale. Cela peut
+faciliter l'analyse statistique, en particulier lorsque des tests
+statistiques qui supposent une distribution normale sont utilisés. Le
+choix optimal de la valeur de lambda dépend de la distribution initiale
+de la variable et peut être déterminé en utilisant une procédure de
+recherche d'optimisation sur la fonction de vraisemblance de
+l'échantillon ici notre jeu de donées.
+
+```{r , message=FALSE,echo=FALSE}
+library("MASS")
+boxcox(data$Nb.grains ~ 1, lambda = seq(-2, 2, 0.01))
+```
+
+
+Notre paramètre optimal $\lambda$ est donc entre $]1,5;1,99[$. Prenons
+$\lambda = 1,95$ on fait donc une transformation de la hauteur de la
+forme :
+
+$$dataNb.grain_{bc} = (dataNb.grain^{\lambda} - 1)/ \lambda$$
+
+```{r}
+lambda = 1.95
+data$Nb.grain_bc = (data$Nb.grains^lambda - 1)/lambda
+shapiro.test(data$Nb.grain_bc)
+```
+
+
+
+```{r}
+library(ggpubr)
+
+shapiro_results <- data %>%
+  group_by(Enracinement) %>%
+  summarise(p_value = shapiro.test(Nb.grains)$p.value, .groups = "drop")
+
+# Afficher les résultats
+print(shapiro_results)
+
+# Graphique QQ-Plot avec facettes
+ggqqplot(data, "Nb.grains", ggtheme = theme_bw()) +
+  facet_grid(Parcelle ~ Enracinement)
+```
+Puisque l'hypothese de normalite n'est pas verifié, nous allons passer a l'anova non paramétrique a deux facteur.
+
+###  teste de Levene
+
+```{r,message=FALSE}
+data %>% levene_test(Nb.grains ~ Enracinement*Parcelle)
+```
+
+Du résultat ci-dessus, nous pouvons voir que la p-value infierieure à 0.05, cela signifie que les variances ne sont pas homogènes entre les groupes.
+
+
+## ANOVA non-parametrique a deux facteur.
+
+
+
+### Test de Scheirer-Ray-Hare
+
+```{r}
+scheirerRayHare(Nb.grains ~ Enracinement + Parcelle + Enracinement:Parcelle, data = data)
+
+```
+Enracinement: (p = 0.682) **Pas d'effet significatif** sur le nombre de grain
+
+Parcelle  : (p = 0.025) effet significatif, indiquant que la parcelle a un impact surle nombre de grain
+
+Interaction:  (p = 0.154) pas d'interaction significative entre Enracinement et Parcelle.
+
+
+## Tests Post-Hoc après le test de Scheirer-Ray-Hare
+
+Puisque Parcelle est significatif, on peut faire un test post-hoc .
+
+###  Test de Dunn avec correction de Bonferroni
+
+```{r,message=FALSE}
+library(FSA)
+dunnTest(Nb.grains ~ Parcelle, data = data, method = "bonferroni")
+
+
+```
+
+<div class="important">
+Il existe une difference significative entre les parcelles Nord et Est au seuil de 5% .
+Pour les parcelles Est-Sud, la difference est signigicative au seuil de 10% (p-value ajusté)
+Le test de Dunn nous permet de conclure que la parcelle Est est significativement différente de la parcelle Nord en terme de nombre de grain .
+
+```{r}
+library(ggplot2)
+ggplot(data, aes(x = Parcelle, y = Nb.grains, fill = Parcelle)) +
+  geom_boxplot() +
+  theme_bw() +
+  ggtitle("Comparaison du nombre de grains par Parcelle")
+
+```
+
+<div class="note">
+
+Cette étude visait à évaluer l’effet de la parcelle sur le nombre de grains produits. Les analyses statistiques ont révélé une différence significative entre les parcelles, avec un impact notable de la localisation sur la production. En particulier, la parcelle "Est" a montré une production significativement plus élevée que la parcelle "Nord", tandis que les autres comparaisons ne se sont pas révélées statistiquement significatives après correction. Le boxplot confirme cette tendance, illustrant des différences de médianes et de variabilité entre les parcelles. Ces résultats suggèrent que des facteurs environnementaux propres à chaque parcelle, tels que le sol, l'exposition ou les conditions climatiques, pourraient influencer la production de grains. Des analyses complémentaires seraient nécessaires pour approfondir ces observations et optimiser les conditions de culture en fonction des spécificités de chaque parcelle.
 </div>
-
-## Présentation de R
-
-**R** est un langage orienté vers le traitement de données et l'analyse statistique dérivé du langage **S**.
-Il est développé depuis une vingtaine d'années par un groupe de volontaires de différents pays. C'est un
-<dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn>^[Pour plus
-d'informations sur ce qu'est un logiciel libre, voir :
-<http://www.gnu.org/philosophy/free-sw.fr.html>.], publié sous licence GNU GPL.
-
-L'utilisation de **R** présente plusieurs avantages :
-
-* c'est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes 
-  **Linux**, **Mac OS X** ou **Windows** ;
-* c'est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;
-* c'est un logiciel gratuit ;
-* c'est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à 
-  l'aide de plusieurs milliers d'extensions ;
-* c'est un logiciel dont le développement est très actif et dont la communauté d'utilisateurs 
-  ne cesse de s'élargir ;
-* les possibilités de manipulation de données sous **R** sont en général largement supérieures
-  à celles des autres logiciels usuels d'analyse statistique ;
-* c'est un logiciel avec d'excellentes capacités graphiques et de nombreuses possibilités
-  d'export ;
-* avec **Rmarkdown**^[Voir <http://rmarkdown.rstudio.com/>.], il est devenu très aisé de
-  produire des rapports automatisés dans divers format (**Word**, **PDF**, **HTML**, ...) ;
-* **R** est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine
-  des analyses d'enquêtes et, plus généralement, des sciences sociales.
-
-Comme rien n'est parfait, on peut également trouver quelques inconvénients :
-
-* le logiciel, la documentation de référence et les principales ressources sont en anglais. 
-  Il est toutefois parfaitement possible d'utiliser **R** sans spécialement maîtriser cette langue ;
-* il n'existe pas encore d'interface graphique pour **R** équivalente à celle d'autres logiciels comme 
-  **SPSS** ou **Modalisa**. **R** fonctionne à l'aide de <dfn>scripts</dfn>
-  (des petits programmes) édités et exécutés au fur et à mesure de l'analyse et se 
-  rapprocherait davantage de **SAS** dans son utilisation 
-  (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un 
-  gros handicap, s'avère après un temps d'apprentissage être un mode d'utilisation d'une grande souplesse ;
-* comme **R** s'apparente davantage à un langage de programmation qu'à un logiciel proprement dit, la
-  courbe d'apprentissage peut être un peu « raide », notamment pour ceux n'ayant jamais programmé
-  auparavant.
-
-Il est à noter que le développement autour de **R** a été particulièrement actif ces dernières années.
-On trouvera dès lors aujourd'hui de nombreuses extensions permettant de se « faciliter la vie » au
-quotidien, ce qui n'était pas vraiment encore le cas il y a 5 ans.
-
-## Philosophie de R
-
-Quelques points particuliers dans le fonctionnement de **R** peuvent parfois dérouter les utilisateurs 
-habitués à d'autres logiciels :
-
-* Sous **R**, en général, on ne voit pas directement les données sur lesquelles on travaille ;
-  on ne dispose pas en permanence d'une vue des données sous forme de tableau^[On verra qu'il est possible
-  avec **RStudio** de disposer d'une telle vue.], comme sous **Modalisa ou SPSS**. Ceci peut
-  être déroutant au début, mais on se rend vite compte qu'on n'a pas besoin de voir en permanence
-  les données pour les analyser.
-* Alors qu'avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois,
-  sous **R** chaque fichier de données correspondra à un objet différent chargé en mémoire, 
-  permettant de manipuler très facilement
-  plusieurs objets à la fois (par exemple dans le cadre de fusion de tables^[Voir par exemple la section
-  dédiée à ce sujet dans le [chapitre sur la manipulation de données](pem_manipulation.html#fusion_tables).]).
-* Avec les autres logiciels, en général la production d'une analyse génère un grand nombre de résultats
-  de toutes sortes dans lesquels l'utilisateur est censé retrouver et isoler ceux qui l'intéressent. Avec
-  **R**, c'est l'inverse : par défaut l'affichage est réduit au minimum et c'est l'utilisateur qui demande à
-  voir des résultats supplémentaires ou plus détaillés.
-* Sous **R**, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors
-  manipulables. 
-
-Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la
-conduite des analyses.
-
-## Présentation de RStudio
-
-L'interface de base de **R** est assez rudimentaire (voir figure ci-après).
-
-
-**RStudio** est un <dfn>environnement de développement</dfn> intégré 
-libre, gratuit, et qui fonctionne sous **Windows**,
-**Mac OS X** et **Linux**. Il complète **R** et fournit un <dfn>éditeur de script</dfn>
-avec <dfn>coloration syntaxique</dfn>, 
-des fonctionnalités pratiques d'édition et d'exécution du code (comme l'<dfn>autocomplétion</dfn>), 
-un affichage simultané du code, de la console **R**, des fichiers, graphiques et pages d'aide, 
-une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme **git**, etc.
-Il intègre de base divers outils comme par exemple la production de rapports au format **Rmarkdown**.
-Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. 
-Son principal défaut est d'avoir une interface uniquement anglophone.
-
-
-
-Pour une présentation plus générale de **RStudio** on pourra se référer au site du projet :
-<http://www.rstudio.com/>.
-
-**RStudio** peut tout à fait être utilisé pour découvrir et démarrer avec **R**. Les différents 
-chapitres d'**analyse-R** partent du principe que vous utilisez **R** avec **RStudio**. Cependant, 
-à part les éléments portant sur l'interface de **RStudio**, l'ensemble du code et des fonctions **R** 
-peuvent être utilisés directement dans **R**, même en l'absence de **RStudio**.
-
-La documentation de **RStudio** (en anglais) est disponible en ligne à
-<https://support.rstudio.com>. Pour être tenu informé des dernières évolutions de
-**RStudio**, mais également de plusieurs extensions développées dans le cadre de ce
-projet, vous pouvez suivre le blog dédié <http://blog.rstudio.org/>.

@@ -11,7 +11,7 @@
 
 
 
-<title>Analyse descriptive</title>
+<title>Analyse univarié</title>
 
 <script src="libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -300,19 +300,24 @@ pre code {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">statistiques <span class="caret"></span></a>
+          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ENSAE <span class="caret"></span></a>
           <ul class="dropdown-menu multi-column columns-3" role="menu" id="menu_manipuler">
             <div class="row">
               <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
-  		            <li class="dropdown-header">Presentation et statistiques descriptives</li>
+  		            <li class="dropdown-header">Introduction et Méthodologie</li>
                   <li><a href="introduction.html">Introduction</a></li>
-                  <li><a href="analyse-descriptive.html">Statistiques univariée</a></li>
-                  <li><a href="analyse-bivarie.html">Choix de la variable cible et statistiques bivariée</a></li>
-                  <li><a href="discussion-des-resultats.html">Un premier bilan</a></li>
+                  <li><a href="Methodologie.html">Méthodologie</a></li>
+                  <li><a href="analyse-descriptive.html">Analyse univarie</a></li>
+                  <li><a href="analyse-bivarie.html">Analyse bivariée</a></li>
+                  <li><a href="discussion-des-resultats.html">Résultats ANOVA</a></li>
                  
   	            </ul>
               </div>
+
+
+
+
              
               <!-- <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
@@ -356,177 +361,49 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Analyse descriptive</h1>
+<h1 class="title toc-ignore">Analyse univarié</h1>
 
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#generalite-sur-les-variables-quantitatives" id="toc-generalite-sur-les-variables-quantitatives">Generalite sur les variables quantitatives</a></li>
-<li><a href="#generalite-sur-les-variables-qualitative" id="toc-generalite-sur-les-variables-qualitative">Generalite sur les variables qualitative</a></li>
-<li><a href="#teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="toc-teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation entre la masse et la quantité de grain</a></li>
-<li><a href="#teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="toc-teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation de Spearman entre la masse et la quantité de grain</a></li>
-<li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+<li><a href="#traitement-des-valeurs-manquantes" id="toc-traitement-des-valeurs-manquantes">traitement des valeurs manquantes</a></li>
+<li><a href="#analayse-des-variables-qualitatives" id="toc-analayse-des-variables-qualitatives">Analayse des variables qualitatives</a></li>
 </ul>
 </div>
 
-<div id="generalite-sur-les-variables-quantitatives" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Generalite sur les variables quantitatives<a href="#generalite-sur-les-variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-Nous disposons de ….
-<figure>
-<table>
-<caption>Statistiques des Variables Quantitatives</caption>
-<thead>
-<tr class="header">
-<th align="left">Variable</th>
-<th align="right">valeur_NA</th>
-<th align="right">Moyenne</th>
-<th align="right">Variance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Individu</td>
-<td align="right">0</td>
-<td align="right">50.50000</td>
-<td align="right">841.6667</td>
-</tr>
-<tr class="even">
-<td align="left">Hauteur</td>
-<td align="right">3</td>
-<td align="right">259.36082</td>
-<td align="right">1965.8580</td>
-</tr>
-<tr class="odd">
-<td align="left">Masse</td>
-<td align="right">3</td>
-<td align="right">1811.61856</td>
-<td align="right">102708.9051</td>
-</tr>
-<tr class="even">
-<td align="left">Nb.grains</td>
-<td align="right">3</td>
-<td align="right">292.63918</td>
-<td align="right">10283.1914</td>
-</tr>
-<tr class="odd">
-<td align="left">Masse.grains</td>
-<td align="right">3</td>
-<td align="right">96.54742</td>
-<td align="right">8073.7931</td>
-</tr>
-<tr class="even">
-<td align="left">Hauteur.J7</td>
-<td align="right">0</td>
-<td align="right">257.36000</td>
-<td align="right">1934.8994</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
+<div id="traitement-des-valeurs-manquantes" class="section level2 hasAnchor">
+<h2 class="hasAnchor">traitement des valeurs manquantes<a href="#traitement-des-valeurs-manquantes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pour nos trois variables d’étude, seule la variable dépendante présente des valeurs manquantes. Le nombre de valeurs manquantes pour cette variable est 3. Pour le traitement de ces valeurs manquantes, nous allons utiliser l’imputation par la moyenne.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Calcul de la moyenne de la variable  en ignorant les valeurs manquantes</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>mean_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>Nb.grains, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Nb.grains[<span class="fu">is.na</span>(data<span class="sc">$</span>Nb.grains)] <span class="ot">&lt;-</span> mean_value</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># Vérification</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Doit être égal à 0</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>NB.grain)) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="co"># Sauvegarde</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="fu">write_delim</span>(data, <span class="st">&quot;data/data_corrige.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Operation réussi&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>Operation réussi</code></pre>
 </div>
-<div id="generalite-sur-les-variables-qualitative" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Generalite sur les variables qualitative<a href="#generalite-sur-les-variables-qualitative" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quant aux variables qualitatives</p>
-<figure>
-<table>
-<caption>Variables Qualitatives, Facteurs, Fréquences et Nombre de Valeurs Manquantes</caption>
-<thead>
-<tr class="header">
-<th align="left">Variable</th>
-<th align="left">Facteurs</th>
-<th align="left">Fréquences</th>
-<th align="right">Valeurs_manquantes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Couleur</td>
-<td align="left">NA, Rouge, Jaune, Jaune.rouge</td>
-<td align="left">Jaune ( 48 ), Jaune.rouge ( 22 ), Rouge ( 29 )</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Germination.epi</td>
-<td align="left">NA, Non, Oui</td>
-<td align="left">Non ( 90 ), Oui ( 9 )</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Enracinement</td>
-<td align="left">Faible, Moyen, Tres.fort, Fort</td>
-<td align="left">Faible ( 19 ), Fort ( 26 ), Moyen ( 28 ), Tres.fort ( 27 )</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">Verse</td>
-<td align="left">NA, Non, Oui</td>
-<td align="left">Non ( 57 ), Oui ( 42 )</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Attaque</td>
-<td align="left">Oui, Non</td>
-<td align="left">Non ( 54 ), Oui ( 46 )</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">Parcelle</td>
-<td align="left">Nord, Sud, Est, Ouest</td>
-<td align="left">Est ( 33 ), Nord ( 17 ), Ouest ( 36 ), Sud ( 14 )</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">Verse.Traitement</td>
-<td align="left">NA, Oui, Non</td>
-<td align="left">Non ( 44 ), Oui ( 55 )</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="right"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Teste de corrélation entre la masse et la quantité de grain<a href="#teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-Ce teste permet de ….
-<figure>
-<img src="graphs/analyse-descriptive/compar_mass_quant-1.png" width="1050" />
-</figure>
-<p>Le graphique montre une corrélation positive modérée entre <strong>Masse.grains</strong> et <strong>Nb.grains</strong>, indiquant que lorsque l’un augmente, l’autre tend également à augmenter. La force de cette relation est représentée par un cercle bleu clair, suggérant une liaison existante mais non parfaite.</p>
-<p>Poursuivons par un autre teste pour voir la corrélation de rangs a defaut d’une correlation lineaire importante</p>
-</div>
-<div id="teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Teste de corrélation de Spearman entre la masse et la quantité de grain<a href="#teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<figure>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">cor.test</span>(data<span class="sc">$</span>Masse.grains, data<span class="sc">$</span>Nb.grains, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
-<pre><code>
-    Spearman&#39;s rank correlation rho
-
-data:  data$Masse.grains and data$Nb.grains
-S = 4681.2, p-value &lt; 2.2e-16
-alternative hypothesis: true rho is not equal to 0
-sample estimates:
-      rho 
-0.9692218 </code></pre>
-</figure>
-<p>Le coefficient de corrélation de Spearman est de 0,969, ce qui indique une très forte corrélation positive entre les deux variables bien que le teste de correlation lineaire indique une non lineaire relation entre nos differents variables. La p-value est inferieure a 0,01 ce qui indique que la correlation est hautement significative .nous rejetons l’hypothèse nulle selon laquelle il n’y a pas de relation entre les deux variables, et il existe donc une forte probabilité que la relation observée soit réelle et non due au hasard.</p>
-</div>
-<div id="conclusion" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Conclusion<a href="#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="analayse-des-variables-qualitatives" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Analayse des variables qualitatives<a href="#analayse-des-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">histogramme_effectifs</span>(data, <span class="st">&quot;Parcelle&quot;</span>)</span></code></pre></div>
+<pre><code>Warning: The dot-dot notation (`..count..`) was deprecated in
+ggplot2 3.4.0.
+ℹ Please use `after_stat(count)` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where
+this warning was generated.</code></pre>
+<p><img src="graphs/analyse-descriptive/unnamed-chunk-1-1.png" width="1050" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">histogramme_effectifs</span>(data, <span class="st">&quot;Enracinement&quot;</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-descriptive/unnamed-chunk-2-1.png" width="1050" /></p>
 <div class="important">
-<p>Compte tenu de la très forte corrélation entre masse des grains et Nombre de grains, nous pouvons conclure qu’une nombre élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons le nombre de grains comme variable cible pour notre ANOVA.</p>
+<p>L’analyse univariée des deux variables qualitatives permet de voir la répartition des plantes suivantes les modalités de chaque variable. Pour chacun des deux facteurs, les modalités n’ont pas les mêmes effectifs. Le plan est donc déséquilibré</p>
 </div>
-<p>La variable <strong>nombre.grain</strong> a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.</p>
 </div>
 
 </article>

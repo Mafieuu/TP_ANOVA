@@ -11,7 +11,7 @@
 
 
 
-<title>Présentation et Philosophie</title>
+<title>ANOVA</title>
 
 <script src="libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -83,6 +83,108 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -198,19 +300,24 @@ pre code {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">statistiques <span class="caret"></span></a>
+          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ENSAE <span class="caret"></span></a>
           <ul class="dropdown-menu multi-column columns-3" role="menu" id="menu_manipuler">
             <div class="row">
               <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
-  		            <li class="dropdown-header">Presentation et statistiques descriptives</li>
+  		            <li class="dropdown-header">Sous la supervision de Carlos AKAKPOVI</li>
                   <li><a href="introduction.html">Introduction</a></li>
-                  <li><a href="analyse-descriptive.html">Statistiques univariée</a></li>
-                  <li><a href="analyse-bivarie.html">Choix de la variable cible et statistiques bivariée</a></li>
-                  <li><a href="discussion-des-resultats.html">Un premier bilan</a></li>
+                  <li><a href="Methodologie.html">Méthodologie</a></li>
+                  <li><a href="analyse-descriptive.html">Analyse univarie</a></li>
+                  <li><a href="analyse-bivarie.html">Analyse bivariée</a></li>
+                  <li><a href="discussion-des-resultats.html">Résultats ANOVA</a></li>
                  
   	            </ul>
               </div>
+
+
+
+
              
               <!-- <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
@@ -254,71 +361,141 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+<h1 class="title toc-ignore">ANOVA</h1>
 
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#pr%C3%A9sentation-de-r" id="toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#philosophie-de-r" id="toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#pr%C3%A9sentation-de-rstudio" id="toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+<li><a href="#teste-de-normalite" id="toc-teste-de-normalite">Teste de normalite</a>
+<ul>
+<li><a href="#transformation-log-lineaire" id="toc-transformation-log-lineaire">Transformation log lineaire</a></li>
+<li><a href="#transformation-box-cox" id="toc-transformation-box-cox">Transformation Box-Cox</a></li>
+<li><a href="#teste-de-levene" id="toc-teste-de-levene">teste de Levene</a></li>
+</ul></li>
+<li><a href="#anova-non-parametrique-a-deux-facteur." id="toc-anova-non-parametrique-a-deux-facteur.">ANOVA non-parametrique a deux facteur.</a>
+<ul>
+<li><a href="#test-de-scheirer-ray-hare" id="toc-test-de-scheirer-ray-hare">Test de Scheirer-Ray-Hare</a></li>
+</ul></li>
+<li><a href="#tests-post-hoc-apr%C3%A8s-le-test-de-scheirer-ray-hare" id="toc-tests-post-hoc-après-le-test-de-scheirer-ray-hare">Tests Post-Hoc après le test de Scheirer-Ray-Hare</a>
+<ul>
+<li><a href="#test-de-dunn-avec-correction-de-bonferroni" id="toc-test-de-dunn-avec-correction-de-bonferroni">Test de Dunn avec correction de Bonferroni</a></li>
+</ul></li>
 </ul>
 </div>
 
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
+<div id="teste-de-normalite" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Teste de normalite<a href="#teste-de-normalite" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(data<span class="sc">$</span>Nb.grains)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  data$Nb.grains
+W = 0.97189, p-value = 0.03528</code></pre>
+<p>Étant donné que la p-value est de 0.03528, ce qui est inférieur au niveau alpha de 0.05, nous rejetons l’hypothèse nulle :on ne peut donc pas affirmer que nos données sont normalement distribué. Procedons a des transformations</p>
+<div id="transformation-log-lineaire" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Transformation log lineaire<a href="#transformation-log-lineaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">log</span>(data<span class="sc">$</span>Nb.grains))</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  log(data$Nb.grains)
+W = 0.9195, p-value = 1.747e-05</code></pre>
+<p>toujours pas concluante</p>
 </div>
-<div id="présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li><strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<div id="transformation-box-cox" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Transformation Box-Cox<a href="#transformation-box-cox" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La transformation de Box-Cox peut être utilisée pour rendre les données plus symétriques et plus conformes à une distribution normale. Cela peut faciliter l’analyse statistique, en particulier lorsque des tests statistiques qui supposent une distribution normale sont utilisés. Le choix optimal de la valeur de lambda dépend de la distribution initiale de la variable et peut être déterminé en utilisant une procédure de recherche d’optimisation sur la fonction de vraisemblance de l’échantillon ici notre jeu de donées.</p>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-3-1.png" width="1050" /></p>
+<p>Notre paramètre optimal <span class="math inline"><em>λ</em></span> est donc entre <span class="math inline">]1, 5; 1, 99[</span>. Prenons <span class="math inline"><em>λ</em> = 1, 95</span> on fait donc une transformation de la hauteur de la forme :</p>
+<p><span class="math display"><em>d</em><em>a</em><em>t</em><em>a</em><em>N</em><em>b</em>.<em>g</em><em>r</em><em>a</em><em>i</em><em>n</em><sub><em>b</em><em>c</em></sub> = (<em>d</em><em>a</em><em>t</em><em>a</em><em>N</em><em>b</em>.<em>g</em><em>r</em><em>a</em><em>i</em><em>n</em><sup><em>λ</em></sup> − 1)/<em>λ</em></span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">1.95</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>data<span class="sc">$</span>Nb.grain_bc <span class="ot">&lt;-</span> (data<span class="sc">$</span>Nb.grains<span class="sc">^</span>lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> lambda</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(data<span class="sc">$</span>Nb.grain_bc)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  data$Nb.grain_bc
+W = 0.9612, p-value = 0.005835</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>shapiro_results <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">shapiro.test</span>(Nb.grains)<span class="sc">$</span>p.value, <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># Afficher les résultats</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="fu">print</span>(shapiro_results)</span></code></pre></div>
+<pre><code># A tibble: 4 × 2
+  Enracinement p_value
+  &lt;chr&gt;          &lt;dbl&gt;
+1 Faible        0.508 
+2 Fort          0.130 
+3 Moyen         0.159 
+4 Tres.fort     0.0514</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Graphique QQ-Plot avec facettes</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">ggqqplot</span>(data, <span class="st">&quot;Nb.grains&quot;</span>, <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>()) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Parcelle <span class="sc">~</span> Enracinement)</span></code></pre></div>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-5-1.png" width="1050" /> Puisque l’hypothese de normalite n’est pas verifié, nous allons passer a l’anova non paramétrique a deux facteur.</p>
 </div>
-<div id="philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+<div id="teste-de-levene" class="section level3 hasAnchor">
+<h3 class="hasAnchor">teste de Levene<a href="#teste-de-levene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">levene_test</span>(Nb.grains <span class="sc">~</span> Enracinement <span class="sc">*</span> Parcelle)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["df1"],"name":[1],"type":["int"],"align":["right"]},{"label":["df2"],"name":[2],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"14","2":"82","3":"2.050411","4":"0.02341566"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+<p>Du résultat ci-dessus, nous pouvons voir que la p-value infierieure à 0.05, cela signifie que les variances ne sont pas homogènes entre les groupes.</p>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+</div>
+<div id="anova-non-parametrique-a-deux-facteur." class="section level2 hasAnchor">
+<h2 class="hasAnchor">ANOVA non-parametrique a deux facteur.<a href="#anova-non-parametrique-a-deux-facteur." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="test-de-scheirer-ray-hare" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de Scheirer-Ray-Hare<a href="#test-de-scheirer-ray-hare" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">scheirerRayHare</span>(Nb.grains <span class="sc">~</span> Enracinement <span class="sc">+</span> Parcelle <span class="sc">+</span> Enracinement<span class="sc">:</span>Parcelle, <span class="at">data =</span> data)</span></code></pre></div>
+<pre><code>
+DV:  Nb.grains 
+Observations:  97 
+D:  0.9999737 
+MS total:  792.1667 </code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["H"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"1188.904","3":"1.500865","4":"0.68207079","_rn_":"Enracinement"},{"1":"3","2":"7431.576","3":"9.381576","4":"0.02462515","_rn_":"Parcelle"},{"1":"8","2":"9460.965","3":"11.943464","4":"0.15374426","_rn_":"Enracinement:Parcelle"},{"1":"82","2":"56403.060","3":"NA","4":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Enracinement: (p = 0.682) <strong>Pas d’effet significatif</strong> sur le nombre de grain</p>
+<p>Parcelle : (p = 0.025) effet significatif, indiquant que la parcelle a un impact surle nombre de grain</p>
+<p>Interaction: (p = 0.154) pas d’interaction significative entre Enracinement et Parcelle.</p>
+</div>
+</div>
+<div id="tests-post-hoc-après-le-test-de-scheirer-ray-hare" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Tests Post-Hoc après le test de Scheirer-Ray-Hare<a href="#tests-post-hoc-apr%C3%A8s-le-test-de-scheirer-ray-hare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Puisque Parcelle est significatif, on peut faire un test post-hoc .</p>
+<div id="test-de-dunn-avec-correction-de-bonferroni" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de Dunn avec correction de Bonferroni<a href="#test-de-dunn-avec-correction-de-bonferroni" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">dunnTest</span>(Nb.grains <span class="sc">~</span> Parcelle, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>Warning: Parcelle was coerced to a factor.</code></pre>
+<pre><code>    Comparison          Z     P.unadj      P.adj
+1   Est - Nord  2.9674741 0.003002576 0.01801546
+2  Est - Ouest  1.8636861 0.062365801 0.37419481
+3 Nord - Ouest -1.4529390 0.146240679 0.87744407
+4    Est - Sud  2.4611644 0.013848690 0.08309214
+5   Nord - Sud -0.2825197 0.777545008 1.00000000
+6  Ouest - Sud  1.0380121 0.299264441 1.00000000</code></pre>
+<div class="important">
+<p>Il existe une difference significative entre les parcelles Nord et Est au seuil de 5% . Pour les parcelles Est-Sud, la difference est signigicative au seuil de 10% (p-value ajusté) Le test de Dunn nous permet de conclure que la parcelle Est est significativement différente de la parcelle Nord en terme de nombre de grain .</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Parcelle, <span class="at">y =</span> Nb.grains, <span class="at">fill =</span> Parcelle)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Comparaison du nombre de grains par Parcelle&quot;</span>)</span></code></pre></div>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-9-1.png" width="1050" /></p>
+<div class="note">
+<p>Cette étude visait à évaluer l’effet de la parcelle sur le nombre de grains produits. Les analyses statistiques ont révélé une différence significative entre les parcelles, avec un impact notable de la localisation sur la production. En particulier, la parcelle “Est” a montré une production significativement plus élevée que la parcelle “Nord”, tandis que les autres comparaisons ne se sont pas révélées statistiquement significatives après correction. Le boxplot confirme cette tendance, illustrant des différences de médianes et de variabilité entre les parcelles. Ces résultats suggèrent que des facteurs environnementaux propres à chaque parcelle, tels que le sol, l’exposition ou les conditions climatiques, pourraient influencer la production de grains. Des analyses complémentaires seraient nécessaires pour approfondir ces observations et optimiser les conditions de culture en fonction des spécificités de chaque parcelle.</p>
+</div>
+</div>
+</div>
 </div>
 
 </article>

@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>TP ANOVA ISE 2</title>
+<title>TP ANOVAS-R</title>
 
 <script src="libs/jquery-1.12.4/jquery.min.js"></script>
 <link href="include/flatly.print.css" rel="stylesheet" />
@@ -78,7 +78,7 @@ pre:not([class]) {
 		@top-right { content:normal;}
   }
   @page:left{
-    @top-left {content: "TP-ANOVA\0000a0\0000a0\2013\0000a0\0000a0" string(titre_doc);
+    @top-left {content: "ANOVA-TP\0000a0\0000a0\2013\0000a0\0000a0" string(titre_doc);
     font-style: italic; font-size: 9pt; font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;}
   }
   @page:right{
@@ -214,16 +214,16 @@ ENSAE de Dakar <br>ISE 2 <br>2024-2025
 <div id="tdm" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Table des matières<a href="#tdm" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<div id="chapitre-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Chapitre 1<a href="#chapitre-1" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="tp-anova-2024-2025" class="section level3 hasAnchor">
+<h3 class="hasAnchor">TP ANOVA 2024-2025<a href="#tp-anova-2024-2025" class="anchor-section" aria-label="Anchor link to header"></a>
 </h3>
 <div class="row">
 <div class="col-md-4">
 <p>
-<strong>Presentation et statistiques descriptives</strong>
+<strong>Sous la supervision de Carlos AKAKPOVI</strong>
 </p>
 <div class="list-group">
-<p><a href="#introduction" class="list-group-item">Introduction</a> <a href="#analyse-descriptive" class="list-group-item">Statistiques univariée</a> <a href="#analyse-bivarie" class="list-group-item">Choix de la variable cible et statistiques bivariée</a> <a href="#discussion-des-resultats" class="list-group-item">Un premier bilan</a></p>
+<p><a href="#introduction" class="list-group-item">Introduction</a> <a href="#Methodologie" class="list-group-item">Méthodologie</a> <a href="#analyse-descriptive" class="list-group-item">Analyse univarie</a> <a href="#analyse-bivarie" class="list-group-item">Analyse bivariée</a> <a href="#discussion-des-resultats" class="list-group-item">Résultats ANOVA</a></p>
 </div>
 </div>
 </div>
@@ -241,18 +241,74 @@ ENSAE de Dakar <br>ISE 2 <br>2024-2025
 
 <div class="TOC">
 <ul>
-<li><a href="#introduction_contexte-et-justification" id="introduction_toc-contexte-et-justification">Contexte et justification</a></li>
-<li><a href="#introduction_premi%C3%A9re-inspection" id="introduction_toc-premiére-inspection">Premiére inspection</a></li>
+<li><a href="#introduction_introduction-%C3%A0-lanova" id="introduction_toc-introduction-à-lanova">Introduction à l’ANOVA</a></li>
+<li><a href="#introduction_importance-de-lanova-en-statistique" id="introduction_toc-importance-de-lanova-en-statistique">Importance de l’ANOVA en statistique</a></li>
+<li><a href="#introduction_m%C3%A9thodologie-et-cadre-d%C3%A9tude" id="introduction_toc-méthodologie-et-cadre-détude">Méthodologie et cadre d’étude</a></li>
+<li><a href="#introduction_choix-des-facteurs-danalyse" id="introduction_toc-choix-des-facteurs-danalyse">Choix des facteurs d’analyse</a></li>
+<li><a href="#introduction_objectif" id="introduction_toc-objectif">Objectif</a></li>
 </ul>
 </div>
 
-<div id="introduction_contexte-et-justification" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Contexte et justification<a href="#introduction_contexte-et-justification" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="introduction_introduction-à-lanova" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Introduction à l’ANOVA<a href="#introduction_introduction-%C3%A0-lanova" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Nous disposons de 13 variables dont une (la variable individus) qui fait office d’identifiant unique.Notre base contient 100 individus.Il s’agit de ……… (description des variables,…)</p>
+<p>La formation des élèves ingénieurs statisticiens économistes de deuxième année comprend un module relatif à l’ANOVA. Ce cours, d’un volume horaire de 20 heures, a pour objectif de permettre aux élèves d’avoir une connaissance approfondie sur les aspects théoriques et pratiques de l’analyse de la variance. Les aspects théoriques portent sur la formalisation du modèle, les différentes composantes de la variance totale, les hypothèses statistiques, les statistiques de test ainsi que l’interprétation des différents paramètres du modèle.</p>
 </div>
-<div id="introduction_premiére-inspection" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Premiére inspection<a href="#introduction_premi%C3%A9re-inspection" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="introduction_importance-de-lanova-en-statistique" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Importance de l’ANOVA en statistique<a href="#introduction_importance-de-lanova-en-statistique" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’analyse de la variance constitue un outil très puissance pour éclaire la prise de décision notamment dans le cas des études d’expérimentation. Elle est utilisée dans presque tous les secteurs d’activités. Le rôle du statisticien est entre autres de donner une explication de ces relations par l’étude de liaisons de variables. Ces liaisons sont appréhendées par plusieurs outils de mesure statistique. Les modèles d’ANOVA peuvent être utilisés pour résoudre ce genre de problème. Une bonne maitrise des techniques d’ANOVA est donc une obligation pour toutes personnes souhaitant évoluer dans le domaine des statistiques.</p>
+</div>
+<div id="introduction_méthodologie-et-cadre-détude" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Méthodologie et cadre d’étude<a href="#introduction_m%C3%A9thodologie-et-cadre-d%C3%A9tude" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>A la fin du module de formation, pour mettre en pratique les acquis théoriques et approfondir les connaissances, des travaux de groupe par binôme sont organisés. Ce présent rapport de recherche s’inscrit dans ce cadre.</p>
+</div>
+<div id="introduction_choix-des-facteurs-danalyse" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Choix des facteurs d’analyse<a href="#introduction_choix-des-facteurs-danalyse" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>Sur la base des informations disponibles dans notre jeu de données, nous avons décidé de nous intéresser aux facteurs qui impactent les rendements du maïs. Le rendement du maïs est capté à travers le nombre de graines. Le choix du nombre de graines comme indicateur de rendement plutôt que la masse des graines est basé sur une lecture des études déjà réalisées dans le domaine. L’utilisation du nombre de graines comme indicateur de mesure du rendement est largement répandue dans la littérature. C’est le cas par exemple des études réalisées aux Etats unis sur l’impact du taux de semi sur la productivité (Jeschke, 2022), en France sur les conséquences de la variabilité individuelle des plants de maïs dès la phase d’implantation sur la croissance et la production de grain (Pommel &amp; Fleury, 1989) et au Bénin sur les effets de différents modes de gestion des résidus de soja sur le rendement du maïs (Badou et al., 2013). Pour l’étude des facteurs qui impactent le rendement du maïs, nous
+allons appliquer le modèle d’ANOVA à deux facteurs. Le choix des facteurs à inclure dans le modèle se fera sur une étude de corrélation entre notre variable d’étude (nombre de graines) et les variables qualitatives. Les deux variables qualitatives les plus corrélées à notre variable d’étude seront considérées comme facteurs.</p>
+</div>
+<div id="introduction_objectif" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Objectif<a href="#introduction_objectif" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<p>L’objectif général de ce travail est de proposer un modèle d’analyse de la variance en partant des variables disponibles dans notre base de données. Cet objectif général se décline en trois objectifs spécifiques que sont :</p>
+<ol style="list-style-type: decimal">
+<li><p>Présenter succinctement la théorie sur la technique d’ANOVA à deux facteurs .</p></li>
+<li><p>Faire une analyse descriptive des variables d’étude .</p></li>
+<li><p>Déterminer les facteurs qui peuvent expliquer le rendement des maïs.</p></li>
+</ol>
+<div class="note">
+<p>La suite de ce document est structurée en trois parties. La première partie présente la méthodologie, la deuxième partie fait une analyse descriptive des variables d’étude et la troisième est consacrée à l’analyse de l’ANOVA.</p>
+</div>
+</div>
+
+</article>
+<article id="Methodologie"><div id="Methodologie_header">
+
+
+
+<h1 class="title toc-ignore">Méthodologie</h1>
+
+</div>
+
+<div class="TOC">
+<ul>
+<li><a href="#Methodologie_premi%C3%A9re-inspection" id="Methodologie_toc-premiére-inspection">Premiére inspection</a></li>
+<li><a href="#Methodologie_les-donn%C3%A9es" id="Methodologie_toc-les-données">Les données</a></li>
+<li>
+<a href="#Methodologie_choix-des-facteurs" id="Methodologie_toc-choix-des-facteurs">Choix des facteurs</a>
+<ul>
+<li><a href="#Methodologie_tableau-de-corr%C3%A9lation" id="Methodologie_toc-tableau-de-corrélation">Tableau de corrélation</a></li>
+<li><a href="#Methodologie_graphique-de-corr%C3%A9lation" id="Methodologie_toc-graphique-de-corrélation">Graphique de corrélation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="Methodologie_premiére-inspection" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Premiére inspection<a href="#Methodologie_premi%C3%A9re-inspection" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
 <p>Une premiere inspection de la base nous as conduit a modifier l’individus numero 2 .En effet les valeurs prises par cette individus pour des variables comme <strong>Germination.epi</strong> ou <strong>Enracinement</strong> ne sont pas coherente. ## <img src="images/data_individu2.png">Premiére inspection</p>
 <p>Nous avons juge que cela est due a des problemes lors du saisi des donnée. nous vons corrige par :</p>
@@ -290,30 +346,123 @@ ENSAE de Dakar <br>ISE 2 <br>2024-2025
 </tr></tbody>
 </table>
 </div>
-
-</article>
-<article id="analyse-descriptive"><div id="analyse-descriptive_header">
-
-
-
-<h1 class="title toc-ignore">Analyse descriptive</h1>
-
-</div>
-
-<div class="TOC">
-<ul>
-<li><a href="#analyse-descriptive_generalite-sur-les-variables-quantitatives" id="analyse-descriptive_toc-generalite-sur-les-variables-quantitatives">Generalite sur les variables quantitatives</a></li>
-<li><a href="#analyse-descriptive_generalite-sur-les-variables-qualitative" id="analyse-descriptive_toc-generalite-sur-les-variables-qualitative">Generalite sur les variables qualitative</a></li>
-<li><a href="#analyse-descriptive_teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="analyse-descriptive_toc-teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation entre la masse et la quantité de grain</a></li>
-<li><a href="#analyse-descriptive_teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" id="analyse-descriptive_toc-teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain">Teste de corrélation de Spearman entre la masse et la quantité de grain</a></li>
-<li><a href="#analyse-descriptive_conclusion" id="analyse-descriptive_toc-conclusion">Conclusion</a></li>
-</ul>
-</div>
-
-<div id="analyse-descriptive_generalite-sur-les-variables-quantitatives" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Generalite sur les variables quantitatives<a href="#analyse-descriptive_generalite-sur-les-variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="Methodologie_les-données" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Les données<a href="#Methodologie_les-donn%C3%A9es" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-Nous disposons de ….
+<table>
+<caption>Premières Lignes de la Base de Données</caption>
+<thead><tr class="header">
+<th align="right">Individu</th>
+<th align="right">Hauteur</th>
+<th align="right">Masse</th>
+<th align="right">Nb.grains</th>
+<th align="right">Masse.grains</th>
+<th align="left">Couleur</th>
+<th align="left">Germination.epi</th>
+<th align="left">Enracinement</th>
+<th align="left">Verse</th>
+<th align="left">Attaque</th>
+<th align="left">Parcelle</th>
+<th align="right">Hauteur.J7</th>
+<th align="left">Verse.Traitement</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Faible</td>
+<td align="left">NA</td>
+<td align="left">Oui</td>
+<td align="left">Nord</td>
+<td align="right">171</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">199</td>
+<td align="right">1431</td>
+<td align="right">320</td>
+<td align="right">921.0</td>
+<td align="left">Rouge</td>
+<td align="left">Non</td>
+<td align="left">Moyen</td>
+<td align="left">Non</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">196</td>
+<td align="left">Oui</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">205</td>
+<td align="right">1468</td>
+<td align="right">290</td>
+<td align="right">89.4</td>
+<td align="left">Jaune</td>
+<td align="left">Non</td>
+<td align="left">Moyen</td>
+<td align="left">Oui</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">198</td>
+<td align="left">Oui</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">173</td>
+<td align="right">1398</td>
+<td align="right">147</td>
+<td align="right">42.6</td>
+<td align="left">Jaune</td>
+<td align="left">Non</td>
+<td align="left">Faible</td>
+<td align="left">Oui</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">176</td>
+<td align="left">Oui</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">233</td>
+<td align="right">1622</td>
+<td align="right">138</td>
+<td align="right">43.2</td>
+<td align="left">Rouge</td>
+<td align="left">Non</td>
+<td align="left">Tres.fort</td>
+<td align="left">Oui</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">230</td>
+<td align="left">Oui</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">206</td>
+<td align="right">1428</td>
+<td align="right">166</td>
+<td align="right">44.1</td>
+<td align="left">Jaune</td>
+<td align="left">Non</td>
+<td align="left">Moyen</td>
+<td align="left">Oui</td>
+<td align="left">Non</td>
+<td align="left">Nord</td>
+<td align="right">200</td>
+<td align="left">Non</td>
+</tr>
+</tbody>
+</table>
+<p>Notre jeu de donnée porte sur un échantillon de 100 plantes de maïs. La base de données est composée de 6 variables quantitatives et 7 variables qualitatives. Les variables de la base se résument comme suit :</p>
+<ul>
+<li>Les variables quantitatives</li>
+</ul>
 <figure><table>
 <caption>Statistiques des Variables Quantitatives</caption>
 <thead><tr class="header">
@@ -359,19 +508,10 @@ Nous disposons de ….
 <td align="right">257.36000</td>
 <td align="right">1934.8994</td>
 </tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-</tr>
 </tbody>
-</table></figure>
-</div>
-<div id="analyse-descriptive_generalite-sur-les-variables-qualitative" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Generalite sur les variables qualitative<a href="#analyse-descriptive_generalite-sur-les-variables-qualitative" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p>Quant aux variables qualitatives</p>
+</table></figure><ul>
+<li>Les variables qualitatives : Elle se présentent comme suite :</li>
+</ul>
 <figure><table>
 <caption>Variables Qualitatives, Facteurs, Fréquences et Nombre de Valeurs Manquantes</caption>
 <thead><tr class="header">
@@ -432,35 +572,115 @@ Nous disposons de ….
 </tbody>
 </table></figure>
 </div>
-<div id="analyse-descriptive_teste-de-corrélation-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Teste de corrélation entre la masse et la quantité de grain<a href="#analyse-descriptive_teste-de-corr%C3%A9lation-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="Methodologie_choix-des-facteurs" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Choix des facteurs<a href="#Methodologie_choix-des-facteurs" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-Ce teste permet de ….
-<figure><img src="graphs/analyse-descriptive/compar_mass_quant-1.png" width="1050"></figure><p>Le graphique montre une corrélation positive modérée entre <strong>Masse.grains</strong> et <strong>Nb.grains</strong>, indiquant que lorsque l’un augmente, l’autre tend également à augmenter. La force de cette relation est représentée par un cercle bleu clair, suggérant une liaison existante mais non parfaite.</p>
-<p>Poursuivons par un autre teste pour voir la corrélation de rangs a defaut d’une correlation lineaire importante</p>
+<p>Comme présenté dans le tableau récapitulatif de la liste des variables disponibles dans notre jeu, nous disposons de 7 variables qualitatives. La décision de travailler avec un modèle d’ANOVA à 2 facteurs implique un choix des deux variables qualitatives les plus pertinentes pour l’explication du rendement des plantes de maïs. Pour décider des deux facteurs à considérer pour la modélisation, nous nous sommes basés sur le rapport de corrélation de chacune de ces variables qualitatives avec le nombre de graines de la plante. Pour cela, nous avons effectué les tests de corrélation de variables quantitative avec une variable qualitative. Les résultats de ces tests sont consignés dans le tableau ci-dessous :</p>
+<div id="Methodologie_tableau-de-corrélation" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Tableau de corrélation<a href="#Methodologie_tableau-de-corr%C3%A9lation" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<figure><table>
+<caption>Coefficient de Corrélation entre Variables Qualitatives et la Masse</caption>
+<thead><tr class="header">
+<th align="left">Qualitative</th>
+<th align="right">Correlation</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Couleur</td>
+<td align="right">0.0108322</td>
+</tr>
+<tr class="even">
+<td align="left">Germination.epi</td>
+<td align="right">0.0003605</td>
+</tr>
+<tr class="odd">
+<td align="left">Enracinement</td>
+<td align="right">0.0172819</td>
+</tr>
+<tr class="even">
+<td align="left">Verse</td>
+<td align="right">0.0005838</td>
+</tr>
+<tr class="odd">
+<td align="left">Attaque</td>
+<td align="right">0.0003196</td>
+</tr>
+<tr class="even">
+<td align="left">Parcelle</td>
+<td align="right">0.0840662</td>
+</tr>
+<tr class="odd">
+<td align="left">Verse.Traitement</td>
+<td align="right">0.0125453</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table></figure>
 </div>
-<div id="analyse-descriptive_teste-de-corrélation-de-spearman-entre-la-masse-et-la-quantité-de-grain" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Teste de corrélation de Spearman entre la masse et la quantité de grain<a href="#analyse-descriptive_teste-de-corr%C3%A9lation-de-spearman-entre-la-masse-et-la-quantit%C3%A9-de-grain" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<figure><div class="sourceCode" id="analyse-descriptive_cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb1-1"><a href="#analyse-descriptive_cb1-1" tabindex="-1"></a><span class="fu">cor.test</span>(data<span class="sc">$</span>Masse.grains, data<span class="sc">$</span>Nb.grains, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code></pre></div>
-<pre><code>
-    Spearman's rank correlation rho
+<div id="Methodologie_graphique-de-corrélation" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Graphique de corrélation<a href="#Methodologie_graphique-de-corr%C3%A9lation" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+Graphiquement nous obtenons :
+<figure><img src="graphs/Methodologie/corre_graph-1.png" width="1050"></figure><div class="important">
+<p>Au vu des résultats consignés dans ce graphique, les deux facteurs les plus corrélés au nombre de graines sont : <strong>parcelle</strong> et <strong>enracinement</strong> . Ces deux variables feront donc l’objet de facteurs pour notre modèle d’ANOVA à deux facteurs.</p>
+</div>
+</div>
+</div>
 
-data:  data$Masse.grains and data$Nb.grains
-S = 4681.2, p-value &lt; 2.2e-16
-alternative hypothesis: true rho is not equal to 0
-sample estimates:
-      rho 
-0.9692218 </code></pre>
-</figure><p>Le coefficient de corrélation de Spearman est de 0,969, ce qui indique une très forte corrélation positive entre les deux variables bien que le teste de correlation lineaire indique une non lineaire relation entre nos differents variables. La p-value est inferieure a 0,01 ce qui indique que la correlation est hautement significative .nous rejetons l’hypothèse nulle selon laquelle il n’y a pas de relation entre les deux variables, et il existe donc une forte probabilité que la relation observée soit réelle et non due au hasard.</p>
+</article>
+<article id="analyse-descriptive"><div id="analyse-descriptive_header">
+
+
+
+<h1 class="title toc-ignore">Analyse univarié</h1>
+
 </div>
-<div id="analyse-descriptive_conclusion" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Conclusion<a href="#analyse-descriptive_conclusion" class="anchor-section" aria-label="Anchor link to header"></a>
+
+<div class="TOC">
+<ul>
+<li><a href="#analyse-descriptive_traitement-des-valeurs-manquantes" id="analyse-descriptive_toc-traitement-des-valeurs-manquantes">traitement des valeurs manquantes</a></li>
+<li><a href="#analyse-descriptive_analayse-des-variables-qualitatives" id="analyse-descriptive_toc-analayse-des-variables-qualitatives">Analayse des variables qualitatives</a></li>
+</ul>
+</div>
+
+<div id="analyse-descriptive_traitement-des-valeurs-manquantes" class="section level2 hasAnchor">
+<h2 class="hasAnchor">traitement des valeurs manquantes<a href="#analyse-descriptive_traitement-des-valeurs-manquantes" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<div class="important">
-<p>Compte tenu de la très forte corrélation entre masse des grains et Nombre de grains, nous pouvons conclure qu’une nombre élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons le nombre de grains comme variable cible pour notre ANOVA.</p>
+<p>Pour nos trois variables d’étude, seule la variable dépendante présente des valeurs manquantes. Le nombre de valeurs manquantes pour cette variable est 3. Pour le traitement de ces valeurs manquantes, nous allons utiliser l’imputation par la moyenne.</p>
+<div class="sourceCode" id="analyse-descriptive_cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb1-1"><a href="#analyse-descriptive_cb1-1" tabindex="-1"></a><span class="co"># Calcul de la moyenne de la variable  en ignorant les valeurs manquantes</span></span>
+<span id="analyse-descriptive_cb1-2"><a href="#analyse-descriptive_cb1-2" tabindex="-1"></a>mean_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>Nb.grains, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="analyse-descriptive_cb1-3"><a href="#analyse-descriptive_cb1-3" tabindex="-1"></a></span>
+<span id="analyse-descriptive_cb1-4"><a href="#analyse-descriptive_cb1-4" tabindex="-1"></a>data<span class="sc">$</span>Nb.grains[<span class="fu">is.na</span>(data<span class="sc">$</span>Nb.grains)] <span class="ot">&lt;-</span> mean_value</span>
+<span id="analyse-descriptive_cb1-5"><a href="#analyse-descriptive_cb1-5" tabindex="-1"></a></span>
+<span id="analyse-descriptive_cb1-6"><a href="#analyse-descriptive_cb1-6" tabindex="-1"></a><span class="co"># Vérification</span></span>
+<span id="analyse-descriptive_cb1-7"><a href="#analyse-descriptive_cb1-7" tabindex="-1"></a><span class="co"># Doit être égal à 0</span></span>
+<span id="analyse-descriptive_cb1-8"><a href="#analyse-descriptive_cb1-8" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">sum</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>NB.grain)) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="analyse-descriptive_cb1-9"><a href="#analyse-descriptive_cb1-9" tabindex="-1"></a>  <span class="co"># Sauvegarde</span></span>
+<span id="analyse-descriptive_cb1-10"><a href="#analyse-descriptive_cb1-10" tabindex="-1"></a>  <span class="fu">write_delim</span>(data, <span class="st">"data/data_corrige.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span>
+<span id="analyse-descriptive_cb1-11"><a href="#analyse-descriptive_cb1-11" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Operation réussi"</span>)</span>
+<span id="analyse-descriptive_cb1-12"><a href="#analyse-descriptive_cb1-12" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>Operation réussi</code></pre>
 </div>
-<p>La variable <strong>nombre.grain</strong> a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.</p>
+<div id="analyse-descriptive_analayse-des-variables-qualitatives" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Analayse des variables qualitatives<a href="#analyse-descriptive_analayse-des-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a>
+</h2>
+<div class="sourceCode" id="analyse-descriptive_cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb3-1"><a href="#analyse-descriptive_cb3-1" tabindex="-1"></a><span class="fu">histogramme_effectifs</span>(data, <span class="st">"Parcelle"</span>)</span></code></pre></div>
+<pre><code>Warning: The dot-dot notation (`..count..`) was deprecated in
+ggplot2 3.4.0.
+ℹ Please use `after_stat(count)` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where
+this warning was generated.</code></pre>
+<p><img src="graphs/analyse-descriptive/unnamed-chunk-1-1.png" width="1050"></p>
+<div class="sourceCode" id="analyse-descriptive_cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-descriptive_cb5-1"><a href="#analyse-descriptive_cb5-1" tabindex="-1"></a><span class="fu">histogramme_effectifs</span>(data, <span class="st">"Enracinement"</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-descriptive/unnamed-chunk-2-1.png" width="1050"></p>
+<div class="important">
+<p>L’analyse univariée des deux variables qualitatives permet de voir la répartition des plantes suivantes les modalités de chaque variable. Pour chacun des deux facteurs, les modalités n’ont pas les mêmes effectifs. Le plan est donc déséquilibré</p>
+</div>
 </div>
 
 </article>
@@ -474,364 +694,136 @@ sample estimates:
 
 <div class="TOC">
 <ul>
+<li><a href="#analyse-bivarie_etude-de-la-variable-d%C3%A9pendante" id="analyse-bivarie_toc-etude-de-la-variable-dépendante">Etude de la variable dépendante</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-parcelle-et-nombre-de-grain" id="analyse-bivarie_toc-comparaison-entre-parcelle-et-nombre-de-grain">Comparaison entre Parcelle et nombre de grain</a></li>
+<li><a href="#analyse-bivarie_comparaison-entre-enracinement-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-enracinement-et-nb.grains">Comparaison entre “Enracinement” et “Nb.grains”</a></li>
 <li>
-<a href="#analyse-bivarie_comparaison-entre-parcelle-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-parcelle-et-nb.grains">Comparaison entre “Parcelle” et “Nb.grains”</a>
+<a href="#analyse-bivarie_croisement-entre-les-deux-facteurs" id="analyse-bivarie_toc-croisement-entre-les-deux-facteurs">Croisement entre les deux facteurs</a>
 <ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation" id="analyse-bivarie_toc-rapport-de-correlation">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-couleur-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-couleur-et-nb.grains">Comparaison entre “couleur” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-1" id="analyse-bivarie_toc-rapport-de-correlation-1">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-épigité-de-la-germination-et-nb.grains">Comparaison entre “épigité de la germination” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-2" id="analyse-bivarie_toc-rapport-de-correlation-2">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-enracinement-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-enracinement-et-nb.grains">Comparaison entre “Enracinement” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-3" id="analyse-bivarie_toc-rapport-de-correlation-3">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-courbure-verse-de-la-plante-et-nb.grains">Comparaison entre “courbure (verse) de la plante” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-4" id="analyse-bivarie_toc-rapport-de-correlation-4">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-est-attaqué-par-des-insectes-et-nb.grains">Comparaison entre ” est attaqué par des insectes” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-5" id="analyse-bivarie_toc-rapport-de-correlation-5">Rapport de correlation</a></li>
-</ul>
-</li>
-<li>
-<a href="#analyse-bivarie_comparaison-entre-la-courbure-est-trait%C3%A9-et-nb.grains" id="analyse-bivarie_toc-comparaison-entre-la-courbure-est-traité-et-nb.grains">Comparaison entre ” la courbure est traité” et “Nb.grains”</a>
-<ul>
-<li><a href="#analyse-bivarie_rapport-de-correlation-6" id="analyse-bivarie_toc-rapport-de-correlation-6">Rapport de correlation</a></li>
+<li><a href="#analyse-bivarie_tableau-crois%C3%A9" id="analyse-bivarie_toc-tableau-croisé">tableau croisé</a></li>
+<li><a href="#analyse-bivarie_box-plot-crois%C3%A9" id="analyse-bivarie_toc-box-plot-croisé">box-plot croisé</a></li>
+<li><a href="#analyse-bivarie_test-de-valeur-abh%C3%A9rantes" id="analyse-bivarie_toc-test-de-valeur-abhérantes">Test de valeur abhérantes</a></li>
 </ul>
 </li>
 </ul>
 </div>
 
-<div id="analyse-bivarie_comparaison-entre-parcelle-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “Parcelle” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-parcelle-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_etude-de-la-variable-dépendante" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Etude de la variable dépendante<a href="#analyse-bivarie_etude-de-la-variable-d%C3%A9pendante" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><img src="graphs/analyse-bivarie/parcelle_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations du parcelle en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Parcelle</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Nord</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Est</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Ouest</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
-<pre><code>[1] 0.08406623</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb1-1"><a href="#analyse-bivarie_cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> Nb.grains)) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb1-2"><a href="#analyse-bivarie_cb1-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="st">"red"</span>, <span class="at">outlier.shape =</span> <span class="dv">16</span>, <span class="at">outlier.size =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb1-3"><a href="#analyse-bivarie_cb1-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb1-4"><a href="#analyse-bivarie_cb1-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="analyse-bivarie_cb1-5"><a href="#analyse-bivarie_cb1-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution de Nb.grains"</span>,</span>
+<span id="analyse-bivarie_cb1-6"><a href="#analyse-bivarie_cb1-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Nombre de grains"</span></span>
+<span id="analyse-bivarie_cb1-7"><a href="#analyse-bivarie_cb1-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb1-8"><a href="#analyse-bivarie_cb1-8" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="analyse-bivarie_cb1-9"><a href="#analyse-bivarie_cb1-9" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="analyse-bivarie_cb1-10"><a href="#analyse-bivarie_cb1-10" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="analyse-bivarie_cb1-11"><a href="#analyse-bivarie_cb1-11" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)</span>
+<span id="analyse-bivarie_cb1-12"><a href="#analyse-bivarie_cb1-12" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-1-1.png" width="1050"> Si on considère la variable dépandante nombre de grain isolément, l’analyse du boxplot montre qu’il n’y a pas de valeurs abérrantes.</p>
 </div>
-</div>
-<div id="analyse-bivarie_comparaison-entre-couleur-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “couleur” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-couleur-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_comparaison-entre-parcelle-et-nombre-de-grain" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre Parcelle et nombre de grain<a href="#analyse-bivarie_comparaison-entre-parcelle-et-nombre-de-grain" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><img src="graphs/analyse-bivarie/couleur_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations de la couleur en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Couleur</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Jaune</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Jaune</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-1" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
-<pre><code>[1] 0.01083218</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
-</div>
-</div>
-<div id="analyse-bivarie_comparaison-entre-épigité-de-la-germination-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “épigité de la germination” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p><img src="graphs/analyse-bivarie/epi_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’épigité de la graine en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Germination.epi</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-2" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-2" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
-<pre><code>[1] 0.0003605472</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb2-1"><a href="#analyse-bivarie_cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_group) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb2-2"><a href="#analyse-bivarie_cb2-2" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Parcelle, mean), <span class="at">y =</span> mean, <span class="at">fill =</span> Parcelle) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb2-3"><a href="#analyse-bivarie_cb2-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb2-4"><a href="#analyse-bivarie_cb2-4" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb2-5"><a href="#analyse-bivarie_cb2-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb2-6"><a href="#analyse-bivarie_cb2-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Nombre de grain moyenne par Parcelle"</span>, <span class="at">x =</span> <span class="st">"Parcelle"</span>, <span class="at">y =</span> <span class="st">"Moyenne nombre de grain"</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-3-1.png" width="1050"></p>
+<p>L’analyse du nombre moyens de grins suivant la parcelle montre que les plantes de mais situées dans la parcelle Est ont en moyenne un rendement plus élevé, suivies de celles situées dans la parcelle Ouest. Les plantes situées dans la parcelle ont le rendement le plus faible.</p>
+<p><img src="graphs/analyse-bivarie/parcelle_nombre-1.png" width="1050"> Les boxplots de la variable dépendante suivant les parcelles montrent la présence de valeurs aberrantes pour la parcelle Est. Mais le test de la méthode de Turkey montre que ses valeurs ne sont pas extrêment atypes (is.extreme=FALSE)</p>
+<div class="sourceCode" id="analyse-bivarie_cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb3-1"><a href="#analyse-bivarie_cb3-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb3-2"><a href="#analyse-bivarie_cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle) <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb3-3"><a href="#analyse-bivarie_cb3-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Parcelle"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Enracinement"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Est","2":"35","3":"217","4":"1623","5":"139","6":"43.8","7":"Jaune","8":"Oui","9":"Faible","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Est","2":"48","3":"293","4":"2147","5":"152","6":"42.9","7":"Jaune.rouge","8":"Non","9":"Fort","10":"Oui","11":"Oui","12":"291","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Est","2":"52","3":"196","4":"1525","5":"132","6":"39.6","7":"Jaune","8":"Oui","9":"Fort","10":"Non","11":"Non","12":"194","13":"Non","14":"TRUE","15":"FALSE"},{"1":"Est","2":"56","3":"319","4":"2045","5":"144","6":"39.0","7":"Jaune","8":"Oui","9":"Fort","10":"Non","11":"Non","12":"301","13":"Non","14":"TRUE","15":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 <div id="analyse-bivarie_comparaison-entre-enracinement-et-nb.grains" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Comparaison entre “Enracinement” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-enracinement-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><img src="graphs/analyse-bivarie/enracinement_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’Enracinement en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Enracinement</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Faible</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Tres.fort</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Tres.fort</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-3" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-3" class="anchor-section" aria-label="Anchor link to header"></a>
-</h3>
-<pre><code>[1] 0.01728187</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb4-1"><a href="#analyse-bivarie_cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_group) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb4-2"><a href="#analyse-bivarie_cb4-2" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Enracinement, mean), <span class="at">y =</span> mean, <span class="at">fill =</span> Enracinement) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb4-3"><a href="#analyse-bivarie_cb4-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb4-4"><a href="#analyse-bivarie_cb4-4" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb4-5"><a href="#analyse-bivarie_cb4-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="analyse-bivarie_cb4-6"><a href="#analyse-bivarie_cb4-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Nombre de grain moyenne par niveau d'enracinement"</span>, <span class="at">x =</span> <span class="st">"Enracinement"</span>, <span class="at">y =</span> <span class="st">"Moyenne nombre de grain"</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-6-1.png" width="1050"></p>
+<p>L’analyse du nombre moyens de grains suivant le niveau de l’enracinement montre que les plantes de faible niveau racinement ont en moyenne un rendement plus élevé, suivies de celles de niveau très fort. On note toutefois que les écarts entre les moyennes des différents groupes sont faibles.</p>
+<p><img src="graphs/analyse-bivarie/enracinement_nombre-1.png" width="1050"> On note l’absence de valeurs aberrantes si on considère les boxplots suivant le niveua de l’enracinement</p>
 </div>
-</div>
-<div id="analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “courbure (verse) de la plante” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_croisement-entre-les-deux-facteurs" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Croisement entre les deux facteurs<a href="#analyse-bivarie_croisement-entre-les-deux-facteurs" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><img src="graphs/analyse-bivarie/verse_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations de Verse en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Verse</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-4" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-4" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_tableau-croisé" class="section level3 hasAnchor">
+<h3 class="hasAnchor">tableau croisé<a href="#analyse-bivarie_tableau-crois%C3%A9" class="anchor-section" aria-label="Anchor link to header"></a>
 </h3>
-<pre><code>[1] 0.0005838208</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb5-1"><a href="#analyse-bivarie_cb5-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb5-2"><a href="#analyse-bivarie_cb5-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb5-3"><a href="#analyse-bivarie_cb5-3" tabindex="-1"></a>  <span class="fu">get_summary_stats</span>(Nb.grains, <span class="at">type =</span> <span class="st">"mean_sd"</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["variable"],"name":[3],"type":["fct"],"align":["left"]},{"label":["n"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"Nb.grains","4":"8","5":"336.750","6":"96.757"},{"1":"Fort","2":"Est","3":"Nb.grains","4":"10","5":"288.200","6":"112.635"},{"1":"Moyen","2":"Est","3":"Nb.grains","4":"6","5":"356.500","6":"62.199"},{"1":"Tres.fort","2":"Est","3":"Nb.grains","4":"8","5":"364.580","6":"47.680"},{"1":"Faible","2":"Nord","3":"Nb.grains","4":"4","5":"258.910","6":"74.761"},{"1":"Fort","2":"Nord","3":"Nb.grains","4":"2","5":"272.500","6":"54.447"},{"1":"Moyen","2":"Nord","3":"Nb.grains","4":"9","5":"255.000","6":"79.215"},{"1":"Tres.fort","2":"Nord","3":"Nb.grains","4":"2","5":"147.000","6":"12.728"},{"1":"Faible","2":"Ouest","3":"Nb.grains","4":"3","5":"352.667","6":"121.332"},{"1":"Fort","2":"Ouest","3":"Nb.grains","4":"9","5":"307.222","6":"126.096"},{"1":"Moyen","2":"Ouest","3":"Nb.grains","4":"7","5":"202.000","6":"57.149"},{"1":"Tres.fort","2":"Ouest","3":"Nb.grains","4":"16","5":"295.665","6":"131.302"},{"1":"Faible","2":"Sud","3":"Nb.grains","4":"4","5":"280.500","6":"7.141"},{"1":"Fort","2":"Sud","3":"Nb.grains","4":"5","5":"276.000","6":"17.132"},{"1":"Moyen","2":"Sud","3":"Nb.grains","4":"5","5":"278.400","6":"21.973"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div id="analyse-bivarie_comparaison-entre-est-attaqué-par-des-insectes-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre ” est attaqué par des insectes” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p><img src="graphs/analyse-bivarie/attaque_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’Attaque en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Attaque</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-5" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-5" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_box-plot-croisé" class="section level3 hasAnchor">
+<h3 class="hasAnchor">box-plot croisé<a href="#analyse-bivarie_box-plot-crois%C3%A9" class="anchor-section" aria-label="Anchor link to header"></a>
 </h3>
-<pre><code>[1] 0.0003195651</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb6-1"><a href="#analyse-bivarie_cb6-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggpubr"</span>)</span>
+<span id="analyse-bivarie_cb6-2"><a href="#analyse-bivarie_cb6-2" tabindex="-1"></a></span>
+<span id="analyse-bivarie_cb6-3"><a href="#analyse-bivarie_cb6-3" tabindex="-1"></a>bxp <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(</span>
+<span id="analyse-bivarie_cb6-4"><a href="#analyse-bivarie_cb6-4" tabindex="-1"></a>  data,</span>
+<span id="analyse-bivarie_cb6-5"><a href="#analyse-bivarie_cb6-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">"Enracinement"</span>, <span class="at">y =</span> <span class="st">"Nb.grains"</span>,</span>
+<span id="analyse-bivarie_cb6-6"><a href="#analyse-bivarie_cb6-6" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">"Parcelle"</span>, <span class="at">palette =</span> <span class="st">"jco"</span></span>
+<span id="analyse-bivarie_cb6-7"><a href="#analyse-bivarie_cb6-7" tabindex="-1"></a>)</span>
+<span id="analyse-bivarie_cb6-8"><a href="#analyse-bivarie_cb6-8" tabindex="-1"></a>bxp</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-8-1.png" width="1050"></p>
 </div>
-</div>
-<div id="analyse-bivarie_comparaison-entre-la-courbure-est-traité-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre ” la courbure est traité” et “Nb.grains”<a href="#analyse-bivarie_comparaison-entre-la-courbure-est-trait%C3%A9-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a>
-</h2>
-<p><img src="graphs/analyse-bivarie/Verse.Traitement_nombre-1.png" width="1050"></p>
-<p>On observe que</p>
-<table>
-<caption>informations courbure traité en fonction de le nombre</caption>
-<thead><tr class="header">
-<th align="right">Individu</th>
-<th align="left">Verse.Traitement</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="analyse-bivarie_rapport-de-correlation-6" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#analyse-bivarie_rapport-de-correlation-6" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="analyse-bivarie_test-de-valeur-abhérantes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de valeur abhérantes<a href="#analyse-bivarie_test-de-valeur-abh%C3%A9rantes" class="anchor-section" aria-label="Anchor link to header"></a>
 </h3>
-<pre><code>[1] 0.01254531</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="analyse-bivarie_cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb7-1"><a href="#analyse-bivarie_cb7-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb7-2"><a href="#analyse-bivarie_cb7-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb7-3"><a href="#analyse-bivarie_cb7-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"35","4":"217","5":"1623","6":"139","7":"43.8","8":"Jaune","9":"Oui","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Est","3":"40","4":"328","5":"2119","6":"467","7":"140.1","8":"Jaune","9":"Non","10":"Oui","11":"Oui","12":"314","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Faible","2":"Nord","3":"4","4":"173","5":"1398","6":"147","7":"42.6","8":"Jaune","9":"Non","10":"Oui","11":"Non","12":"176","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Ouest","3":"70","4":"270","5":"1970","6":"328","7":"101.4","8":"Rouge","9":"Non","10":"Non","11":"Oui","12":"271","13":"Non","14":"TRUE","15":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Nous avons deux valeurs extrêmement abérante,nous decidons de les suprimmer.</p>
+<div class="sourceCode" id="analyse-bivarie_cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb8-1"><a href="#analyse-bivarie_cb8-1" tabindex="-1"></a><span class="co"># Identifier les outliers</span></span>
+<span id="analyse-bivarie_cb8-2"><a href="#analyse-bivarie_cb8-2" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb8-3"><a href="#analyse-bivarie_cb8-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb8-4"><a href="#analyse-bivarie_cb8-4" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span>
+<span id="analyse-bivarie_cb8-5"><a href="#analyse-bivarie_cb8-5" tabindex="-1"></a></span>
+<span id="analyse-bivarie_cb8-6"><a href="#analyse-bivarie_cb8-6" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb8-7"><a href="#analyse-bivarie_cb8-7" tabindex="-1"></a>  <span class="fu">anti_join</span>(outliers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(is.extreme), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Parcelle"</span>, <span class="st">"Enracinement"</span>, <span class="st">"Nb.grains"</span>))</span>
+<span id="analyse-bivarie_cb8-8"><a href="#analyse-bivarie_cb8-8" tabindex="-1"></a></span>
+<span id="analyse-bivarie_cb8-9"><a href="#analyse-bivarie_cb8-9" tabindex="-1"></a></span>
+<span id="analyse-bivarie_cb8-10"><a href="#analyse-bivarie_cb8-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Nombre de lignes après suppression :"</span>, <span class="fu">nrow</span>(data_clean), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div>
+<pre><code>Nombre de lignes après suppression : 97 </code></pre>
+<div class="sourceCode" id="analyse-bivarie_cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb10-1"><a href="#analyse-bivarie_cb10-1" tabindex="-1"></a><span class="fu">write_delim</span>(data_clean, <span class="st">"data/data_corrige.csv"</span>, <span class="at">delim =</span> <span class="st">";"</span>)</span>
+<span id="analyse-bivarie_cb10-2"><a href="#analyse-bivarie_cb10-2" tabindex="-1"></a></span>
+<span id="analyse-bivarie_cb10-3"><a href="#analyse-bivarie_cb10-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_clean</span>
+<span id="analyse-bivarie_cb10-4"><a href="#analyse-bivarie_cb10-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Fichier sauvegardé avec succès."</span>)</span></code></pre></div>
+<pre><code>Fichier sauvegardé avec succès.</code></pre>
+<p>Apres suppressions nous obtenons de nouveau une valeur extreme , en la suprimmant nous n’obtenons plus de valeur extreme.</p>
+<div class="sourceCode" id="analyse-bivarie_cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="analyse-bivarie_cb12-1"><a href="#analyse-bivarie_cb12-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb12-2"><a href="#analyse-bivarie_cb12-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="analyse-bivarie_cb12-3"><a href="#analyse-bivarie_cb12-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"35","4":"217","5":"1623","6":"139","7":"43.8","8":"Jaune","9":"Oui","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Est","3":"40","4":"328","5":"2119","6":"467","7":"140.1","8":"Jaune","9":"Non","10":"Oui","11":"Oui","12":"314","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Faible","2":"Nord","3":"4","4":"173","5":"1398","6":"147","7":"42.6","8":"Jaune","9":"Non","10":"Oui","11":"Non","12":"176","13":"Oui","14":"TRUE","15":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 
@@ -840,75 +832,155 @@ sample estimates:
 
 
 
-<h1 class="title toc-ignore">Présentation et Philosophie</h1>
+<h1 class="title toc-ignore">ANOVA</h1>
 
 </div>
 
 <div class="TOC">
 <ul>
-<li><a href="#discussion-des-resultats_pr%C3%A9sentation-de-r" id="discussion-des-resultats_toc-présentation-de-r">Présentation de R</a></li>
-<li><a href="#discussion-des-resultats_philosophie-de-r" id="discussion-des-resultats_toc-philosophie-de-r">Philosophie de R</a></li>
-<li><a href="#discussion-des-resultats_pr%C3%A9sentation-de-rstudio" id="discussion-des-resultats_toc-présentation-de-rstudio">Présentation de RStudio</a></li>
+<li>
+<a href="#discussion-des-resultats_teste-de-normalite" id="discussion-des-resultats_toc-teste-de-normalite">Teste de normalite</a>
+<ul>
+<li><a href="#discussion-des-resultats_transformation-log-lineaire" id="discussion-des-resultats_toc-transformation-log-lineaire">Transformation log lineaire</a></li>
+<li><a href="#discussion-des-resultats_transformation-box-cox" id="discussion-des-resultats_toc-transformation-box-cox">Transformation Box-Cox</a></li>
+<li><a href="#discussion-des-resultats_teste-de-levene" id="discussion-des-resultats_toc-teste-de-levene">teste de Levene</a></li>
+</ul>
+</li>
+<li>
+<a href="#discussion-des-resultats_anova-non-parametrique-a-deux-facteur." id="discussion-des-resultats_toc-anova-non-parametrique-a-deux-facteur.">ANOVA non-parametrique a deux facteur.</a>
+<ul>
+<li><a href="#discussion-des-resultats_test-de-scheirer-ray-hare" id="discussion-des-resultats_toc-test-de-scheirer-ray-hare">Test de Scheirer-Ray-Hare</a></li>
+</ul>
+</li>
+<li>
+<a href="#discussion-des-resultats_tests-post-hoc-apr%C3%A8s-le-test-de-scheirer-ray-hare" id="discussion-des-resultats_toc-tests-post-hoc-après-le-test-de-scheirer-ray-hare">Tests Post-Hoc après le test de Scheirer-Ray-Hare</a>
+<ul>
+<li><a href="#discussion-des-resultats_test-de-dunn-avec-correction-de-bonferroni" id="discussion-des-resultats_toc-test-de-dunn-avec-correction-de-bonferroni">Test de Dunn avec correction de Bonferroni</a></li>
+</ul>
+</li>
 </ul>
 </div>
 
-<div class="webin-R">
-<p>Ce chapitre est évoqué dans le webin-R #01 (premier contact avec R &amp; RStudio) sur <a href="https://youtu.be/9cyQk4Z_qPo">YouTube</a>.</p>
-</div>
-<div id="discussion-des-resultats_présentation-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de R<a href="#discussion-des-resultats_pr%C3%A9sentation-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="discussion-des-resultats_teste-de-normalite" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Teste de normalite<a href="#discussion-des-resultats_teste-de-normalite" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p><strong>R</strong> est un langage orienté vers le traitement de données et l’analyse statistique dérivé du langage <strong>S</strong>. Il est développé depuis une vingtaine d’années par un groupe de volontaires de différents pays. C’est un <dfn>logiciel libre</dfn><dfn data-index="libre, logiciel"></dfn><a href="#discussion-des-resultats_fn1" class="footnote-ref" id="discussion-des-resultats_fnref1"><sup>1</sup></a>, publié sous licence GNU GPL.</p>
-<p>L’utilisation de <strong>R</strong> présente plusieurs avantages :</p>
-<ul>
-<li>c’est un logiciel multiplateforme, qui fonctionne aussi bien sur des sytèmes <strong>Linux</strong>, <strong>Mac OS X</strong> ou <strong>Windows</strong> ;</li>
-<li>c’est un logiciel libre, développé par ses utilisateurs et modifiable par tout un chacun ;</li>
-<li>c’est un logiciel gratuit ;</li>
-<li>c’est un logiciel très puissant, dont les fonctionnalités de base peuvent être étendues à l’aide de plusieurs milliers d’extensions ;</li>
-<li>c’est un logiciel dont le développement est très actif et dont la communauté d’utilisateurs ne cesse de s’élargir ;</li>
-<li>les possibilités de manipulation de données sous <strong>R</strong> sont en général largement supérieures à celles des autres logiciels usuels d’analyse statistique ;</li>
-<li>c’est un logiciel avec d’excellentes capacités graphiques et de nombreuses possibilités d’export ;</li>
-<li>avec <strong>Rmarkdown</strong><a href="#discussion-des-resultats_fn2" class="footnote-ref" id="discussion-des-resultats_fnref2"><sup>2</sup></a>, il est devenu très aisé de produire des rapports automatisés dans divers format (<strong>Word</strong>, <strong>PDF</strong>, <strong>HTML</strong>, …) ;</li>
-<li>
-<strong>R</strong> est de plus utilisé dans tous les secteurs scientifiques, y compris dans le domaine des analyses d’enquêtes et, plus généralement, des sciences sociales.</li>
-</ul>
-<p>Comme rien n’est parfait, on peut également trouver quelques inconvénients :</p>
-<ul>
-<li>le logiciel, la documentation de référence et les principales ressources sont en anglais. Il est toutefois parfaitement possible d’utiliser <strong>R</strong> sans spécialement maîtriser cette langue ;</li>
-<li>il n’existe pas encore d’interface graphique pour <strong>R</strong> équivalente à celle d’autres logiciels comme <strong>SPSS</strong> ou <strong>Modalisa</strong>. <strong>R</strong> fonctionne à l’aide de <dfn>scripts</dfn> (des petits programmes) édités et exécutés au fur et à mesure de l’analyse et se rapprocherait davantage de <strong>SAS</strong> dans son utilisation (mais avec une syntaxe et une philosophie très différentes). Ce point, qui peut apparaître comme un gros handicap, s’avère après un temps d’apprentissage être un mode d’utilisation d’une grande souplesse ;</li>
-<li>comme <strong>R</strong> s’apparente davantage à un langage de programmation qu’à un logiciel proprement dit, la courbe d’apprentissage peut être un peu « raide », notamment pour ceux n’ayant jamais programmé auparavant.</li>
-</ul>
-<p>Il est à noter que le développement autour de <strong>R</strong> a été particulièrement actif ces dernières années. On trouvera dès lors aujourd’hui de nombreuses extensions permettant de se « faciliter la vie » au quotidien, ce qui n’était pas vraiment encore le cas il y a 5 ans.</p>
+<div class="sourceCode" id="discussion-des-resultats_cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb1-1"><a href="#discussion-des-resultats_cb1-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(data<span class="sc">$</span>Nb.grains)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  data$Nb.grains
+W = 0.97189, p-value = 0.03528</code></pre>
+<p>Étant donné que la p-value est de 0.03528, ce qui est inférieur au niveau alpha de 0.05, nous rejetons l’hypothèse nulle :on ne peut donc pas affirmer que nos données sont normalement distribué. Procedons a des transformations</p>
+<div id="discussion-des-resultats_transformation-log-lineaire" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Transformation log lineaire<a href="#discussion-des-resultats_transformation-log-lineaire" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<div class="sourceCode" id="discussion-des-resultats_cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb3-1"><a href="#discussion-des-resultats_cb3-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">log</span>(data<span class="sc">$</span>Nb.grains))</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  log(data$Nb.grains)
+W = 0.9195, p-value = 1.747e-05</code></pre>
+<p>toujours pas concluante</p>
 </div>
-<div id="discussion-des-resultats_philosophie-de-r" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Philosophie de R<a href="#discussion-des-resultats_philosophie-de-r" class="anchor-section" aria-label="Anchor link to header"></a>
+<div id="discussion-des-resultats_transformation-box-cox" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Transformation Box-Cox<a href="#discussion-des-resultats_transformation-box-cox" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<p>La transformation de Box-Cox peut être utilisée pour rendre les données plus symétriques et plus conformes à une distribution normale. Cela peut faciliter l’analyse statistique, en particulier lorsque des tests statistiques qui supposent une distribution normale sont utilisés. Le choix optimal de la valeur de lambda dépend de la distribution initiale de la variable et peut être déterminé en utilisant une procédure de recherche d’optimisation sur la fonction de vraisemblance de l’échantillon ici notre jeu de donées.</p>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-3-1.png" width="1050"></p>
+<p>Notre paramètre optimal <span class="math inline"><em>λ</em></span> est donc entre <span class="math inline">]1, 5; 1, 99[</span>. Prenons <span class="math inline"><em>λ</em> = 1, 95</span> on fait donc une transformation de la hauteur de la forme :</p>
+<p><span class="math display"><em>d</em><em>a</em><em>t</em><em>a</em><em>N</em><em>b</em>.<em>g</em><em>r</em><em>a</em><em>i</em><em>n</em><sub><em>b</em><em>c</em></sub> = (<em>d</em><em>a</em><em>t</em><em>a</em><em>N</em><em>b</em>.<em>g</em><em>r</em><em>a</em><em>i</em><em>n</em><sup><em>λ</em></sup> − 1)/<em>λ</em></span></p>
+<div class="sourceCode" id="discussion-des-resultats_cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb5-1"><a href="#discussion-des-resultats_cb5-1" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">1.95</span></span>
+<span id="discussion-des-resultats_cb5-2"><a href="#discussion-des-resultats_cb5-2" tabindex="-1"></a>data<span class="sc">$</span>Nb.grain_bc <span class="ot">&lt;-</span> (data<span class="sc">$</span>Nb.grains<span class="sc">^</span>lambda <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> lambda</span>
+<span id="discussion-des-resultats_cb5-3"><a href="#discussion-des-resultats_cb5-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(data<span class="sc">$</span>Nb.grain_bc)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  data$Nb.grain_bc
+W = 0.9612, p-value = 0.005835</code></pre>
+<div class="sourceCode" id="discussion-des-resultats_cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb7-1"><a href="#discussion-des-resultats_cb7-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="discussion-des-resultats_cb7-2"><a href="#discussion-des-resultats_cb7-2" tabindex="-1"></a></span>
+<span id="discussion-des-resultats_cb7-3"><a href="#discussion-des-resultats_cb7-3" tabindex="-1"></a>shapiro_results <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="discussion-des-resultats_cb7-4"><a href="#discussion-des-resultats_cb7-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="discussion-des-resultats_cb7-5"><a href="#discussion-des-resultats_cb7-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">shapiro.test</span>(Nb.grains)<span class="sc">$</span>p.value, <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="discussion-des-resultats_cb7-6"><a href="#discussion-des-resultats_cb7-6" tabindex="-1"></a></span>
+<span id="discussion-des-resultats_cb7-7"><a href="#discussion-des-resultats_cb7-7" tabindex="-1"></a><span class="co"># Afficher les résultats</span></span>
+<span id="discussion-des-resultats_cb7-8"><a href="#discussion-des-resultats_cb7-8" tabindex="-1"></a><span class="fu">print</span>(shapiro_results)</span></code></pre></div>
+<pre><code># A tibble: 4 × 2
+  Enracinement p_value
+  &lt;chr&gt;          &lt;dbl&gt;
+1 Faible        0.508 
+2 Fort          0.130 
+3 Moyen         0.159 
+4 Tres.fort     0.0514</code></pre>
+<div class="sourceCode" id="discussion-des-resultats_cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb9-1"><a href="#discussion-des-resultats_cb9-1" tabindex="-1"></a><span class="co"># Graphique QQ-Plot avec facettes</span></span>
+<span id="discussion-des-resultats_cb9-2"><a href="#discussion-des-resultats_cb9-2" tabindex="-1"></a><span class="fu">ggqqplot</span>(data, <span class="st">"Nb.grains"</span>, <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>()) <span class="sc">+</span></span>
+<span id="discussion-des-resultats_cb9-3"><a href="#discussion-des-resultats_cb9-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(Parcelle <span class="sc">~</span> Enracinement)</span></code></pre></div>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-5-1.png" width="1050"> Puisque l’hypothese de normalite n’est pas verifié, nous allons passer a l’anova non paramétrique a deux facteur.</p>
+</div>
+<div id="discussion-des-resultats_teste-de-levene" class="section level3 hasAnchor">
+<h3 class="hasAnchor">teste de Levene<a href="#discussion-des-resultats_teste-de-levene" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<div class="sourceCode" id="discussion-des-resultats_cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb10-1"><a href="#discussion-des-resultats_cb10-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">levene_test</span>(Nb.grains <span class="sc">~</span> Enracinement <span class="sc">*</span> Parcelle)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["df1"],"name":[1],"type":["int"],"align":["right"]},{"label":["df2"],"name":[2],"type":["int"],"align":["right"]},{"label":["statistic"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"14","2":"82","3":"2.050411","4":"0.02341566"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Du résultat ci-dessus, nous pouvons voir que la p-value infierieure à 0.05, cela signifie que les variances ne sont pas homogènes entre les groupes.</p>
+</div>
+</div>
+<div id="discussion-des-resultats_anova-non-parametrique-a-deux-facteur." class="section level2 hasAnchor">
+<h2 class="hasAnchor">ANOVA non-parametrique a deux facteur.<a href="#discussion-des-resultats_anova-non-parametrique-a-deux-facteur." class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>Quelques points particuliers dans le fonctionnement de <strong>R</strong> peuvent parfois dérouter les utilisateurs habitués à d’autres logiciels :</p>
-<ul>
-<li>Sous <strong>R</strong>, en général, on ne voit pas directement les données sur lesquelles on travaille ; on ne dispose pas en permanence d’une vue des données sous forme de tableau<a href="#discussion-des-resultats_fn3" class="footnote-ref" id="discussion-des-resultats_fnref3"><sup>3</sup></a>, comme sous <strong>Modalisa ou SPSS</strong>. Ceci peut être déroutant au début, mais on se rend vite compte qu’on n’a pas besoin de voir en permanence les données pour les analyser.</li>
-<li>Alors qu’avec la plupart des logiciels on réfléchira avec un fichier de données ouvert à la fois, sous <strong>R</strong> chaque fichier de données correspondra à un objet différent chargé en mémoire, permettant de manipuler très facilement plusieurs objets à la fois (par exemple dans le cadre de fusion de tables<a href="#discussion-des-resultats_fn4" class="footnote-ref" id="discussion-des-resultats_fnref4"><sup>4</sup></a>).</li>
-<li>Avec les autres logiciels, en général la production d’une analyse génère un grand nombre de résultats de toutes sortes dans lesquels l’utilisateur est censé retrouver et isoler ceux qui l’intéressent. Avec <strong>R</strong>, c’est l’inverse : par défaut l’affichage est réduit au minimum et c’est l’utilisateur qui demande à voir des résultats supplémentaires ou plus détaillés.</li>
-<li>Sous <strong>R</strong>, les résultats des analyses sont eux aussi stockés dans des objets et sont dès lors manipulables.</li>
-</ul>
-<p>Inhabituel au début, ce fonctionnement permet en fait assez rapidement de gagner du temps dans la conduite des analyses.</p>
+<div id="discussion-des-resultats_test-de-scheirer-ray-hare" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de Scheirer-Ray-Hare<a href="#discussion-des-resultats_test-de-scheirer-ray-hare" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<div class="sourceCode" id="discussion-des-resultats_cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb11-1"><a href="#discussion-des-resultats_cb11-1" tabindex="-1"></a><span class="fu">scheirerRayHare</span>(Nb.grains <span class="sc">~</span> Enracinement <span class="sc">+</span> Parcelle <span class="sc">+</span> Enracinement<span class="sc">:</span>Parcelle, <span class="at">data =</span> data)</span></code></pre></div>
+<pre><code>
+DV:  Nb.grains 
+Observations:  97 
+D:  0.9999737 
+MS total:  792.1667 </code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["H"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"1188.904","3":"1.500865","4":"0.68207079","_rn_":"Enracinement"},{"1":"3","2":"7431.576","3":"9.381576","4":"0.02462515","_rn_":"Parcelle"},{"1":"8","2":"9460.965","3":"11.943464","4":"0.15374426","_rn_":"Enracinement:Parcelle"},{"1":"82","2":"56403.060","3":"NA","4":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="discussion-des-resultats_présentation-de-rstudio" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Présentation de RStudio<a href="#discussion-des-resultats_pr%C3%A9sentation-de-rstudio" class="anchor-section" aria-label="Anchor link to header"></a>
+<p>Enracinement: (p = 0.682) <strong>Pas d’effet significatif</strong> sur le nombre de grain</p>
+<p>Parcelle : (p = 0.025) effet significatif, indiquant que la parcelle a un impact surle nombre de grain</p>
+<p>Interaction: (p = 0.154) pas d’interaction significative entre Enracinement et Parcelle.</p>
+</div>
+</div>
+<div id="discussion-des-resultats_tests-post-hoc-après-le-test-de-scheirer-ray-hare" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Tests Post-Hoc après le test de Scheirer-Ray-Hare<a href="#discussion-des-resultats_tests-post-hoc-apr%C3%A8s-le-test-de-scheirer-ray-hare" class="anchor-section" aria-label="Anchor link to header"></a>
 </h2>
-<p>L’interface de base de <strong>R</strong> est assez rudimentaire (voir figure ci-après).</p>
-<p><strong>RStudio</strong> est un <dfn>environnement de développement</dfn> intégré libre, gratuit, et qui fonctionne sous <strong>Windows</strong>, <strong>Mac OS X</strong> et <strong>Linux</strong>. Il complète <strong>R</strong> et fournit un <dfn>éditeur de script</dfn> avec <dfn>coloration syntaxique</dfn>, des fonctionnalités pratiques d’édition et d’exécution du code (comme l’<dfn>autocomplétion</dfn>), un affichage simultané du code, de la console <strong>R</strong>, des fichiers, graphiques et pages d’aide, une gestion des extensions, une intégration avec des systèmes de contrôle de versions comme <strong>git</strong>, etc. Il intègre de base divers outils comme par exemple la production de rapports au format <strong>Rmarkdown</strong>. Il est en développement actif et de nouvelles fonctionnalités sont ajoutées régulièrement. Son principal défaut est d’avoir une interface uniquement anglophone.</p>
-<p>Pour une présentation plus générale de <strong>RStudio</strong> on pourra se référer au site du projet : <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-<p><strong>RStudio</strong> peut tout à fait être utilisé pour découvrir et démarrer avec <strong>R</strong>. Les différents chapitres d’<strong>analyse-R</strong> partent du principe que vous utilisez <strong>R</strong> avec <strong>RStudio</strong>. Cependant, à part les éléments portant sur l’interface de <strong>RStudio</strong>, l’ensemble du code et des fonctions <strong>R</strong> peuvent être utilisés directement dans <strong>R</strong>, même en l’absence de <strong>RStudio</strong>.</p>
-<p>La documentation de <strong>RStudio</strong> (en anglais) est disponible en ligne à <a href="https://support.rstudio.com" class="uri">https://support.rstudio.com</a>. Pour être tenu informé des dernières évolutions de <strong>RStudio</strong>, mais également de plusieurs extensions développées dans le cadre de ce projet, vous pouvez suivre le blog dédié <a href="http://blog.rstudio.org/" class="uri">http://blog.rstudio.org/</a>.</p>
+<p>Puisque Parcelle est significatif, on peut faire un test post-hoc .</p>
+<div id="discussion-des-resultats_test-de-dunn-avec-correction-de-bonferroni" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de Dunn avec correction de Bonferroni<a href="#discussion-des-resultats_test-de-dunn-avec-correction-de-bonferroni" class="anchor-section" aria-label="Anchor link to header"></a>
+</h3>
+<div class="sourceCode" id="discussion-des-resultats_cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb13-1"><a href="#discussion-des-resultats_cb13-1" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="discussion-des-resultats_cb13-2"><a href="#discussion-des-resultats_cb13-2" tabindex="-1"></a><span class="fu">dunnTest</span>(Nb.grains <span class="sc">~</span> Parcelle, <span class="at">data =</span> data, <span class="at">method =</span> <span class="st">"bonferroni"</span>)</span></code></pre></div>
+<pre><code>Warning: Parcelle was coerced to a factor.</code></pre>
+<pre><code>    Comparison          Z     P.unadj      P.adj
+1   Est - Nord  2.9674741 0.003002576 0.01801546
+2  Est - Ouest  1.8636861 0.062365801 0.37419481
+3 Nord - Ouest -1.4529390 0.146240679 0.87744407
+4    Est - Sud  2.4611644 0.013848690 0.08309214
+5   Nord - Sud -0.2825197 0.777545008 1.00000000
+6  Ouest - Sud  1.0380121 0.299264441 1.00000000</code></pre>
+<div class="important">
+<p>Il existe une difference significative entre les parcelles Nord et Est au seuil de 5% . Pour les parcelles Est-Sud, la difference est signigicative au seuil de 10% (p-value ajusté) Le test de Dunn nous permet de conclure que la parcelle Est est significativement différente de la parcelle Nord en terme de nombre de grain .</p>
+<div class="sourceCode" id="discussion-des-resultats_cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="discussion-des-resultats_cb16-1"><a href="#discussion-des-resultats_cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="discussion-des-resultats_cb16-2"><a href="#discussion-des-resultats_cb16-2" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Parcelle, <span class="at">y =</span> Nb.grains, <span class="at">fill =</span> Parcelle)) <span class="sc">+</span></span>
+<span id="discussion-des-resultats_cb16-3"><a href="#discussion-des-resultats_cb16-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="discussion-des-resultats_cb16-4"><a href="#discussion-des-resultats_cb16-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="discussion-des-resultats_cb16-5"><a href="#discussion-des-resultats_cb16-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Comparaison du nombre de grains par Parcelle"</span>)</span></code></pre></div>
+<p><img src="graphs/discussion-des-resultats/unnamed-chunk-9-1.png" width="1050"></p>
+<div class="note">
+<p>Cette étude visait à évaluer l’effet de la parcelle sur le nombre de grains produits. Les analyses statistiques ont révélé une différence significative entre les parcelles, avec un impact notable de la localisation sur la production. En particulier, la parcelle “Est” a montré une production significativement plus élevée que la parcelle “Nord”, tandis que les autres comparaisons ne se sont pas révélées statistiquement significatives après correction. Le boxplot confirme cette tendance, illustrant des différences de médianes et de variabilité entre les parcelles. Ces résultats suggèrent que des facteurs environnementaux propres à chaque parcelle, tels que le sol, l’exposition ou les conditions climatiques, pourraient influencer la production de grains. Des analyses complémentaires seraient nécessaires pour approfondir ces observations et optimiser les conditions de culture en fonction des spécificités de chaque parcelle.</p>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr>
-<ol>
-<li id="discussion-des-resultats_fn1"><p>Pour plus d’informations sur ce qu’est un logiciel libre, voir : <a href="http://www.gnu.org/philosophy/free-sw.fr.html" class="uri">http://www.gnu.org/philosophy/free-sw.fr.html</a>.<a href="#discussion-des-resultats_fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="discussion-des-resultats_fn2"><p>Voir <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>.<a href="#discussion-des-resultats_fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="discussion-des-resultats_fn3"><p>On verra qu’il est possible avec <strong>RStudio</strong> de disposer d’une telle vue.<a href="#discussion-des-resultats_fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="discussion-des-resultats_fn4"><p>Voir par exemple la section dédiée à ce sujet dans le <a href="pem_manipulation.html#fusion_tables">chapitre sur la manipulation de données</a>.<a href="#discussion-des-resultats_fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
+</div>
+</div>
 </div>
 
 </article>

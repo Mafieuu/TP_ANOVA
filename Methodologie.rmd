@@ -1,0 +1,205 @@
+---
+title: "Méthodologie"
+---
+
+```{r options_communes, include=FALSE, cache=FALSE}
+source("options_communes.R")
+```
+
+```{r packages, include=FALSE}
+library(readr)
+library(ggplot2)
+library(corrplot)
+library(dplyr)
+
+```
+
+```{r setup, include=FALSE}
+data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv", 
+    delim = ";", 
+    trim_ws = TRUE)
+
+```
+
+## Premiére inspection
+
+Une premiere inspection de la base nous as conduit a modifier l'individus numero 2 .En effet les valeurs prises par cette individus pour des variables comme **Germination.epi** ou **Enracinement** ne sont pas coherente. \## ![](images/data_individu2.png)Premiére inspection
+
+Nous avons juge que cela est due a des problemes lors du saisi des donnée. nous vons corrige par :
+
+```{r afficher-individu-2, echo=FALSE}
+individu_2 <- data[2, ]
+
+individu_2_df <- as.data.frame(t(individu_2))
+knitr::kable(individu_2, caption = "Valeurs de l'individu numéro 2 par variable",,row.names = FALSE)
+
+```
+
+## Les données
+```{r include=FALSE}
+library(dplyr)
+library(forcats)  # Pour reorder_levels
+
+data <- data %>%
+  mutate(
+
+  
+    # Recodage et ordonnancement de l’enracinement
+    Enracinement = fct_relevel(recode_factor(Enracinement, 
+                                 "Faible" = "Faible", 
+                                 "Moyen" = "Moyen", 
+                                 "Tres.fort" = "Très Fort", 
+                                 "Fort" = "Fort"),
+                               "Faible", "Moyen", "Fort", "Très Fort"),
+
+ 
+    # Recodage et ordonnancement de la parcelle
+    Parcelle = fct_relevel(recode_factor(Parcelle, 
+                             "Nord" = "Nord", 
+                             "Sud" = "Sud", 
+                             "Est" = "Est", 
+                             "Ouest" = "Ouest"),
+                           "Est", "Ouest", "Nord", "Sud"),
+
+    
+  )
+write_delim(data, "data/data_corrige.csv", delim = ";")
+write_delim(data, "data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv", delim = ";")
+
+
+```
+
+```{r head_table, message=FALSE, warning=FALSE, echo=FALSE}
+head_data <- head(data)
+
+# Affichage du tableau avec knitr
+knitr::kable(head_data, caption = "Premières Lignes de la Base de Données", row.names = FALSE)
+
+```
+
+Notre jeu de donnée porte sur un échantillon de 100 plantes de maïs. La base de données est composée de 6 variables quantitatives et 7 variables qualitatives. Les variables de la base se résument comme suit :
+
+-   Les variables quantitatives
+
+<figure>
+
+```{r quant_table,,message=FALSE,warning=FALSE,echo=FALSE}
+quant_vars <- sapply(data, is.numeric)
+
+quantitative_stats <- data.frame(
+  Variable = names(data)[quant_vars],
+  valeur_NA = colSums(is.na(data[, quant_vars])),
+  Moyenne = sapply(data[, quant_vars], mean, na.rm = TRUE),
+  Variance = sapply(data[, quant_vars], var, na.rm = TRUE)
+)
+knitr::kable(quantitative_stats, caption = "Statistiques des Variables Quantitatives",row.names = FALSE)
+
+```
+
+</figure>
+
+- Les variables qualitatives :
+Elle se présentent comme suite :
+
+<figure>
+
+```{r quali_table, echo=FALSE, warning=FALSE, ,message=FALSE}
+qual_vars <- sapply(data, is.factor) | sapply(data, is.character)
+
+qualitative_table <- data.frame(
+  Variable = names(data)[qual_vars],
+  Facteurs = sapply(data[, qual_vars], function(x) paste(unique(x), collapse = ", ")),
+  Fréquences = sapply(data[, qual_vars], function(x) paste(
+    names(table(x)), "(", table(x), ")", collapse = ", "
+  )),
+  Valeurs_manquantes = colSums(is.na(data[, qual_vars]))
+)
+rownames(qualitative_table) <- NULL
+knitr::kable(qualitative_table, caption = "Variables Qualitatives, Facteurs, Fréquences et Nombre de Valeurs Manquantes")
+
+```
+</figure>
+
+## Choix des facteurs
+
+Comme présenté dans le tableau récapitulatif de la liste des variables disponibles dans notre jeu, nous disposons de 7 variables qualitatives. La décision de travailler avec un modèle d’ANOVA à 2 facteurs implique un choix des deux variables qualitatives les plus pertinentes pour l’explication du rendement des plantes de maïs. Pour décider des deux facteurs à considérer pour la modélisation, nous nous sommes basés sur le rapport de corrélation de chacune de ces variables qualitatives avec le nombre de graines de la plante. Pour cela, nous avons effectué les tests de corrélation de variables quantitative avec une variable qualitative. Les résultats de ces tests sont consignés dans le tableau ci-dessous :
+
+### Tableau de corrélation
+
+<figure>
+```{r choix_facteur, echo=FALSE, warning=FALSE, ,message=FALSE}
+qualitative_vars <- c("Couleur", "Germination.epi", "Enracinement", "Verse", 
+                      "Attaque", "Parcelle", "Verse.Traitement")
+
+# Définition de la fonction de calcul du coefficient de corrélation
+rapport_corr <- function(x, y) {
+  # x est une variable qualitative 
+  # y est une variable quantitative 
+  
+  # Suppression des valeurs manquantes dans x et y
+  complete_cases <- complete.cases(x, y)
+  x <- x[complete_cases]
+  y <- y[complete_cases]
+  
+  somme <- 0
+  niveaux <- unique(x)
+  
+  for (facteur in niveaux) {
+    ind <- which(x == facteur)
+    classe <- y[ind]
+    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
+  }
+  
+  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
+  rc <- somme / y_ecart
+  
+  return(rc)
+}
+
+# Création du tableau de corrélation
+
+correlation_table <- data.frame(Qualitative = qualitative_vars) %>%
+  rowwise() %>%
+  mutate(Correlation = rapport_corr(data[[Qualitative]], data$Nb.grains)) %>%
+  ungroup()
+
+# Affichage du tableau avec knitr
+rownames(correlation_table) <- NULL
+knitr::kable(correlation_table, caption = "Coefficient de Corrélation entre Variables Qualitatives et la Masse")
+
+
+```
+</figure>
+
+### Graphique de corrélation
+
+Graphiquement nous obtenons :
+<figure>
+
+```{r corre_graph,echo=FALSE,message=FALSE}
+library(ggplot2)
+library(viridis)  #  couleurs plus elegent
+
+ggplot(correlation_table, aes(x = reorder(Qualitative, Correlation), y = Correlation, fill = Correlation)) +
+  geom_bar(stat = "identity", width = 0.6, color = "black") +  # Bordures noires pour plus de contraste
+  coord_flip() +  # Meilleure lisibilité
+  theme_minimal(base_size = 14) +  # Style épuré avec texte plus grand
+  scale_fill_viridis_c(option = "magma", direction = -1) +  # Palette de couleurs esthétiques
+  labs(title = "Rapport de Corrélation entre Variables Qualitatives et Nombre de Grains",
+       x = "Variables Qualitatives",
+       y = "Coefficient de Corrélation") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "right",
+        panel.grid.major = element_blank(),  # Supprime les grandes lignes de grille pour plus de clarté
+        panel.grid.minor = element_blank()) 
+
+
+```
+</figure>
+
+
+
+
+::: important
+Au vu des résultats consignés dans ce graphique, les deux facteurs les plus corrélés au nombre de graines sont : **parcelle** et **enracinement** . Ces deux variables feront donc l’objet de facteurs pour notre modèle d’ANOVA à deux facteurs.
+:::

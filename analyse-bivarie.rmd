@@ -16,17 +16,58 @@ library(ggcorrplot)
 library(lsr)
 library(plotly)
 library(GGally)
+library(rstatix)
+
 
 ```
 
 ```{r setup, include=FALSE}
-data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv", 
+data <- read_delim("data/data_corrige.csv", 
     delim = ";", 
-    trim_ws = TRUE) %>%
-  mutate(across(c(Couleur, Germination.epi, Enracinement, Verse, Attaque, Parcelle, Verse.Traitement), as.factor))
+    trim_ws = TRUE)
+
+
 ```
 
-## Comparaison entre "Parcelle" et "Nb.grains"
+## Etude de la variable dépendante
+
+
+
+```{r}
+ggplot(data, aes(y = Nb.grains)) +
+  geom_boxplot(outlier.color = "red", outlier.shape = 16, outlier.size = 3, fill = "skyblue") +
+  theme_minimal() +
+  labs(title = "Distribution de Nb.grains", 
+       y = "Nombre de grains") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 13))
+
+
+```
+Si on considère la variable dépandante nombre de grain isolément, l'analyse du boxplot montre qu'il n'y a pas de valeurs abérrantes.
+
+## Comparaison entre Parcelle et nombre de grain
+
+```{r , include=FALSE}
+data_group = data |> 
+  group_by(Parcelle) |> 
+  get_summary_stats(Nb.grains, type = "mean_sd")
+
+# kable(data_group, caption = "Nombre de grain moyenne pour chaque modalité des facteurs")
+```
+
+```{r, message=FALSE}
+
+ggplot(data_group) +
+  aes(x = reorder(Parcelle, mean), y = mean, fill = Parcelle) +
+  geom_col() +
+  scale_fill_hue(direction = 1) +
+  theme_minimal() +
+  labs(title = "Nombre de grain moyenne par Parcelle", x = "Parcelle", y = "Moyenne nombre de grain")
+```
+
+L'analyse du nombre moyens de grins suivant la parcelle montre que les plantes de mais situées dans la parcelle Est ont en moyenne un rendement plus élevé, suivies de celles situées dans la parcelle Ouest. Les plantes situées dans la parcelle ont le rendement le plus faible.
 
 ```{r parcelle_nombre,message=FALSE,warning=FALSE,echo=FALSE}
 
@@ -35,201 +76,42 @@ data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv",
 ggplot(data, aes(x = Parcelle, y = Nb.grains)) +
   geom_boxplot(fill = "skyblue", color = "black") +
   theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par Parcelle") +
+  ggtitle(" Nombre de grains par Parcelle") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Parcelle", y = "Nb des grains")
+  labs(x = "Parcelle", y = "nombre de grains")
 
 
+``` 
+Les boxplots de la variable dépendante suivant les parcelles montrent la présence de valeurs aberrantes pour la parcelle Est. Mais le test de la méthode de Turkey montre que ses valeurs ne sont pas extrêment atypes (is.extreme=FALSE)
+
+```{r }
+data %>%
+  group_by(Parcelle) %>%
+  identify_outliers(Nb.grains)
 ```
 
-On observe que
-
-```{r table_parcell_mass,message=FALSE,warning=FALSE,echo=FALSE}
-# Fonction pour détecter les aberrations avec la méthode IQR
-detect_aberrant <- function(x) {
-  Q1 <- quantile(x, 0.25, na.rm = TRUE)
-  Q3 <- quantile(x, 0.75, na.rm = TRUE)
-  IQR <- Q3 - Q1
-  lower_bound <- Q1 - 1.5 * IQR
-  upper_bound <- Q3 + 1.5 * IQR
-  return(x < lower_bound | x > upper_bound)
-}
-# DataFrame pour "Parcelle"
-tableau_parcelle <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Parcelle, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_parcelle, caption = "informations du parcelle en fonction de le nombre",row.names = FALSE)
-
-```
-
-### Rapport de correlation
-
-```{r,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
-
-rapport_corr(data$Parcelle,data$Nb.grains)
-```
-
-Le rapport de correlation entre ces deux variables indique que
-
-## Comparaison entre "couleur " et "Nb.grains"
-
-```{r couleur_nombre,message=FALSE,warning=FALSE,echo=FALSE}
-
-
-# Comparer "Parcelle" et "Nb.grains"
-ggplot(data, aes(x = Couleur, y = Nb.grains)) +
-  geom_boxplot(fill = "orange", color = "black") +
-  theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par couleur") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "couleur", y = "Nb des grains")
-
-
-```
-
-On observe que
-
-```{r table_couleur_mass,message=FALSE,warning=FALSE,echo=FALSE}
-
-# DataFrame pour "couleur"
-tableau_parcelle <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Couleur, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_parcelle, caption = "informations de la couleur en fonction de le nombre",row.names = FALSE)
-
-```
-
-### Rapport de correlation
-
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
-
-rapport_corr(data$Couleur,data$Nb.grains)
-```
-
-Le rapport de correlation entre ces deux variables indique que
-
-## Comparaison entre "épigité de la germination " et "Nb.grains"
-
-```{r epi_nombre,message=FALSE,warning=FALSE,echo=FALSE}
-
-
-# Comparer "Germination.epi" et "Nb.grains"
-ggplot(data, aes(x = Germination.epi, y = Nb.grains)) +
-  geom_boxplot(fill = "darksalmon", color = "black") +
-  theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par Germination.epi") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "est épi", y = "Nb des grains")
-
-
-```
-
-On observe que
-
-```{r table_Germination.epi_mass,message=FALSE,warning=FALSE,echo=FALSE}
-
-# DataFrame pour "Germination.epi"
-tableau_parcelle <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Germination.epi, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_parcelle, caption = "informations d'épigité de la graine en fonction de le nombre",row.names = FALSE)
-
-```
-
-### Rapport de correlation
-
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
-
-rapport_corr(data$Germination.epi,data$Nb.grains)
-```
-
-Le rapport de correlation entre ces deux variables indique que
 
 ## Comparaison entre "Enracinement" et "Nb.grains"
+```{r ,include=FALSE}
+data_group = data |> 
+  group_by( Enracinement) |> 
+  get_summary_stats(Nb.grains, type = "mean_sd")
+
+# kable(data_group, caption = "Nombre de grain moyenne pour chaque modalité des facteurs")
+```
+
+```{r, message=FALSE}
+
+ggplot(data_group) +
+  aes(x = reorder(Enracinement, mean), y = mean, fill = Enracinement) +
+  geom_col() +
+  scale_fill_hue(direction = 1) +
+  theme_minimal() +
+  labs(title = "Nombre de grain moyenne par niveau d'enracinement", x = "Enracinement", y = "Moyenne nombre de grain")
+```
+
+L'analyse du nombre moyens de grains suivant le niveau de l'enracinement montre que les plantes de faible niveau racinement ont en moyenne un rendement plus élevé, suivies de celles de niveau très fort. On note toutefois que les écarts entre les moyennes des différents groupes sont faibles. 
+
 
 ```{r enracinement_nombre,message=FALSE,warning=FALSE,echo=FALSE}
 
@@ -244,245 +126,64 @@ ggplot(data, aes(x = Enracinement, y = Nb.grains)) +
 
 
 ```
+On note l'absence de valeurs aberrantes si on considère les boxplots suivant le niveua de l'enracinement
 
-On observe que
+## Croisement entre les deux facteurs 
 
-```{r table_Enracinement_mass,message=FALSE,warning=FALSE,echo=FALSE}
+### tableau croisé
 
-# DataFrame pour "Germination"
-tableau_Enracinement <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Enracinement, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_Enracinement, caption = "informations d'Enracinement en fonction de le nombre",row.names = FALSE)
+```{r}
+data %>%
+  group_by(Parcelle, Enracinement) %>%
+  get_summary_stats(Nb.grains, type = "mean_sd")
 
 ```
 
-### Rapport de correlation
+### box-plot croisé
 
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
+```{r}
+library("ggpubr")
 
-rapport_corr(data$Enracinement,data$Nb.grains)
+bxp <- ggboxplot(
+  data, x = "Enracinement", y = "Nb.grains",
+  color = "Parcelle", palette = "jco"
+  )
+bxp
 ```
 
-Le rapport de correlation entre ces deux variables indique que
-
-## Comparaison entre "courbure (verse) de la plante" et "Nb.grains"
-
-```{r verse_nombre,message=FALSE,warning=FALSE,echo=FALSE}
-
-
-# Comparer "Verse" et "Nb.grains"
-ggplot(data, aes(x = Verse, y = Nb.grains)) +
-  geom_boxplot(fill = "darkslategray1", color = "black") +
-  theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par Verse") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Verse", y = "Nb des grains")
-
-
-```
-
-On observe que
-
-```{r table_Verse_mass,message=FALSE,warning=FALSE,echo=FALSE}
-
-# DataFrame pour "Verse"
-tableau_Verse <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Verse, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_Verse, caption = "informations de Verse en fonction de le nombre",row.names = FALSE)
-
-```
-
-### Rapport de correlation
-
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
-
- rapport_corr(data$Verse,data$Nb.grains)
-```
-
-Le rapport de correlation entre ces deux variables indique que 
-
-## Comparaison entre " est attaqué par des insectes" et "Nb.grains"
-
-```{r attaque_nombre,message=FALSE,warning=FALSE,echo=FALSE}
-
-
-# Comparer "Attaque" et "Nb.grains"
-ggplot(data, aes(x = Attaque, y = Nb.grains)) +
-  geom_boxplot(fill = "darkorchid4", color = "black") +
-  theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par Attaque") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Attaque", y = "Nb des grains")
-
-```
-
-On observe que
-
-```{r table_attaque_mass,message=FALSE,warning=FALSE,echo=FALSE}
-
-# DataFrame pour "Attaque"
-tableau_Attaque <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Attaque, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_Attaque, caption = "informations d'Attaque en fonction de le nombre",row.names = FALSE)
+### Test de valeur abhérantes
+```{r}
+data %>%
+  group_by(Parcelle, Enracinement) %>%
+  identify_outliers(Nb.grains)
 ```
 
 
-### Rapport de correlation
+Nous avons deux valeurs extrêmement abérante,nous decidons de les suprimmer.
 
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
 
- rapport_corr(data$Attaque,data$Nb.grains)
+```{r}
+# Identifier les outliers
+outliers <- data %>%
+  group_by(Parcelle, Enracinement) %>%
+  identify_outliers(Nb.grains)
+
+data_clean <- data %>%
+  anti_join(outliers %>% filter(is.extreme), by = c("Parcelle", "Enracinement", "Nb.grains"))
+
+
+cat("Nombre de lignes après suppression :", nrow(data_clean), "\n")
+
+write_delim(data_clean, "data/data_corrige.csv", delim = ";")
+
+data <-data_clean
+cat("Fichier sauvegardé avec succès.")
+```
+Apres suppressions nous obtenons de nouveau une valeur extreme , en la suprimmant nous n'obtenons plus de valeur extreme.
+
+```{r}
+data %>%
+  group_by(Parcelle, Enracinement) %>%
+  identify_outliers(Nb.grains)
 ```
 
-Le rapport de correlation entre ces deux variables indique que 
-
-
-## Comparaison entre " la courbure est traité" et "Nb.grains"
-
-```{r Verse.Traitement_nombre,message=FALSE,warning=FALSE,echo=FALSE}
-
-
-# Comparer "Verse.Traitement" et "Nb.grains"
-ggplot(data, aes(x = Verse.Traitement, y = Nb.grains)) +
-  geom_boxplot(fill = "deepskyblue", color = "black") +
-  theme_minimal() +
-  ggtitle("Comparaison de Nb des grains par Verse.Traitement") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Verse.Traitement", y = "Nb des grains")
-
-```
-
-On observe que
-
-```{r table_Verse.Traitement_mass,message=FALSE,warning=FALSE,echo=FALSE}
-
-# DataFrame pour "Verse.Traitement"
-tableau_Attaque <- data %>%
-  mutate(
-    Nb_grains_missing = is.na(Nb.grains),  # Valeurs manquantes
-    Nb_grains_aberrant = detect_aberrant(Nb.grains)  # Valeurs aberrantes
-  ) %>%
-  select(Individu, Verse.Traitement, Nb.grains, Nb_grains_missing, Nb_grains_aberrant) %>%
-  filter(Nb_grains_missing | Nb_grains_aberrant)  
-
-knitr::kable(tableau_Attaque, caption = "informations courbure traité en fonction de le nombre",row.names = FALSE)
-```
-
-### Rapport de correlation
-
-```{r ,echo=FALSE}
-rapport_corr <- function(x, y) {
-  # x est une variable qualitative 
-  # y est une variable quantitative 
-  
-  # Suppression des valeurs manquantes dans x et y
-  complete_cases <- complete.cases(x, y)
-  x <- x[complete_cases]
-  y <- y[complete_cases]
-  
-  somme <- 0
-  niveaux <- unique(x)
-  
-  for (facteur in niveaux) {
-    ind <- which(x == facteur)
-    classe <- y[ind]
-    somme <- somme + length(classe) * sum((mean(classe, na.rm = TRUE) - mean(y, na.rm = TRUE))^2)
-  }
-  
-  y_ecart <- sum((y - mean(y, na.rm = TRUE))^2)
-  rc <- somme / y_ecart
-  
-  return(rc)
-}
-
- rapport_corr(data$Verse.Traitement,data$Nb.grains)
-```
-
-Le rapport de correlation entre ces deux variables indique que 

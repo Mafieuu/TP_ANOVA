@@ -73,7 +73,7 @@ tdm <- function(section) {
 }
 ```
 
-### Chapitre 1
+### TP ANOVA 2024-2025
 
 ```{r, results='asis', echo=FALSE, message=FALSE}
 cat(tdm("manipuler"))

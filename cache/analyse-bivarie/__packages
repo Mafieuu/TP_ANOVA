@@ -13,3 +13,5 @@ ggcorrplot
 lsr
 plotly
 GGally
+rstatix
+ggpubr

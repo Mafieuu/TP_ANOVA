@@ -83,6 +83,108 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -198,19 +300,24 @@ pre code {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">statistiques <span class="caret"></span></a>
+          <a href="manipuler" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ENSAE <span class="caret"></span></a>
           <ul class="dropdown-menu multi-column columns-3" role="menu" id="menu_manipuler">
             <div class="row">
               <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
-  		            <li class="dropdown-header">Presentation et statistiques descriptives</li>
+  		            <li class="dropdown-header">Introduction et Méthodologie</li>
                   <li><a href="introduction.html">Introduction</a></li>
-                  <li><a href="analyse-descriptive.html">Statistiques univariée</a></li>
-                  <li><a href="analyse-bivarie.html">Choix de la variable cible et statistiques bivariée</a></li>
-                  <li><a href="discussion-des-resultats.html">Un premier bilan</a></li>
+                  <li><a href="Methodologie.html">Méthodologie</a></li>
+                  <li><a href="analyse-descriptive.html">Analyse univarie</a></li>
+                  <li><a href="analyse-bivarie.html">Analyse bivariée</a></li>
+                  <li><a href="discussion-des-resultats.html">Résultats ANOVA</a></li>
                  
   	            </ul>
               </div>
+
+
+
+
              
               <!-- <div class="col-sm-4">
   	            <ul class="multi-column-dropdown">
@@ -260,350 +367,127 @@ pre code {
 
 <div id="TOC">
 <ul>
-<li><a href="#comparaison-entre-parcelle-et-nb.grains" id="toc-comparaison-entre-parcelle-et-nb.grains">Comparaison entre “Parcelle” et “Nb.grains”</a>
+<li><a href="#etude-de-la-variable-d%C3%A9pendante" id="toc-etude-de-la-variable-dépendante">Etude de la variable dépendante</a></li>
+<li><a href="#comparaison-entre-parcelle-et-nombre-de-grain" id="toc-comparaison-entre-parcelle-et-nombre-de-grain">Comparaison entre Parcelle et nombre de grain</a></li>
+<li><a href="#comparaison-entre-enracinement-et-nb.grains" id="toc-comparaison-entre-enracinement-et-nb.grains">Comparaison entre “Enracinement” et “Nb.grains”</a></li>
+<li><a href="#croisement-entre-les-deux-facteurs" id="toc-croisement-entre-les-deux-facteurs">Croisement entre les deux facteurs</a>
 <ul>
-<li><a href="#rapport-de-correlation" id="toc-rapport-de-correlation">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-couleur-et-nb.grains" id="toc-comparaison-entre-couleur-et-nb.grains">Comparaison entre “couleur” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-1" id="toc-rapport-de-correlation-1">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-nb.grains" id="toc-comparaison-entre-épigité-de-la-germination-et-nb.grains">Comparaison entre “épigité de la germination” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-2" id="toc-rapport-de-correlation-2">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-enracinement-et-nb.grains" id="toc-comparaison-entre-enracinement-et-nb.grains">Comparaison entre “Enracinement” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-3" id="toc-rapport-de-correlation-3">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" id="toc-comparaison-entre-courbure-verse-de-la-plante-et-nb.grains">Comparaison entre “courbure (verse) de la plante” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-4" id="toc-rapport-de-correlation-4">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-nb.grains" id="toc-comparaison-entre-est-attaqué-par-des-insectes-et-nb.grains">Comparaison entre ” est attaqué par des insectes” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-5" id="toc-rapport-de-correlation-5">Rapport de correlation</a></li>
-</ul></li>
-<li><a href="#comparaison-entre-la-courbure-est-trait%C3%A9-et-nb.grains" id="toc-comparaison-entre-la-courbure-est-traité-et-nb.grains">Comparaison entre ” la courbure est traité” et “Nb.grains”</a>
-<ul>
-<li><a href="#rapport-de-correlation-6" id="toc-rapport-de-correlation-6">Rapport de correlation</a></li>
+<li><a href="#tableau-crois%C3%A9" id="toc-tableau-croisé">tableau croisé</a></li>
+<li><a href="#box-plot-crois%C3%A9" id="toc-box-plot-croisé">box-plot croisé</a></li>
+<li><a href="#test-de-valeur-abh%C3%A9rantes" id="toc-test-de-valeur-abhérantes">Test de valeur abhérantes</a></li>
 </ul></li>
 </ul>
 </div>
 
-<div id="comparaison-entre-parcelle-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “Parcelle” et “Nb.grains”<a href="#comparaison-entre-parcelle-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/parcelle_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations du parcelle en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Parcelle</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Nord</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Est</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Ouest</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.08406623</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div id="etude-de-la-variable-dépendante" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Etude de la variable dépendante<a href="#etude-de-la-variable-d%C3%A9pendante" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">y =</span> Nb.grains)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">outlier.shape =</span> <span class="dv">16</span>, <span class="at">outlier.size =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution de Nb.grains&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Nombre de grains&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-1-1.png" width="1050" /> Si on considère la variable dépandante nombre de grain isolément, l’analyse du boxplot montre qu’il n’y a pas de valeurs abérrantes.</p>
 </div>
-</div>
-<div id="comparaison-entre-couleur-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “couleur” et “Nb.grains”<a href="#comparaison-entre-couleur-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/couleur_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations de la couleur en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Couleur</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Jaune</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Jaune</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.01083218</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
-</div>
-</div>
-<div id="comparaison-entre-épigité-de-la-germination-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “épigité de la germination” et “Nb.grains”<a href="#comparaison-entre-%C3%A9pigit%C3%A9-de-la-germination-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/epi_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’épigité de la graine en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Germination.epi</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-2" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.0003605472</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div id="comparaison-entre-parcelle-et-nombre-de-grain" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Comparaison entre Parcelle et nombre de grain<a href="#comparaison-entre-parcelle-et-nombre-de-grain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_group) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Parcelle, mean), <span class="at">y =</span> mean, <span class="at">fill =</span> Parcelle) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Nombre de grain moyenne par Parcelle&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Parcelle&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Moyenne nombre de grain&quot;</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-3-1.png" width="1050" /></p>
+<p>L’analyse du nombre moyens de grins suivant la parcelle montre que les plantes de mais situées dans la parcelle Est ont en moyenne un rendement plus élevé, suivies de celles situées dans la parcelle Ouest. Les plantes situées dans la parcelle ont le rendement le plus faible.</p>
+<p><img src="graphs/analyse-bivarie/parcelle_nombre-1.png" width="1050" /> Les boxplots de la variable dépendante suivant les parcelles montrent la présence de valeurs aberrantes pour la parcelle Est. Mais le test de la méthode de Turkey montre que ses valeurs ne sont pas extrêment atypes (is.extreme=FALSE)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Parcelle"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Enracinement"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Est","2":"35","3":"217","4":"1623","5":"139","6":"43.8","7":"Jaune","8":"Oui","9":"Faible","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Est","2":"48","3":"293","4":"2147","5":"152","6":"42.9","7":"Jaune.rouge","8":"Non","9":"Fort","10":"Oui","11":"Oui","12":"291","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Est","2":"52","3":"196","4":"1525","5":"132","6":"39.6","7":"Jaune","8":"Oui","9":"Fort","10":"Non","11":"Non","12":"194","13":"Non","14":"TRUE","15":"FALSE"},{"1":"Est","2":"56","3":"319","4":"2045","5":"144","6":"39.0","7":"Jaune","8":"Oui","9":"Fort","10":"Non","11":"Non","12":"301","13":"Non","14":"TRUE","15":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 <div id="comparaison-entre-enracinement-et-nb.grains" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Comparaison entre “Enracinement” et “Nb.grains”<a href="#comparaison-entre-enracinement-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/enracinement_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’Enracinement en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Enracinement</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Faible</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Tres.fort</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Tres.fort</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-3" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.01728187</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(data_group) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Enracinement, mean), <span class="at">y =</span> mean, <span class="at">fill =</span> Enracinement) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">scale_fill_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Nombre de grain moyenne par niveau d&#39;enracinement&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Enracinement&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Moyenne nombre de grain&quot;</span>)</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-6-1.png" width="1050" /></p>
+<p>L’analyse du nombre moyens de grains suivant le niveau de l’enracinement montre que les plantes de faible niveau racinement ont en moyenne un rendement plus élevé, suivies de celles de niveau très fort. On note toutefois que les écarts entre les moyennes des différents groupes sont faibles.</p>
+<p><img src="graphs/analyse-bivarie/enracinement_nombre-1.png" width="1050" /> On note l’absence de valeurs aberrantes si on considère les boxplots suivant le niveua de l’enracinement</p>
+</div>
+<div id="croisement-entre-les-deux-facteurs" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Croisement entre les deux facteurs<a href="#croisement-entre-les-deux-facteurs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tableau-croisé" class="section level3 hasAnchor">
+<h3 class="hasAnchor">tableau croisé<a href="#tableau-crois%C3%A9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">get_summary_stats</span>(Nb.grains, <span class="at">type =</span> <span class="st">&quot;mean_sd&quot;</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["variable"],"name":[3],"type":["fct"],"align":["left"]},{"label":["n"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"Nb.grains","4":"8","5":"336.750","6":"96.757"},{"1":"Fort","2":"Est","3":"Nb.grains","4":"10","5":"288.200","6":"112.635"},{"1":"Moyen","2":"Est","3":"Nb.grains","4":"6","5":"356.500","6":"62.199"},{"1":"Tres.fort","2":"Est","3":"Nb.grains","4":"8","5":"364.580","6":"47.680"},{"1":"Faible","2":"Nord","3":"Nb.grains","4":"4","5":"258.910","6":"74.761"},{"1":"Fort","2":"Nord","3":"Nb.grains","4":"2","5":"272.500","6":"54.447"},{"1":"Moyen","2":"Nord","3":"Nb.grains","4":"9","5":"255.000","6":"79.215"},{"1":"Tres.fort","2":"Nord","3":"Nb.grains","4":"2","5":"147.000","6":"12.728"},{"1":"Faible","2":"Ouest","3":"Nb.grains","4":"3","5":"352.667","6":"121.332"},{"1":"Fort","2":"Ouest","3":"Nb.grains","4":"9","5":"307.222","6":"126.096"},{"1":"Moyen","2":"Ouest","3":"Nb.grains","4":"7","5":"202.000","6":"57.149"},{"1":"Tres.fort","2":"Ouest","3":"Nb.grains","4":"16","5":"295.665","6":"131.302"},{"1":"Faible","2":"Sud","3":"Nb.grains","4":"4","5":"280.500","6":"7.141"},{"1":"Fort","2":"Sud","3":"Nb.grains","4":"5","5":"276.000","6":"17.132"},{"1":"Moyen","2":"Sud","3":"Nb.grains","4":"5","5":"278.400","6":"21.973"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div id="comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre “courbure (verse) de la plante” et “Nb.grains”<a href="#comparaison-entre-courbure-verse-de-la-plante-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/verse_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations de Verse en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Verse</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-4" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.0005838208</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<div id="box-plot-croisé" class="section level3 hasAnchor">
+<h3 class="hasAnchor">box-plot croisé<a href="#box-plot-crois%C3%A9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>bxp <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  data,</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="st">&quot;Enracinement&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Nb.grains&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">&quot;Parcelle&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>bxp</span></code></pre></div>
+<p><img src="graphs/analyse-bivarie/unnamed-chunk-8-1.png" width="1050" /></p>
 </div>
+<div id="test-de-valeur-abhérantes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Test de valeur abhérantes<a href="#test-de-valeur-abh%C3%A9rantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"35","4":"217","5":"1623","6":"139","7":"43.8","8":"Jaune","9":"Oui","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Est","3":"40","4":"328","5":"2119","6":"467","7":"140.1","8":"Jaune","9":"Non","10":"Oui","11":"Oui","12":"314","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Faible","2":"Nord","3":"4","4":"173","5":"1398","6":"147","7":"42.6","8":"Jaune","9":"Non","10":"Oui","11":"Non","12":"176","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Ouest","3":"70","4":"270","5":"1970","6":"328","7":"101.4","8":"Rouge","9":"Non","10":"Non","11":"Oui","12":"271","13":"Non","14":"TRUE","15":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="comparaison-entre-est-attaqué-par-des-insectes-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre ” est attaqué par des insectes” et “Nb.grains”<a href="#comparaison-entre-est-attaqu%C3%A9-par-des-insectes-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/attaque_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations d’Attaque en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Attaque</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-5" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.0003195651</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
+<p>Nous avons deux valeurs extrêmement abérante,nous decidons de les suprimmer.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Identifier les outliers</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="fu">anti_join</span>(outliers <span class="sc">%&gt;%</span> <span class="fu">filter</span>(is.extreme), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;Parcelle&quot;</span>, <span class="st">&quot;Enracinement&quot;</span>, <span class="st">&quot;Nb.grains&quot;</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Nombre de lignes après suppression :&quot;</span>, <span class="fu">nrow</span>(data_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>Nombre de lignes après suppression : 97 </code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">write_delim</span>(data_clean, <span class="st">&quot;data/data_corrige.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_clean</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Fichier sauvegardé avec succès.&quot;</span>)</span></code></pre></div>
+<pre><code>Fichier sauvegardé avec succès.</code></pre>
+<p>Apres suppressions nous obtenons de nouveau une valeur extreme , en la suprimmant nous n’obtenons plus de valeur extreme.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Parcelle, Enracinement) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Nb.grains)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Enracinement"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Parcelle"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Individu"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Hauteur"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Masse"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Nb.grains"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Masse.grains"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Couleur"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Germination.epi"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Verse"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Attaque"],"name":[11],"type":["chr"],"align":["left"]},{"label":["Hauteur.J7"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Verse.Traitement"],"name":[13],"type":["chr"],"align":["left"]},{"label":["is.outlier"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["is.extreme"],"name":[15],"type":["lgl"],"align":["right"]}],"data":[{"1":"Faible","2":"Est","3":"35","4":"217","5":"1623","6":"139","7":"43.8","8":"Jaune","9":"Oui","10":"Oui","11":"Oui","12":"201","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Moyen","2":"Est","3":"40","4":"328","5":"2119","6":"467","7":"140.1","8":"Jaune","9":"Non","10":"Oui","11":"Oui","12":"314","13":"Oui","14":"TRUE","15":"FALSE"},{"1":"Faible","2":"Nord","3":"4","4":"173","5":"1398","6":"147","7":"42.6","8":"Jaune","9":"Non","10":"Oui","11":"Non","12":"176","13":"Oui","14":"TRUE","15":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-</div>
-<div id="comparaison-entre-la-courbure-est-traité-et-nb.grains" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Comparaison entre ” la courbure est traité” et “Nb.grains”<a href="#comparaison-entre-la-courbure-est-trait%C3%A9-et-nb.grains" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="graphs/analyse-bivarie/Verse.Traitement_nombre-1.png" width="1050" /></p>
-<p>On observe que</p>
-<table>
-<caption>informations courbure traité en fonction de le nombre</caption>
-<thead>
-<tr class="header">
-<th align="right">Individu</th>
-<th align="left">Verse.Traitement</th>
-<th align="right">Nb.grains</th>
-<th align="left">Nb_grains_missing</th>
-<th align="left">Nb_grains_aberrant</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="right">32</td>
-<td align="left">Non</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="right">65</td>
-<td align="left">Oui</td>
-<td align="right">NA</td>
-<td align="left">TRUE</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-<div id="rapport-de-correlation-6" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Rapport de correlation<a href="#rapport-de-correlation-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre><code>[1] 0.01254531</code></pre>
-<p>Le rapport de correlation entre ces deux variables indique que</p>
 </div>
 </div>
 

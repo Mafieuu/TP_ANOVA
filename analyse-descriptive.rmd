@@ -1,17 +1,18 @@
 ---
-title: "Analyse descriptive"
+title: "Analyse univarié"
 ---
 
 ```{r options_communes, include=FALSE, cache=FALSE}
 source("options_communes.R")
 ```
 
-## Generalite sur les variables quantitatives
+## traitement des valeurs manquantes 
 
 ```{r packages, include=FALSE}
 library(readr)
 library(ggplot2)
 library(corrplot)
+library(gridExtra)
 
 ```
 
@@ -21,75 +22,74 @@ data <- read_delim("data/0.BASE TRAVAUX PRATIQUES ANOVA ISE2 2024-2025.csv",
     trim_ws = TRUE)
 
 ```
-Nous disposons de ....
-<figure>
-```{r quant_table,,message=FALSE,warning=FALSE,echo=FALSE}
-quant_vars <- sapply(data, is.numeric)
+Pour nos trois variables d'étude, seule la variable dépendante présente des valeurs manquantes. Le nombre de valeurs manquantes pour cette variable est 3. Pour le traitement de ces valeurs manquantes, nous allons utiliser l'imputation par la moyenne.
+```{r inputation,warning=FALSE }
+# Calcul de la moyenne de la variable  en ignorant les valeurs manquantes
+mean_value <- mean(data$Nb.grains, na.rm = TRUE)
 
-quantitative_stats <- data.frame(
-  Variable = names(data)[quant_vars],
-  valeur_NA = colSums(is.na(data[, quant_vars])),
-  Moyenne = sapply(data[, quant_vars], mean, na.rm = TRUE),
-  Variance = sapply(data[, quant_vars], var, na.rm = TRUE)
-)
-knitr::kable(quantitative_stats, caption = "Statistiques des Variables Quantitatives",row.names = FALSE)
+data$Nb.grains[is.na(data$Nb.grains)] <- mean_value
 
-```
-</figure>
-
-## Generalite sur les variables qualitative
-
-Quant aux variables qualitatives 
-
-<figure>
-```{r quali_table, echo=FALSE, warning=FALSE, ,message=FALSE}
-qual_vars <- sapply(data, is.factor) | sapply(data, is.character)
-
-qualitative_table <- data.frame(
-  Variable = names(data)[qual_vars],
-  Facteurs = sapply(data[, qual_vars], function(x) paste(unique(x), collapse = ", ")),
-  Fréquences = sapply(data[, qual_vars], function(x) paste(
-    names(table(x)), "(", table(x), ")", collapse = ", "
-  )),
-  Valeurs_manquantes = colSums(is.na(data[, qual_vars]))
-)
-rownames(qualitative_table) <- NULL
-knitr::kable(qualitative_table, caption = "Variables Qualitatives, Facteurs, Fréquences et Nombre de Valeurs Manquantes")
-
-```
-</figure>
-
-## Teste de corrélation entre la masse et la quantité de grain
-Ce teste permet de ....
-<figure>
-```{r compar_mass_quant,message=FALSE,warning=FALSE,echo=FALSE}
-
-cor_data <- data[, c("Masse.grains", "Nb.grains")]
-cor_matrix <- cor(cor_data, use = "complete.obs")
-corrplot(cor_matrix, method = "circle")
-
-```
-</figure>
-Le graphique montre une corrélation positive modérée entre **Masse.grains** et **Nb.grains**, indiquant que lorsque l’un augmente, l’autre tend également à augmenter. La force de cette relation est représentée par un cercle bleu clair, suggérant une liaison existante mais non parfaite.
-
-Poursuivons par un autre teste pour voir la corrélation de rangs a defaut d'une correlation lineaire importante
-
-## Teste de corrélation de Spearman entre la masse et la quantité de grain
-
-<figure>
-```{r teste_spearman_mass_quantite),message=FALSE,warning=FALSE}
-
-cor.test(data$Masse.grains, data$Nb.grains, method = "spearman")
+# Vérification 
+  # Doit être égal à 0
+if (sum(is.na(data$NB.grain)) ==0){
+  # Sauvegarde 
+  write_delim(data, "data/data_corrige.csv", delim = ";")
+  cat("Operation réussi")
+}
 
 
 ```
-</figure>
-Le coefficient de corrélation de Spearman est de 0,969, ce qui indique une très forte corrélation positive entre les deux variables bien que le teste de correlation lineaire indique une non lineaire relation entre nos differents variables.
-La p-value est inferieure a 0,01 ce qui indique que la correlation est hautement significative .nous rejetons l'hypothèse nulle selon laquelle il n'y a pas de relation entre les deux variables, et il existe donc une forte probabilité que la relation observée soit réelle et non due au hasard.
 
-## Conclusion
+```{r fonction_groupe,include=FALSE}
+library(dplyr)
+library(ggplot2)
+
+# Fonction améliorée pour générer un histogramme des effectifs trié en ordre croissant
+histogramme_effectifs <- function(data, variable) {
+  # Calcul des effectifs et tri par ordre croissant
+  effectifs <- data %>%
+    count(.data[[variable]]) %>%
+    arrange(n)  # Tri par ordre croissant
+  
+  # Convertir la variable en facteur avec l'ordre croissant des effectifs
+  data[[variable]] <- factor(data[[variable]], levels = effectifs[[variable]])
+  
+  # Création de l'histogramme avec les effectifs affichés
+  ggplot(data, aes(x = .data[[variable]], fill = .data[[variable]])) +
+    geom_bar() +
+    geom_text(stat = "count", aes(label = ..count..), vjust = -0.3, size = 5) + 
+    theme_minimal() +
+    labs(
+      title = paste("Histogramme des effectifs pour", variable),
+      x = variable,
+      y = "Effectif"
+    ) +
+    theme(
+      legend.position = "none",        # Suppression de la légende
+      plot.title = element_text(hjust = 0.5, face = "bold", size = 14),  # Titre centré et en gras
+      axis.text.x = element_text(angle = 45, hjust = 1, size = 12),  # Rotation du texte de l’axe X
+      axis.text.y = element_text(size = 12),
+      axis.title.x = element_text(size = 13, face = "bold"),
+      axis.title.y = element_text(size = 13, face = "bold")
+    ) +
+    scale_fill_manual(values = c("#A63946", "#E0A261", "#2A2E8F", "#26C653", "#8A5A8F", "#FF5A8F"))
+}
+
+
+```
+
+
+## Analayse des variables qualitatives
+```{r}
+histogramme_effectifs(data, "Parcelle")
+
+```
+```{r}
+histogramme_effectifs(data, "Enracinement")
+
+```
+
 
 <div class="important">
-Compte tenu de la très forte corrélation entre masse des grains et Nombre de grains, nous pouvons conclure qu'une nombre élevée des grains est fortement associée à un nombre élevé de grains. En raison de cette forte association, nous choisissons le nombre de grains comme variable cible pour notre ANOVA.
+L'analyse univariée des deux variables qualitatives permet de voir la répartition des plantes suivantes les modalités de chaque variable. Pour chacun des deux facteurs, les modalités n'ont pas les mêmes effectifs. Le plan est donc déséquilibré
 </div>
-La variable **nombre.grain** a trois valeur manquantes ce qui est assez faible,nous traiteront les valeurs manquantes apres choix des variables categorielles.
