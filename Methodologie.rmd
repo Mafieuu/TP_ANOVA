@@ -178,19 +178,19 @@ Graphiquement nous obtenons :
 
 ```{r corre_graph,echo=FALSE,message=FALSE}
 library(ggplot2)
-library(viridis)  #  couleurs plus elegent
+library(viridis)
 
 ggplot(correlation_table, aes(x = reorder(Qualitative, Correlation), y = Correlation, fill = Correlation)) +
-  geom_bar(stat = "identity", width = 0.6, color = "black") +  # Bordures noires pour plus de contraste
-  coord_flip() +  # Meilleure lisibilité
-  theme_minimal(base_size = 14) +  # Style épuré avec texte plus grand
-  scale_fill_viridis_c(option = "magma", direction = -1) +  # Palette de couleurs esthétiques
+  geom_bar(stat = "identity", width = 0.6, color = "black") +  
+  coord_flip() +  
+  theme_minimal(base_size = 14) +  
+  scale_fill_viridis_c(option = "magma", direction = -1) +  
   labs(title = "Rapport de Corrélation entre Variables Qualitatives et Nombre de Grains",
        x = "Variables Qualitatives",
        y = "Coefficient de Corrélation") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "right",
-        panel.grid.major = element_blank(),  # Supprime les grandes lignes de grille pour plus de clarté
+        panel.grid.major = element_blank(),  
         panel.grid.minor = element_blank()) 
 
 

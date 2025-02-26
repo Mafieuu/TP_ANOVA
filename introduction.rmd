@@ -8,6 +8,7 @@ source("options_communes.R")
 
 ```{r packages, include=FALSE}
 library(readr)
+library(stringr)
 
 ```
 

@@ -31,7 +31,7 @@ require(lubridate)
 
 <div class="note">
 Ce travail a ete realise par 
-xxxxxxx et xxxxxx
+Amadou Youm et Moussa Dieme
 </div>
 
 ## Table des matières{#tdm}

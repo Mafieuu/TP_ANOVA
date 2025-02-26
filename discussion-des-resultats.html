@@ -485,6 +485,7 @@ MS total:  792.1667 </code></pre>
 6  Ouest - Sud  1.0380121 0.299264441 1.00000000</code></pre>
 <div class="important">
 <p>Il existe une difference significative entre les parcelles Nord et Est au seuil de 5% . Pour les parcelles Est-Sud, la difference est signigicative au seuil de 10% (p-value ajusté) Le test de Dunn nous permet de conclure que la parcelle Est est significativement différente de la parcelle Nord en terme de nombre de grain .</p>
+</div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Parcelle, <span class="at">y =</span> Nb.grains, <span class="at">fill =</span> Parcelle)) <span class="sc">+</span></span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -493,7 +494,6 @@ MS total:  792.1667 </code></pre>
 <p><img src="graphs/discussion-des-resultats/unnamed-chunk-9-1.png" width="1050" /></p>
 <div class="note">
 <p>Cette étude visait à évaluer l’effet de la parcelle sur le nombre de grains produits. Les analyses statistiques ont révélé une différence significative entre les parcelles, avec un impact notable de la localisation sur la production. En particulier, la parcelle “Est” a montré une production significativement plus élevée que la parcelle “Nord”, tandis que les autres comparaisons ne se sont pas révélées statistiquement significatives après correction. Le boxplot confirme cette tendance, illustrant des différences de médianes et de variabilité entre les parcelles. Ces résultats suggèrent que des facteurs environnementaux propres à chaque parcelle, tels que le sol, l’exposition ou les conditions climatiques, pourraient influencer la production de grains. Des analyses complémentaires seraient nécessaires pour approfondir ces observations et optimiser les conditions de culture en fonction des spécificités de chaque parcelle.</p>
-</div>
 </div>
 </div>
 </div>

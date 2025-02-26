@@ -114,6 +114,7 @@ Du résultat ci-dessus, nous pouvons voir que la p-value infierieure à 0.05, ce
 scheirerRayHare(Nb.grains ~ Enracinement + Parcelle + Enracinement:Parcelle, data = data)
 
 ```
+
 Enracinement: (p = 0.682) **Pas d'effet significatif** sur le nombre de grain
 
 Parcelle  : (p = 0.025) effet significatif, indiquant que la parcelle a un impact surle nombre de grain
@@ -138,6 +139,7 @@ dunnTest(Nb.grains ~ Parcelle, data = data, method = "bonferroni")
 Il existe une difference significative entre les parcelles Nord et Est au seuil de 5% .
 Pour les parcelles Est-Sud, la difference est signigicative au seuil de 10% (p-value ajusté)
 Le test de Dunn nous permet de conclure que la parcelle Est est significativement différente de la parcelle Nord en terme de nombre de grain .
+</div>
 
 ```{r}
 library(ggplot2)
